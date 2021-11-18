@@ -1,1 +1,14 @@
+===============================================
+November 19 Meeting
 
+Things to Do:
+-set up commitments
+-discuss user stories & project overview
+-start building UML diagram
+-discuss working timeline
+-set the time for next meeting
+-discuss things to do before next meeting
+
+Meeting Notes:
+
+===============================================
