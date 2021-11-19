@@ -14,5 +14,7 @@ Meeting Notes:
 Junxun Liu:
 Login/Sign in 
 
+Zion Yin&Xinyi Ye:
+List of orders, list of products, list of orders
 
 ===============================================
