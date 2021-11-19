@@ -15,6 +15,6 @@ Junxun Liu:
 Login/Sign in 
 
 Kaiwen Niu & Yunlong Chen:
-Store owners' product
+Store owners' product and order list
 
 ===============================================
