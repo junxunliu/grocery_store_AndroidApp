@@ -1,22 +1,42 @@
 ===============================================
+
 November 19 Meeting
 
 Things to Do:
--set up commitments
 -discuss user stories & project overview
+-assign works
 -start building UML diagram
 -discuss working timeline
 -set the time for next meeting
 -discuss things to do before next meeting
 
 Meeting Notes:
+-discuss interface design and the division of works, more detailed information in interface_design.pdf
 
+-work assigned as followings:
 Junxun Liu:
-Login/Sign in 
+Login/Sign in System
 
 Kaiwen Niu & Yunlong Chen:
-Store owners' product and Customer's store and product list
+Store owners' product list and Customers' store and product list
 
 Xinyi Ye & Ziyao Yin:
-Store owner's order list and Customer's order list
+Store owners' order list and Customers' order list
+
+-UML diagram link:
+https://app.creately.com/diagram/1cnIHM7qJEs/edit
+
+-meetings:
+mode of contact: zoom meeting
+time: Tuesday 9am and Friday 9am every week
+
+-thing to do before next Tuesday (November 23)
+at least complete UML diagram
+
 ===============================================
+
+November 23 Meeting
+
+Things to Do:
+-check UML diagram
+-start implementaion
