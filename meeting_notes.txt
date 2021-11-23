@@ -40,3 +40,11 @@ November 23 Meeting
 Things to Do:
 -check UML diagram
 -start implementaion
+
+
+
+==============================================
+
+November 26 Meeting
+
+Things to Do:
