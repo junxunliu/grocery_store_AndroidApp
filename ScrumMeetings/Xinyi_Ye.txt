@@ -2,7 +2,6 @@
 
 November 16 - November 19
 
-Xinyi Ye:
   1.What did I finish since the last standup?
     create a rough design of the interface
     think about the division of works and assign works to group members
@@ -15,7 +14,6 @@ Xinyi Ye:
 
 November 19 - November 23
 
-Xinyi Ye:
   1.What did I finish since the last standup?
     construct UML diagram for stores' order list and customers' order list
     discuss the construction of product list with Kaiwen
@@ -28,3 +26,10 @@ Xinyi Ye:
 ==============================================================
 
 November 23 - November 24
+
+  1.What did I finish since the last standup?
+    
+  2.What am I going to finish by the next standup?
+    
+  3.What is stopping me / what impediments am I facing?
+    
