@@ -42,7 +42,6 @@ Things to Do:
 
 Meeting Notes:
 -thing to do before Next Meeting (November 24):
-write product backlog
 think about UML diagram
 
 ==============================================
