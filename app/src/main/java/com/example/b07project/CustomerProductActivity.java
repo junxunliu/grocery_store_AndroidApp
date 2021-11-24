@@ -9,6 +9,6 @@ public class CustomerProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer);
+        setContentView(R.layout.activity_customer_product);
     }
 }
