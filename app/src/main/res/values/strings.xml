@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">b07project</string>
+    <string name="banner">User Stories</string>
+    <string name="subbanner">User stories template</string>
+    <string name="first_name">First Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="last_name">Last Name</string>
+    <string name="remember_me">Remember me</string>
+    <string name="store_owner">Check if you are a store owner</string>
 </resources>
