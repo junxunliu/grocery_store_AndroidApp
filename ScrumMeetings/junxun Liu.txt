@@ -1,0 +1,19 @@
+November 19 - November 23
+
+  1.What did I finish since the last standup
+   construct Login/Signup demo
+  2.What am I going to finish by the next standup
+    modify the UML diagram for login
+  3.What is stopping me  what impediments am I facing
+    commit and push files to github
+    
+==============================================================
+
+November 23 - November 24
+
+  1.What did I finish since the last standup
+    
+  2.What am I going to finish by the next standup
+    
+  3.What is stopping me  what impediments am I facing
+    
