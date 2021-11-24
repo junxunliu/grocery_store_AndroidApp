@@ -49,4 +49,57 @@ think about UML diagram
 November 24 Meeting
 
 Things to Do:
--finalize UML diagram and interface design
+-finalize interface design
+-finalize data format
+-more detailed work assignment
+
+Meeting Notes:
+-data format:
+StoreOwner
+	storeID
+	storeName: String
+	productList: List<Product>
+
+Customer
+	customerID
+	customerName: String
+
+Product
+	productName: String
+	brand: String
+	price: float
+
+OrderedProduct
+	productName: String
+	brand: String
+	price: float
+	quantity: int
+
+Order
+	StoreOwner
+	Customer
+	OrderedProductList: Hashset<OrderedProduct>
+	status: boolean (complete=1)
+
+-work assignment:
+page 1&2, StoreOwner, Customer: Junxun Liu
+page 3: Kaiwen Niu
+page 4&6, Order: Xinyi Ye
+page 5, Product, OrderedProduct: Ziyao Yin & Yunlong Chen
+
+-thing to do before Next Meeting (November 26):
+basic interface
+
+==============================================
+
+November 26 Meeting
+
+Things to Do:
+
+Meeting Notes:
+-thing to do before Next Meeting (November 28):
+finish implementation
+
+==============================================
+
+November 28 Meeting
