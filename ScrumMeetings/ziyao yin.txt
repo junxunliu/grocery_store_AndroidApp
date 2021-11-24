@@ -1,0 +1,14 @@
+November 19 - November 23
+things done
+   Create DB demo
+
+    
+==============================================================
+
+November 23 - November 24
+
+things done:
+  create new UML diagram
+things to be done:
+  create Product class
+    
