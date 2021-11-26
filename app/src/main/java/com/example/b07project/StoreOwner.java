@@ -3,7 +3,12 @@ package com.example.b07project;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreOwner {
+
+public class StoreOwner extends User{
+
+    public StoreOwner(String email, String firstName, String lastName) {
+        super(email, firstName, lastName);
+    }
 
     public String owner;
     public String storeName;
@@ -12,7 +17,6 @@ public class StoreOwner {
 
     public StoreOwner() {
         product = new ArrayList<Product>();
-
     }
 
     public StoreOwner(String storeName) {

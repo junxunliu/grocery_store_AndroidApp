@@ -56,13 +56,13 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             // Do Something
-                            Toast.makeText(this, "Product Added Successfully.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(this, StoreMainPageActivity.class);
+                            Toast.makeText(AddProductActivity.this, "Product Added Successfully.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(AddProductActivity.this, StoreOwnerMainPageActivity.class);
                             intent.putExtra("thisUsrID", store.owner);
                             startActivity(intent);
                         } else {
                             // Do Something
-                            Toast.makeText(this, "Product Not Added!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddProductActivity.this, "Product Not Added!", Toast.LENGTH_SHORT).show();
                             return;
                         }
                     }
