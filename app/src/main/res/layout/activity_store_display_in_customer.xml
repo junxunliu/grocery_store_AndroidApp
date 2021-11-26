@@ -16,7 +16,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="match_parent"
-        app:layout_constraintVertical_bias="0.265" />
+        app:layout_constraintVertical_bias="0.265" >
+    </ListView>
 
 
     <Button
@@ -49,9 +50,11 @@
         android:layout_marginStart="56dp"
         android:ems="10"
         android:inputType="number"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvSelectedItem"
         app:layout_constraintStart_toEndOf="@+id/tvSelectedItem"
-        app:layout_constraintTop_toTopOf="@+id/tvSelectedItem" />
+        app:layout_constraintTop_toTopOf="@+id/tvSelectedItem"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnAdd"
