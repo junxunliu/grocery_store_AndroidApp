@@ -95,11 +95,25 @@ basic interface
 November 26 Meeting
 
 Things to Do:
+-check current progress
 
 Meeting Notes:
--thing to do before Next Meeting (November 28):
+-solving commit & push issues
+-thing to do before November 29:
 finish implementation
 
 ==============================================
 
 November 28 Meeting
+
+Things to Do:
+-check current progress
+
+==============================================
+
+November 29 Meeting
+
+Things to Do:
+-
+
+==============================================
