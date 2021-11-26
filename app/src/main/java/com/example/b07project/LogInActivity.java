@@ -112,7 +112,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 // check if it's store owner or customer
                 // here is customer
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(LogInActivity.this, MainActivity.class));
+                    startActivity(new Intent(LogInActivity.this, CustomerProductActivity.class));
                 } else {
                     Toast.makeText(LogInActivity.this, "Fail to login!", Toast.LENGTH_LONG).show();
                 }
