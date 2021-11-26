@@ -3,7 +3,7 @@ package com.example.b07project;
 public class OrderedProduct extends Product{
     int quantity;
 
-    public OrderedProduct(String name,String brand,double price,int quantity){
+    public OrderedProduct(String brand,String name,double price,int quantity){
         super(name,brand,price);
         this.quantity=quantity;
     }

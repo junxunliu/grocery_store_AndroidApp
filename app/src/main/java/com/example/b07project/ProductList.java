@@ -23,4 +23,13 @@ public class ProductList {
     public void deleteProduct(Product p){
         productList.remove(p);
     }
+
+    @Override
+    public String toString() {
+        String str="";
+        for(Product p:productList){
+            str += p.toString() + "\n";
+        }
+        return str;
+    }
 }
