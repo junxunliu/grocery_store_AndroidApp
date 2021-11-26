@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07project">
         <activity
-            android:name=".CustomerProductActivity"
+            android:name=".CustomerActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
