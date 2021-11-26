@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddProductActivity">
+
+    <EditText
+        android:id="@+id/edTxtProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Product Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edTxtBrandName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="Brand Name"
+        app:layout_constraintStart_toStartOf="@+id/edTxtProductName"
+        app:layout_constraintTop_toBottomOf="@+id/edTxtProductName" />
+
+    <EditText
+        android:id="@+id/edTxtPrice"
+        style="@android:style/Widget.DeviceDefault.EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="Price"
+        app:layout_constraintStart_toStartOf="@+id/edTxtBrandName"
+        app:layout_constraintTop_toBottomOf="@+id/edTxtBrandName" />
+
+
+    <Button
+        android:id="@+id/btAdd"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="195dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="72dp"
+        android:background="#B15E5E"
+        android:backgroundTint="#4CAF50"
+        android:fontFamily="sans-serif"
+        android:scrollbarThumbHorizontal="@android:drawable/alert_light_frame"
+        android:text="Add New Product"
+        android:textIsSelectable="false"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/edTxtPrice"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/edTxtPrice"
+        app:layout_constraintTop_toBottomOf="@+id/edTxtPrice" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
