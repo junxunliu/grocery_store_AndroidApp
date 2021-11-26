@@ -30,7 +30,7 @@ https://app.creately.com/diagram/1cnIHM7qJEs/edit
 mode of contact: zoom meeting
 time: Tuesday 9am and Friday 9am every week
 
--thing to do before next Tuesday (November 23)
+-thing to do before next Tuesday (November 23):
 at least complete UML diagram
 
 ===============================================
@@ -38,5 +38,15 @@ at least complete UML diagram
 November 23 Meeting
 
 Things to Do:
--check UML diagram
--start implementaion
+-discuss UML diagram
+
+Meeting Notes:
+-thing to do before Next Meeting (November 24):
+think about UML diagram
+
+==============================================
+
+November 24 Meeting
+
+Things to Do:
+-finalize UML diagram and interface design
