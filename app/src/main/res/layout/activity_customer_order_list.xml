@@ -31,6 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button2" />
+<<<<<<< HEAD
 
     <TextView
         android:id="@+id/textView2"
@@ -42,4 +43,6 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+=======
+>>>>>>> 98fdf88 (create CustomerOrderListActivity and StoreOwnerOrderListActivity)
 </androidx.constraintlayout.widget.ConstraintLayout>
