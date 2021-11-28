@@ -1,30 +1,56 @@
 package com.example.b07project;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.Objects;
 
 public class StoreOwner extends User{
+    private String storeName;
+    private String address;
+    private ProductList productList = new ProductList(this);
 
-    public StoreOwner(String email, String firstName, String lastName) {
-        super(email, firstName, lastName);
+    public String getStoreName() {
+        return storeName;
     }
 
-    public String owner;
-    public String storeName;
-
-    public List<Product> product;
-
-    public StoreOwner() {
-        product = new ArrayList<Product>();
-    }
-
-    public StoreOwner(String storeName) {
-        this();
+    public void setStoreName(String storeName) {
         this.storeName = storeName;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public ProductList getProductList() {
+        return productList;
+    }
+
+    public StoreOwner(){}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof StoreOwner)) return false;
+        StoreOwner that = (StoreOwner) o;
+        return getStoreName().equals(that.getStoreName()) && getAddress().equals(that.getAddress());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getStoreName(), getAddress());
+    }
+
+    public StoreOwner(String storeName, String address){
+        this.storeName=storeName;
+        this.address=address;
+    }
+
+    @Override
     public String toString() {
-        return storeName;
+        return address + ":" + storeName;
+
     }
 }
