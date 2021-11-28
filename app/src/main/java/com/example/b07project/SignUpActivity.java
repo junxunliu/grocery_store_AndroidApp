@@ -49,6 +49,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
+        checkBoxStoreOwner = (CheckBox) findViewById(R.id.checkboxStoreOwner);
+
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -103,23 +105,45 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             User user = new User(email, firstName, lastName);
-                            FirebaseDatabase.getInstance().getReference("Customers")
-                                    .child(mAuth.getCurrentUser().getUid()) // get current sign up user id
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(SignUpActivity.this, "Customer registered successfully!", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
+                            if (checkBoxStoreOwner.isChecked()) {
+                                user.userType = "StoreOwner";
+                                FirebaseDatabase.getInstance().getReference("Store Owners")
+                                        .child(mAuth.getCurrentUser().getUid())
+                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(SignUpActivity.this, "Store owner registered successfully!", Toast.LENGTH_LONG).show();
+                                            progressBar.setVisibility(View.GONE);
 
-                                        // redirect to login or dashboard
-                                        startActivity(new Intent(SignUpActivity.this,MainActivity.class));
-                                    } else {
-                                        Toast.makeText(SignUpActivity.this, "Failed to create a customer", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
+                                            // redirect to login or dashboard
+                                            startActivity(new Intent(SignUpActivity.this,MainActivity.class));
+                                        } else {
+                                            Toast.makeText(SignUpActivity.this, "Failed to create a store owner", Toast.LENGTH_LONG).show();
+                                            progressBar.setVisibility(View.GONE);
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            } else {
+                                user.userType = "Customer";
+                                FirebaseDatabase.getInstance().getReference("Customers")
+                                        .child(mAuth.getCurrentUser().getUid()) // get current sign up user id
+                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(SignUpActivity.this, "Customer registered successfully!", Toast.LENGTH_LONG).show();
+                                            progressBar.setVisibility(View.GONE);
+
+                                            // redirect to login or dashboard
+                                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                                        } else {
+                                            Toast.makeText(SignUpActivity.this, "Failed to create a customer", Toast.LENGTH_LONG).show();
+                                            progressBar.setVisibility(View.GONE);
+                                        }
+                                    }
+                                });
+                            }
                         } else {
                             Toast.makeText(SignUpActivity.this, "Failed to sign up", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
