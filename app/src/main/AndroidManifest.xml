@@ -16,7 +16,7 @@
             android:name=".AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerActivity"
+            android:name=".CustomerProductActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
