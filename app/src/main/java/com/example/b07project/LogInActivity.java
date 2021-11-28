@@ -126,15 +126,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 //        });
     }
 
-    public void redirectToCustomer(String userId) {
+    public void redirectToCustomer(User user) {
         Intent intent = new Intent(LogInActivity.this, CustomerProductActivity.class);
-        intent.putExtra("CustomerActivity", userId);
+        intent.putExtra("CustomerActivity", user);
         startActivity(intent);
     }
 
-    public void redirectToStoreOwner(String userId) {
+    public void redirectToStoreOwner(User user) {
         Intent intent = new Intent(LogInActivity.this, StoreOwnerMainPageActivity.class);
-        intent.putExtra("StoreOwnerActivity", userId);
+        intent.putExtra("StoreOwnerActivity", user);
         startActivity(intent);
     }
 }

@@ -18,9 +18,9 @@ public class Presenter {
         model.getUser(email, password, (User user) -> {
             if (user == null) return;
             if (user instanceof Customer)
-                view.redirectToCustomer(user.getId());
+                view.redirectToCustomer(user);
             else
-                view.redirectToStoreOwner(user.getId());
+                view.redirectToStoreOwner(user);
         });
     }
 }

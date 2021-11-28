@@ -45,7 +45,6 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
                 startActivity(intent);
             }
         });
-
     }
 
     private void findStore(){
