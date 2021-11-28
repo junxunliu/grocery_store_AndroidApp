@@ -33,8 +33,8 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
         private void findStore(){
 
             //find the current store in the database
-            FirebaseDatabase.getInstance().getReference("store")
-                    .child("storeName").addListenerForSingleValueEvent(new ValueEventListener(){
+            FirebaseDatabase.getInstance().getReference("user")
+                    .child("email").addListenerForSingleValueEvent(new ValueEventListener(){
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -57,8 +57,8 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
         }
 
-        findViewById(R.id.btnListOrders).setOnClickListener(this);
-        findViewById(R.id.btnAddItem).setOnClickListener(this);
+        findViewById(R.id.btListOfOrders).setOnClickListener(this);
+        findViewById(R.id.btAddProduct).setOnClickListener(this);
         ProductList = (ListView) findViewById(R.id.lvItems);
         ProductList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,10 +88,10 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnAddItem:
+            case R.id.btAddProduct:
                 addItem();
                 break;
-            case R.id.btnListOrders:
+            case R.id.btListOfOrders:
                 listOrders();
                 break;
         }

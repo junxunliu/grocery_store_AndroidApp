@@ -45,7 +45,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnListOrders"
+        android:id="@+id/btListOfOrders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="616dp"
@@ -55,14 +55,14 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnAddItem"
+        android:id="@+id/btAddProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add New Product"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toEndOf="@+id/btnListOrders"
+        app:layout_constraintStart_toEndOf="@+id/btListOfOrders"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.901" />
 
@@ -71,11 +71,11 @@
         android:id="@+id/lvItems"
         android:layout_width="409dp"
         android:layout_height="480dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnListOrders"
+        app:layout_constraintBottom_toTopOf="@+id/btListOfOrders"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headers"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.214" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
