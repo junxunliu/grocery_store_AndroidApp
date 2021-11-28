@@ -109,8 +109,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(email, firstName, lastName);
                             if (checkBoxStoreOwner.isChecked()) {
+                                User user = new User(email, firstName, lastName);
                                 user.setUserType("Store Owner");
                                 FirebaseDatabase.getInstance().getReference("Store Owners")
                                         .child(mAuth.getCurrentUser().getUid())
@@ -122,7 +122,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                             progressBar.setVisibility(View.GONE);
 
                                             // redirect to login or dashboard
-                                            startActivity(new Intent(SignUpActivity.this,StoreOwnerMainPageActivity.class));
+                                            startActivity(new Intent(SignUpActivity.this,LogInActivity.class));
                                         } else {
                                             Toast.makeText(SignUpActivity.this, "Failed to create a store owner", Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);
@@ -130,6 +130,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                     }
                                 });
                             } else {
+                                User user = new User(email, firstName, lastName);
                                 user.setUserType("Customer");
                                 FirebaseDatabase.getInstance().getReference("Customers")
                                         .child(mAuth.getCurrentUser().getUid()) // get current sign up user id
@@ -141,7 +142,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                             progressBar.setVisibility(View.GONE);
 
                                             // redirect to login or dashboard
-                                            startActivity(new Intent(SignUpActivity.this, CustomerProductActivity.class));
+                                            startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
                                         } else {
                                             Toast.makeText(SignUpActivity.this, "Failed to create a customer", Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);
