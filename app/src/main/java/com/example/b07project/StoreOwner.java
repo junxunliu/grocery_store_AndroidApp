@@ -1,8 +1,9 @@
 package com.example.b07project;
 
+
 import java.util.Objects;
 
-public class StoreOwner {
+public class StoreOwner extends User{
     private String storeName;
     private String address;
     private ProductList productList = new ProductList(this);
@@ -50,5 +51,6 @@ public class StoreOwner {
     @Override
     public String toString() {
         return address + ":" + storeName;
+
     }
 }

@@ -33,6 +33,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
     private FirebaseAuth mAuth;
 
+    private Presenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         editor = preferences.edit();
 
         mAuth = FirebaseAuth.getInstance();
+
+        presenter = new Presenter(new Model(), this);
 
         checkSharePreferences();
     }
@@ -106,17 +110,31 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             editTextPassword.requestFocus();
         }
 
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                // check if it's store owner or customer
-                // here is customer
-                if (task.isSuccessful()) {
-                    startActivity(new Intent(LogInActivity.this, CustomerProductActivity.class));
-                } else {
-                    Toast.makeText(LogInActivity.this, "Fail to login!", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        presenter.login(email, password);
+
+//        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                // check if it's store owner or customer
+//                // here is customer
+//                if (task.isSuccessful()) {
+//                    startActivity(new Intent(LogInActivity.this, CustomerProductActivity.class));
+//                } else {
+//                    Toast.makeText(LogInActivity.this, "Fail to login!", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
+    }
+
+    public void redirectToCustomer(String userId) {
+        Intent intent = new Intent(LogInActivity.this, CustomerProductActivity.class);
+        intent.putExtra("CustomerActivity", userId);
+        startActivity(intent);
+    }
+
+    public void redirectToStoreOwner(String userId) {
+        Intent intent = new Intent(LogInActivity.this, StoreOwnerMainPageActivity.class);
+        intent.putExtra("StoreOwnerActivity", userId);
+        startActivity(intent);
     }
 }
