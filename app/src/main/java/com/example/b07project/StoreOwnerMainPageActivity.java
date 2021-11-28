@@ -32,32 +32,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
         thisUser = getIntent().getStringExtra("currentUserID");
 
-        private void findStore(){
-
-            //find the current store in the database
-            FirebaseDatabase.getInstance().getReference("user")
-                    .child("email").addListenerForSingleValueEvent(new ValueEventListener(){
-
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    StoreOwner store = snapshot.getValue(StoreOwner.class);
-                    if(store != null){
-                        //update the product list to the store
-                        //this.store = store;
-                        //ItemListAdapter adapter = new ItemListAdapter(this, R.layout.item_list_item, store.product);
-                        //ProductList.setAdapter(adapter);
-                    }else {
-                        Intent intent = new Intent(this, CreateStoreActivity.class);
-                        intent.putExtra("currentUserID", thisUser);
-                        startActivity(intent);
-                        return;
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {}
-            });
-
-        }
+        findStore();
 
         findViewById(R.id.btListOfOrders).setOnClickListener(this);
         findViewById(R.id.btAddProduct).setOnClickListener(this);
@@ -73,6 +48,28 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
     }
 
+    private void findStore(){
+
+        //find the current store in the database
+        FirebaseDatabase.getInstance().getReference("user")
+                .child(store.getId()).addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                StoreOwner store = snapshot.getValue(StoreOwner.class);
+                if(store != null){
+                    //update the product list to the store
+                    //this.store = store;
+                    //ItemListAdapter adapter = new ItemListAdapter(this, R.layout.item_list_item, store.product);
+                    //ProductList.setAdapter(adapter);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
+    }
+
     private void addItem() {
         Intent intent = new Intent(this, AddProductActivity.class);
         intent.putExtra("store", store);
@@ -81,7 +78,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
 
     private void listOrders() {
-        Intent intent = new Intent(this, StoreOrdersActivity.class);
+        Intent intent = new Intent(this, StoreOwnerOrderListActivity.class);
         // intent.putExtra("store", store);
         intent.putExtra("currentUserID", thisUser);
         startActivity(intent);
