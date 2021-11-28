@@ -8,7 +8,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity {
 
     private String thisUserID;
 
-    private StoreOnwer store;
+    private StoreOwner store;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
