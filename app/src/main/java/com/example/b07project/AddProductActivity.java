@@ -57,7 +57,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                             // Do Something
                             Toast.makeText(AddProductActivity.this, "Product Added Successfully.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(AddProductActivity.this, StoreOwnerMainPageActivity.class);
-                            intent.putExtra("thisUsrID", store.owner);
+                            intent.putExtra("thisUsrID", store.firstName);
                             startActivity(intent);
                         } else {
                             // Do Something
