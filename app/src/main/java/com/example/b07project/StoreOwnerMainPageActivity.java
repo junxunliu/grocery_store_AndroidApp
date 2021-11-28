@@ -32,6 +32,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
         private void findStore(){
 
+            //find the current store in the database
             FirebaseDatabase.getInstance().getReference("store")
                     .child("storeName").addListenerForSingleValueEvent(new ValueEventListener(){
 
@@ -39,9 +40,10 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     StoreOwner store = snapshot.getValue(StoreOwner.class);
                     if(store != null){
-                        this.store = store;
-                        ItemListAdapter adapter = new ItemListAdapter(this, R.layout.item_list_item, store.product);
-                        ProductList.setAdapter(adapter);
+                        //update the product list to the store
+                        //this.store = store;
+                        //ItemListAdapter adapter = new ItemListAdapter(this, R.layout.item_list_item, store.product);
+                        //ProductList.setAdapter(adapter);
                     }else {
                         Intent intent = new Intent(this, CreateStoreActivity.class);
                         intent.putExtra("currentUserID", thisUser);
