@@ -1,9 +1,10 @@
 package com.example.b07project;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class StoreOwner extends User{
+public class StoreOwner extends User implements Serializable {
     private String storeName;
     private String address;
     private ProductList productList = new ProductList(this);
