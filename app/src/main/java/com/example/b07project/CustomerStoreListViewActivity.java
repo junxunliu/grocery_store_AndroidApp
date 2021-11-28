@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class CustomerStoreListViewActivity extends AddProductActivity implements  {
+public class CustomerStoreListViewActivity extends AddProductActivity  {
     private ListView listStores;
 
     private List<String> storeNames;
@@ -53,20 +53,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity implements
     }
 
     private void getCurrentUser() {
-        FirebaseDatabase.getInstance().getReference("XXX")
-                .child("key").setValue(currentUser)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        User user = snapshot.getValue(User.class);
-                        callback.accept(user);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
+        Model.getUser(currentUserID, (User user) -> { this.currentUser = user; });
     }
 
 
