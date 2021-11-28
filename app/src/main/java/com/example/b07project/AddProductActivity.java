@@ -50,10 +50,9 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         store.product.add(NewProduct);
 
         FirebaseDatabase.getInstance().getReference("store")
-                .child("key").setValue(store)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                .child("StoreOwner.storeName").setValue(store).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(Task<Void> task) {
+                    public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             // Do Something
                             Toast.makeText(this, "Product Added Successfully.", Toast.LENGTH_SHORT).show();
