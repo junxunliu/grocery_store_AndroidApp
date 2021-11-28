@@ -3,23 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android Project/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_main.xml" value="0.35520833333333335" />
-        <entry key="..\:/AndroidProjects/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_customer.xml" value="0.35520833333333335" />
-        <entry key="..\:/AndroidProjects/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_log_in.xml" value="0.19739583333333333" />
-        <entry key="..\:/AndroidProjects/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_main.xml" value="0.35520833333333335" />
-        <entry key="..\:/AndroidProjects/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_sign_up.xml" value="0.19739583333333333" />
-        <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_customer.xml" value="0.3046875" />
-        <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_log_in.xml" value="0.3046875" />
-        <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_main.xml" value="0.3046875" />
-        <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_sign_up.xml" value="0.3046875" />
         <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07project/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_add_product.xml" value="0.264" />
         <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer.xml" value="0.264" />
-        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_order_list.xml" value="0.264" />
-        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_log_in.xml" value="0.2" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_order_list.xml" value="0.176" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_product.xml" value="0.264" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_log_in.xml" value="0.536" />
         <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_sign_up.xml" value="0.176" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_display_in_customer.xml" value="0.264" />
         <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_owner_order_list.xml" value="0.264" />
-        <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_add_product.xml" value="0.14716312056737588" />
       </map>
     </option>
   </component>

@@ -38,3 +38,14 @@ November 23 - November 24
 ==============================================================
 
 November 24 - November 26
+
+ 1.What did I finish since the last standup?
+    create and construct interface for Customer Order List Activity (page6) and Store Owner Order List Activity (page4)
+  2.What am I going to finish by the next standup?
+    finish code impletation for Order, Customer Order List Activity and Store Owner Order List Activity
+  3.What is stopping me / what impediments am I facing?
+    no
+    
+==============================================================
+
+November 26 - November 28
