@@ -10,32 +10,45 @@ public class User implements Serializable {
     private String userId;
 
     public User(String email, String firstName, String lastName) {
+
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public User() {
+    public User() { }
 
+    public String getFirstName() { return firstName; }
+
+    public String getLastName() { return lastName; }
+
+    public void setUserType(String userType) { this.userType = userType; }
+
+    public String getUserType() {
+        return userType;
     }
 
-    public String getId() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUserId() {
         return userId;
     }
 
-    public void setId(String userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
     }
 }

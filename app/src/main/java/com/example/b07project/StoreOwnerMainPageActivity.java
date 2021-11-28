@@ -17,13 +17,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StoreOwnerMainPageActivity extends AppCompatActivity implements View.OnClickListener{
 
-
     private String thisUser;
 
     private StoreOwner store;
 
     private ListView ProductList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
         //find the current store in the database
         FirebaseDatabase.getInstance().getReference("user")
-                .child(store.getId()).addListenerForSingleValueEvent(new ValueEventListener(){
+                .child(store.getUserId()).addListenerForSingleValueEvent(new ValueEventListener(){
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

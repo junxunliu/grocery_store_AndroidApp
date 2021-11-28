@@ -4,10 +4,18 @@ package com.example.b07project;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class StoreOwner extends User implements Serializable {
+public class StoreOwner extends User {
     private String storeName;
     private String address;
     private ProductList productList = new ProductList(this);
+
+    public StoreOwner(String email, String firstName, String lastName) {
+        super(email, firstName, lastName);
+    }
+
+    public StoreOwner() {
+
+    }
 
     public String getStoreName() {
         return storeName;
@@ -28,8 +36,6 @@ public class StoreOwner extends User implements Serializable {
     public ProductList getProductList() {
         return productList;
     }
-
-    public StoreOwner(){}
 
     @Override
     public boolean equals(Object o) {

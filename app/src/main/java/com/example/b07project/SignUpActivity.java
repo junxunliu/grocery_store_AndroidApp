@@ -53,9 +53,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         mAuth = FirebaseAuth.getInstance();
 
-        if (checkBoxStoreOwner.isChecked()) {
-
-        }
     }
 
 
@@ -111,8 +108,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         if (task.isSuccessful()) {
                             if (checkBoxStoreOwner.isChecked()) {
                                 User user = new User(email, firstName, lastName);
-                                user.setUserType("Store Owner");
-                                FirebaseDatabase.getInstance().getReference("Store Owners")
+                                user.setUserType("StoreOwner");
+                                FirebaseDatabase.getInstance().getReference("Users")
                                         .child(mAuth.getCurrentUser().getUid())
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -132,7 +129,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             } else {
                                 User user = new User(email, firstName, lastName);
                                 user.setUserType("Customer");
-                                FirebaseDatabase.getInstance().getReference("Customers")
+                                FirebaseDatabase.getInstance().getReference("Users")
                                         .child(mAuth.getCurrentUser().getUid()) // get current sign up user id
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
