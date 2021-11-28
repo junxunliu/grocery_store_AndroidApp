@@ -49,9 +49,8 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         //add the product to the product list
         store.product.add(NewProduct);
 
-        FirebaseDatabase.getInstance().getReference("XXX")
-                .child("key").setValue(store)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseDatabase.getInstance().getReference("store")
+                .child("StoreOwner.storeName").setValue(store).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
