@@ -1,35 +1,57 @@
 package com.example.b07project;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class OrderList {
 
     private ArrayList<Order> orderList = new ArrayList<Order>();
 
+    public OrderList() { }
+
     public void addOrder(Order order){
         orderList.add(order);
     }
 
-    public ArrayList<Order> search_by_store(){
+    public ArrayList<Order> search_by_store(StoreOwner s){
         ArrayList<Order> storeOrderList = new ArrayList<Order>();
-
+        for(Order o:orderList){
+            if(o.getStore() == s){
+                storeOrderList.add(o);
+            }
+        }
         return storeOrderList;
     }
 
-    public ArrayList<Order> search_by_customer(){
-        ArrayList<Order> CustomerOrderList = new ArrayList<Order>();
+    public ArrayList<Order> search_by_customer(Customer c){
+        ArrayList<Order> customerOrderList = new ArrayList<Order>();
+        for(Order o:orderList){
+            if(o.getCustomer() == c){
+                customerOrderList.add(o);
+            }
+        }
+        return customerOrderList;
+    }
 
-        return CustomerOrderList;
+    public void readFromDB(){
+
+    }
+
+    public void updateDB(){
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        for(Order o:orderList) {
+            db.child("OrderList").child(String.valueOf(orderList.indexOf(o))).setValue(o);
+        }
     }
 
     @Override
     public String toString(){
         String display = "";
-        int i = 1;
         for(Order order:orderList){
-            display = (display + "ORDER " + i + ":" + "\n"
+            display = (display + "ORDER " + String.valueOf(orderList.indexOf(order)) + "\n"
                     + order.toString() + "\n\n");
-            i++;
         }
         return display;
     }

@@ -10,15 +10,27 @@ public class Order {
 
     public Order(){ }
 
-    public Order(StoreOwner s, Customer c, HashSet<OrderedProduct> order, boolean status){
+    public Order(StoreOwner s, Customer c, HashSet<OrderedProduct> order){
         this.s = s;
         this.c = c;
         this.order = order;
         this.status = false;
     }
 
-    public void setStatus(){
+    public StoreOwner getStore(){
+        return s;
+    }
 
+    public Customer getCustomer(){
+        return c;
+    }
+
+    public boolean getStatus(){
+        return status;
+    }
+
+    public void changeStatus(boolean s){
+        status = s;
     }
 
     @Override
