@@ -44,10 +44,10 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         Product NewProduct = new Product(
                 edTxtProductName.getText().toString().trim(),
                 edTxtBrandName.getText().toString().trim(),
-                Double.parseDouble(edTxtPrice.getText().toString()));
+                edTxtPrice.getText().toString().trim());
 
         //add the product to the product list
-        store.product.add(NewProduct);
+        store.getProductList().addProduct(NewProduct);
 
         FirebaseDatabase.getInstance().getReference("store")
                 .child("StoreOwner.storeName").setValue(store).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -57,7 +57,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                             // Do Something
                             Toast.makeText(AddProductActivity.this, "Product Added Successfully.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(AddProductActivity.this, StoreOwnerMainPageActivity.class);
-                            intent.putExtra("thisUsrID", store.firstName);
+                            intent.putExtra("thisUsrID", store.getFirstName());
                             startActivity(intent);
                         } else {
                             // Do Something

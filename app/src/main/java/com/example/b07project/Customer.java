@@ -11,6 +11,6 @@ public class Customer extends User{
 
     @Override
     public String toString() {
-        return firstName + lastName;
+        return this.getFirstName() + this.getLastName();
     }
 }
