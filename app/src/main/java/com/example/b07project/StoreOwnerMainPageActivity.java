@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.b07project.StoreOwner;
@@ -22,6 +23,8 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
     private StoreOwner store;
 
     private ListView ProductList;
+
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
         //find the current store in the database
         FirebaseDatabase.getInstance().getReference("user")
-                .child(store.getUserId()).addListenerForSingleValueEvent(new ValueEventListener(){
+                .child("key").addListenerForSingleValueEvent(new ValueEventListener(){
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
