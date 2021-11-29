@@ -37,7 +37,7 @@ public class CustomerOrderListActivity extends AppCompatActivity {
 
     private void display(){
         OrderList orderlist = new OrderList();
-        orderlist.readFromDB();
+        //orderlist.readFromDB();
         OrderList customerOrderList = new OrderList();
         //User implements Serializable
         //data from customer main page: getIntent().getSerializableExtra();
