@@ -1,0 +1,33 @@
+Index: app/src/main/res/layout/activity_store_display_in_customer.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".DisplayStoreActivity\">\n\n\n    <ListView\n        android:id=\"@+id/lvItems\"\n        android:layout_width=\"409dp\"\n        android:layout_height=\"480dp\"\n        android:layout_marginTop=\"50dp\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"match_parent\"\n        app:layout_constraintVertical_bias=\"0.265\" />\n\n\n    <Button\n        android:id=\"@+id/btnSendOrder\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginEnd=\"32dp\"\n        android:text=\"Send Order\"\n        app:layout_constraintBottom_toBottomOf=\"@+id/textView3\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.581\"\n        app:layout_constraintStart_toEndOf=\"@+id/tvNumberOfItems\"\n        app:layout_constraintTop_toTopOf=\"@+id/textView3\"\n        app:layout_constraintVertical_bias=\"0.448\" />\n\n    <TextView\n        android:id=\"@+id/tvSelectedItem\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"36dp\"\n        android:layout_marginTop=\"24dp\"\n        android:text=\"TextView\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/lvItems\" />\n\n    <EditText\n        android:id=\"@+id/edTxtSelectedQuantity\"\n        android:layout_width=\"100dp\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"56dp\"\n        android:ems=\"10\"\n        android:inputType=\"number\"\n        app:layout_constraintBottom_toBottomOf=\"@+id/tvSelectedItem\"\n        app:layout_constraintStart_toEndOf=\"@+id/tvSelectedItem\"\n        app:layout_constraintTop_toTopOf=\"@+id/tvSelectedItem\" />\n\n    <Button\n        android:id=\"@+id/btnAdd\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"48dp\"\n        android:text=\"Add\"\n        app:layout_constraintBottom_toBottomOf=\"@+id/edTxtSelectedQuantity\"\n        app:layout_constraintStart_toEndOf=\"@+id/edTxtSelectedQuantity\"\n        app:layout_constraintTop_toTopOf=\"@+id/edTxtSelectedQuantity\"\n        app:layout_constraintVertical_bias=\"0.0\" />\n\n    <TextView\n        android:id=\"@+id/textView3\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"36dp\"\n        android:layout_marginTop=\"60dp\"\n        android:text=\"Items: \"\n        android:textStyle=\"bold\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/tvSelectedItem\" />\n\n    <TextView\n        android:id=\"@+id/tvNumberOfItems\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"12dp\"\n        android:text=\"0\"\n        app:layout_constraintBottom_toBottomOf=\"@+id/textView3\"\n        app:layout_constraintStart_toEndOf=\"@+id/textView3\"\n        app:layout_constraintTop_toTopOf=\"@+id/textView3\"\n        app:layout_constraintVertical_bias=\"0.0\" />\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_store_display_in_customer.xml b/app/src/main/res/layout/activity_store_display_in_customer.xml
+--- a/app/src/main/res/layout/activity_store_display_in_customer.xml	(revision 509e64bd1f531e1d0c46aea270dfeeae00c3a10e)
++++ b/app/src/main/res/layout/activity_store_display_in_customer.xml	(date 1637939036299)
+@@ -16,7 +16,8 @@
+         app:layout_constraintHorizontal_bias="1.0"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="match_parent"
+-        app:layout_constraintVertical_bias="0.265" />
++        app:layout_constraintVertical_bias="0.265" >
++    </ListView>
+ 
+ 
+     <Button
+@@ -49,9 +50,11 @@
+         android:layout_marginStart="56dp"
+         android:ems="10"
+         android:inputType="number"
++        android:minHeight="48dp"
+         app:layout_constraintBottom_toBottomOf="@+id/tvSelectedItem"
+         app:layout_constraintStart_toEndOf="@+id/tvSelectedItem"
+-        app:layout_constraintTop_toTopOf="@+id/tvSelectedItem" />
++        app:layout_constraintTop_toTopOf="@+id/tvSelectedItem"
++        tools:ignore="SpeakableTextPresentCheck" />
+ 
+     <Button
+         android:id="@+id/btnAdd"
