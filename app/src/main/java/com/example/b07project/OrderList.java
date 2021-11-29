@@ -34,7 +34,7 @@ public class OrderList {
                 }
             }
         }
-        else if (type.equals("Store Owner")) {
+        else if (type.equals("StoreOwner")) {
             for (Order o : orderList) {
                 if ((StoreOwner) user == o.getStore()) {
                     storeOrderList.add(o);
