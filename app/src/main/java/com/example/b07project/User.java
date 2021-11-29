@@ -6,6 +6,8 @@ public class User implements Serializable {
     private String email;
     private String firstName;
     private String lastName;
+    private String storeName;
+    private String storeAddress;
     private String userType;
     private String userId;
 
@@ -14,6 +16,14 @@ public class User implements Serializable {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public User(String email, String firstName, String lastName, String storeName, String storeAddress) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.storeName = storeName;
+        this.storeAddress = storeAddress;
     }
 
     public User() { }
@@ -50,5 +60,21 @@ public class User implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getStoreAddress() {
+        return storeAddress;
+    }
+
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress;
     }
 }
