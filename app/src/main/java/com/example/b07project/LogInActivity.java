@@ -31,7 +31,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private CheckBox checkBoxRemember;
     private TextView textViewSignup;
 
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
 
     private Presenter presenter;
 
@@ -51,7 +51,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         preferences = getSharedPreferences("test", MODE_PRIVATE);
         editor = preferences.edit();
 
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
 
         presenter = new Presenter(new Model(), this);
 
