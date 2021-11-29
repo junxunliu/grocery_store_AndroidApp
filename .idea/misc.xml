@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_add_product.xml" value="0.2890625" />
         <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_customer_order_list.xml" value="0.2890625" />
         <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_customer_product.xml" value="0.2890625" />
@@ -11,9 +12,15 @@
         <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_store_display_in_customer.xml" value="0.2890625" />
         <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_store_owner_main_page.xml" value="0.2890625" />
         <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_store_owner_order_list.xml" value="0.2890625" />
+        <entry key="app/src/main/res/layout/activity_customer_product.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/activity_customer_store_list.xml" value="0.1897644927536232" />
+        <entry key="app/src/main/res/layout/activity_customerstorelistviw2.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/activity_display_store_product.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/activity_store_owner_main_page.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/activity_store_owner_order_list.xml" value="0.18704710144927536" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

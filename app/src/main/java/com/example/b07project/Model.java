@@ -12,18 +12,19 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.function.Consumer;
 
 public class Model {
-
+    private DatabaseReference usersRef;
     public Model() {
 
     }
 
-    public void getUser(String email, String password, Consumer<User> callback) {
+    public static void getUser(String email, String password, Consumer<User> callback) {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -63,5 +64,17 @@ public class Model {
                         }
                     }
                 });
+    }
+    public void gUser(String userID, Consumer<User> callback) {
+        usersRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                callback.accept(user);
+            }
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {}
+        });
     }
 }

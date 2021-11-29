@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerStoreListviewActivity">
+    tools:context=".CustomerStoreListViewActivity">
 
     <ListView
         android:id="@+id/listStores"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_order"
+        android:id="@+id/button_view_order"
         android:layout_width="241dp"
         android:layout_height="64dp"
         android:text="View Order"
