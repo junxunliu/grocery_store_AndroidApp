@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddProductActivity extends AppCompatActivity implements View.OnClickListener{
@@ -31,10 +32,10 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
 
         thisUserID = getIntent().getStringExtra("thisUsrID");
 
-        edTxtProductName = (EditText) findViewById(R.id.edTxtProductName);
-        edTxtBrandName = (EditText) findViewById(R.id.edTxtBrandName);
-        edTxtPrice = (EditText) findViewById(R.id.edTxtPrice);
-        btAdd = (Button) findViewById(R.id.btAdd);
+        edTxtProductName = findViewById(R.id.edTxtProductName);
+        edTxtBrandName = findViewById(R.id.edTxtBrandName);
+        edTxtPrice = findViewById(R.id.edTxtPrice);
+        btAdd = findViewById(R.id.btAdd);
         btAdd.setOnClickListener(this);
 
     }
@@ -49,8 +50,11 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         //add the product to the product list
         store.getProductList().addProduct(NewProduct);
 
-        FirebaseDatabase.getInstance().getReference("store")
-                .child("StoreOwner.storeName").setValue(store).addOnCompleteListener(new OnCompleteListener<Void>() {
+        //find the current user
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        FirebaseDatabase.getInstance().getReference("Users/Store Owners")
+                .child(userId).setValue(store).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {

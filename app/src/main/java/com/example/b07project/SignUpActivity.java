@@ -151,7 +151,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                     editTextStoreAddress.requestFocus();
                                     return;
                                 }
-                                User user = new User(email, firstName, lastName, storeName, storeAddress);
+                                User user = new StoreOwner(email, firstName, lastName, storeName, storeAddress);
                                 user.setUserType("StoreOwner");
                                 FirebaseDatabase.getInstance().getReference("Users")
                                         .child("Store Owners").child(mAuth.getCurrentUser().getUid())
