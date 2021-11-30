@@ -1,6 +1,5 @@
 package com.example.b07project;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,11 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
@@ -31,7 +26,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private CheckBox checkBoxRemember;
     private TextView textViewSignup;
 
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
 
     private Presenter presenter;
 
@@ -51,7 +46,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         preferences = getSharedPreferences("test", MODE_PRIVATE);
         editor = preferences.edit();
 
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
 
         presenter = new Presenter(new Model(), this);
 
@@ -93,21 +88,25 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         if (email.isEmpty()) {
             editTextEmail.setError("Email is required!");
             editTextEmail.requestFocus();
+            return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Invalid email!");
             editTextEmail.requestFocus();
+            return;
         }
 
         if (password.isEmpty()) {
             editTextPassword.setError("Password is required!");
             editTextPassword.requestFocus();
+            return;
         }
 
         if (password.length() < 6) {
             editTextPassword.setError("Password should be at least 6 characters");
             editTextPassword.requestFocus();
+            return;
         }
 
         presenter.login(email, password);
@@ -126,15 +125,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 //        });
     }
 
-    public void redirectToCustomer(String userId) {
-        Intent intent = new Intent(LogInActivity.this, CustomerProductActivity.class);
-        intent.putExtra("CustomerActivity", userId);
+    public void redirectToCustomer(User user) {
+        Intent intent = new Intent(this, CustomerProductActivity.class);
+        intent.putExtra("Customer", user);
         startActivity(intent);
     }
 
-    public void redirectToStoreOwner(String userId) {
-        Intent intent = new Intent(LogInActivity.this, StoreOwnerMainPageActivity.class);
-        intent.putExtra("StoreOwnerActivity", userId);
+    public void redirectToStoreOwner(User user) {
+        Intent intent = new Intent(this, StoreOwnerMainPageActivity.class);
+        intent.putExtra("Store Owner", user);
         startActivity(intent);
     }
 }

@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,10 +21,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView banner;
-    private EditText editTextFirstName, editTextLastName, editTextEmail, editTextPassword;
+    private EditText editTextFirstName, editTextLastName, editTextEmail, editTextPassword,
+    editTextStoreName, editTextStoreAddress;
     private CheckBox checkBoxStoreOwner;
     private Button buttonSignUp;
     private ProgressBar progressBar;
@@ -42,6 +47,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         editTextFirstName = (EditText) findViewById(R.id.firstName);
         editTextLastName = (EditText) findViewById(R.id.lastName);
         editTextPassword = (EditText) findViewById(R.id.password);
+        editTextStoreName = (EditText) findViewById(R.id.storeName);
+        editTextStoreAddress = (EditText) findViewById(R.id.storeAddress);
+        editTextStoreName.setVisibility(View.GONE);
+        editTextStoreAddress.setVisibility(View.GONE);
 
         buttonSignUp = (Button) findViewById(R.id.buttonSignup);
         buttonSignUp.setOnClickListener(this);
@@ -51,13 +60,26 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         checkBoxStoreOwner = (CheckBox) findViewById(R.id.checkboxStoreOwner);
 
+        checkBoxStoreOwner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                checkBoxChecked();
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
 
-        if (checkBoxStoreOwner.isChecked()) {
-
-        }
     }
 
+    private void checkBoxChecked() {
+        if (checkBoxStoreOwner.isChecked()) {
+            editTextStoreName.setVisibility(View.VISIBLE);
+            editTextStoreAddress.setVisibility(View.VISIBLE);
+        } else {
+            editTextStoreName.setVisibility(View.GONE);
+            editTextStoreAddress.setVisibility(View.GONE);
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -76,81 +98,101 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         String lastName = editTextLastName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        String storeName = editTextStoreName.getText().toString().trim();
+        String storeAddress = editTextStoreAddress.getText().toString().trim();
 
         // validate
         if (firstName.isEmpty()) {
             editTextFirstName.setError("First name is required!");
             editTextFirstName.requestFocus();
+            return;
         }
+
         if (email.isEmpty()) {
             editTextEmail.setError("Email is required!");
             editTextEmail.requestFocus();
+            return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Invalid email!");
             editTextEmail.requestFocus();
+            return;
         }
 
         if (password.isEmpty()) {
             editTextPassword.setError("Password is required!");
             editTextPassword.requestFocus();
+            return;
         }
 
         if (password.length() < 6) {
             editTextPassword.setError("Password should be at least 6 characters");
             editTextPassword.requestFocus();
+            return;
         }
 
-
         progressBar.setVisibility(View.VISIBLE);
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(email, firstName, lastName);
                             if (checkBoxStoreOwner.isChecked()) {
-                                user.setUserType("Store Owner");
-                                FirebaseDatabase.getInstance().getReference("Store Owners")
-                                        .child(mAuth.getCurrentUser().getUid())
+                                if (storeName.isEmpty()) {
+                                    editTextStoreName.setError("Store name is required!");
+                                    editTextStoreName.requestFocus();
+                                    return;
+                                }
+
+                                if (storeAddress.isEmpty()) {
+                                    editTextStoreAddress.setError("Store address is required!");
+                                    editTextStoreAddress.requestFocus();
+                                    return;
+                                }
+                                User user = new User(email, firstName, lastName, storeName, storeAddress);
+                                user.setUserType("StoreOwner");
+                                FirebaseDatabase.getInstance().getReference("Users")
+                                        .child("Store Owners").child(mAuth.getCurrentUser().getUid())
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(SignUpActivity.this, "Store owner registered successfully!", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(SignUpActivity.this, R.string.storeOwner_register_success, Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);
 
                                             // redirect to login or dashboard
-                                            startActivity(new Intent(SignUpActivity.this,StoreOwnerMainPageActivity.class));
+                                            startActivity(new Intent(SignUpActivity.this,LogInActivity.class));
                                         } else {
-                                            Toast.makeText(SignUpActivity.this, "Failed to create a store owner", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(SignUpActivity.this, R.string.storeOwner_register_failed, Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);
                                         }
                                     }
                                 });
                             } else {
+                                User user = new User(email, firstName, lastName);
                                 user.setUserType("Customer");
-                                FirebaseDatabase.getInstance().getReference("Customers")
-                                        .child(mAuth.getCurrentUser().getUid()) // get current sign up user id
+                                FirebaseDatabase.getInstance().getReference("Users")
+                                        .child("Customers").child(mAuth.getCurrentUser().getUid()) // get current sign up user id
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(SignUpActivity.this, "Customer registered successfully!", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(SignUpActivity.this, R.string.customer_register_success, Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);
 
                                             // redirect to login or dashboard
-                                            startActivity(new Intent(SignUpActivity.this, CustomerProductActivity.class));
+                                            startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
                                         } else {
-                                            Toast.makeText(SignUpActivity.this, "Failed to create a customer", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(SignUpActivity.this, R.string.customer_register_failed, Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);
                                         }
                                     }
                                 });
                             }
                         } else {
-                            Toast.makeText(SignUpActivity.this, "Failed to sign up", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUpActivity.this, R.string.signup_failed, Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }

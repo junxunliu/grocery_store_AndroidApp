@@ -9,49 +9,42 @@ public class StoreOwner extends User implements Serializable {
     private String address;
     private ProductList productList;
 
-    public String getStoreName() {
-        return storeName;
+
+    ProductList productList = new ProductList(this);
+
+    public StoreOwner(String email, String firstName, String lastName) {
+        super(email, firstName, lastName);
     }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
+    public StoreOwner(String storeName, String address){
+        storeName = getStoreName();
+        address = getStoreAddress();
     }
 
-    public String getAddress() {
-        return address;
-    }
+    public StoreOwner() {
 
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public ProductList getProductList() {
         return productList;
     }
 
-    public StoreOwner(){productList = new ProductList(this);}
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof StoreOwner)) return false;
         StoreOwner that = (StoreOwner) o;
-        return getStoreName().equals(that.getStoreName()) && getAddress().equals(that.getAddress());
+        return getStoreName().equals(that.getStoreName()) && getStoreName().equals(that.getStoreAddress());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStoreName(), getAddress());
-    }
-
-    public StoreOwner(String storeName, String address){
-        this.storeName=storeName;
-        this.address=address;
+        return Objects.hash(getStoreName(), getStoreAddress());
     }
 
     @Override
     public String toString() {
-        return address + ":" + storeName;
+        return getStoreAddress() + ":" + getStoreName();
 
     }
 }

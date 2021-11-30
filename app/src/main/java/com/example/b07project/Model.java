@@ -25,43 +25,58 @@ public class Model {
 
     }
 
-    public static void getUser(String email, String password, Consumer<User> callback) {
+
+    public void auth(String email, String password, Consumer<User> callback) {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // get current user id
+                        if (!task.isSuccessful()) {
+                            callback.accept(null);
+                        } else {
+                            DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference();
                             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            FirebaseDatabase.getInstance().getReference("UserTypes").child(userId).child("userType")
-                                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @RequiresApi(api = Build.VERSION_CODES.N)
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            String userType = snapshot.getValue(String.class);
-
-                                            if (userType == null) {
-                                                Log.d("Model", "Failed");
-                                                callback.accept(null);
+                            databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.child("Customers").hasChild(userId)) {
+                                        databaseReference.child("Users/Customers").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                User user = snapshot.getValue(User.class);
+                                                callback.accept(user);
                                             }
 
-                                            else if (userType.equals("Store Owner")) {
-                                                StoreOwner storeOwner = new StoreOwner();
-                                                storeOwner.setId(userId);
-                                                callback.accept(storeOwner);
-                                            }
-                                            else if (userType.equals("Customer")) {
-                                                Customer customer = new Customer();
-                                                customer.setId(userId);
-                                                callback.accept(customer);
-                                            }
-                                        }
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
 
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            }
+                                        });
+                                    }
 
-                                        }
-                                    });
+                                    else if (snapshot.child("Store Owners").hasChild(userId)) {
+                                        databaseReference.child("Users/Store Owners").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                User user = snapshot.getValue(User.class);
+                                                callback.accept(user);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
                         }
                     }
                 });

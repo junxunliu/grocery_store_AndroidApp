@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class Presenter {
 
@@ -15,12 +16,16 @@ public class Presenter {
 
     public void login(String email, String password) {
 
-        model.getUser(email, password, (User user) -> {
-            if (user == null) return;
-            if (user instanceof Customer)
-                view.redirectToCustomer(user.getId());
+        model.auth(email, password, (User user) -> {
+
+            if (user == null) {
+                Toast.makeText(view, "failed to login", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (user.getUserType().equals("Customer"))
+                view.redirectToCustomer(user);
             else
-                view.redirectToStoreOwner(user.getId());
+                view.redirectToStoreOwner(user);
         });
     }
 }

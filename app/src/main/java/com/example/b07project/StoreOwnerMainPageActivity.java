@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.b07project.StoreOwner;
@@ -16,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class StoreOwnerMainPageActivity extends AppCompatActivity implements View.OnClickListener{
-
 
     private String thisUser;
 
@@ -45,23 +45,24 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
                 startActivity(intent);
             }
         });
-
     }
 
     private void findStore(){
 
         //find the current store in the database
         FirebaseDatabase.getInstance().getReference("user")
-                .child(store.getId()).addListenerForSingleValueEvent(new ValueEventListener(){
+                .child("key").addListenerForSingleValueEvent(new ValueEventListener(){
+
+            private StoreOwner store;
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 StoreOwner store = snapshot.getValue(StoreOwner.class);
                 if(store != null){
                     //update the product list to the store
-                    //this.store = store;
-                    //ItemListAdapter adapter = new ItemListAdapter(this, R.layout.item_list_item, store.product);
-                    //ProductList.setAdapter(adapter);
+                    this.store = store;
+                    ProductListAdapter adapter = new ProductListAdapter(this, R.layout.product_list, store.productList);
+                    ProductList.setAdapter(adapter);
                 }
             }
             @Override
@@ -70,14 +71,14 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
     }
 
-    private void addItem() {
+    private void addProduct() {
         Intent intent = new Intent(this, AddProductActivity.class);
         intent.putExtra("store", store);
         startActivity(intent);
     }
 
 
-    private void listOrders() {
+    private void listOfOrders() {
         Intent intent = new Intent(this, StoreOwnerOrderListActivity.class);
         // intent.putExtra("store", store);
         intent.putExtra("currentUserID", thisUser);
@@ -88,10 +89,10 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btAddProduct:
-                addItem();
+                addProduct();
                 break;
             case R.id.btListOfOrders:
-                listOrders();
+                listOfOrders();
                 break;
         }
     }

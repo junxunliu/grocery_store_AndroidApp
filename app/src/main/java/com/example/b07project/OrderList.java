@@ -1,5 +1,14 @@
 package com.example.b07project;
 
+import android.content.Intent;
+import android.util.Log;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -15,17 +24,27 @@ public class OrderList {
         orderList.add(order);
     }
 
-    public ArrayList<Order> search_by_store(StoreOwner s){
+    public ArrayList<Order> search(User user){
         ArrayList<Order> storeOrderList = new ArrayList<Order>();
-        for(Order o:orderList){
-            if(o.getStore() == s){
-                storeOrderList.add(o);
+        String type = user.getUserType();
+        if(type.equals("Customer")){
+            for(Order o:orderList) {
+                if ((Customer) user == o.getCustomer()) {
+                    storeOrderList.add(o);
+                }
+            }
+        }
+        else if (type.equals("StoreOwner")) {
+            for (Order o : orderList) {
+                if ((StoreOwner) user == o.getStore()) {
+                    storeOrderList.add(o);
+                }
             }
         }
         return storeOrderList;
     }
 
-    public ArrayList<Order> search_by_customer(Customer c){
+    /*public ArrayList<Order> search_by_customer(Customer c){
         ArrayList<Order> customerOrderList = new ArrayList<Order>();
         for(Order o:orderList){
             if(o.getCustomer() == c){
@@ -33,10 +52,20 @@ public class OrderList {
             }
         }
         return customerOrderList;
-    }
+    }*/
 
     public void readFromDB(){
-
+        /*FirebaseDatabase.getInstance().getReference().child("OrderList").child("StoreOwner").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                }
+            }
+        });*/
     }
 
     public void updateDB(){

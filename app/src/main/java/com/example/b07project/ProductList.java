@@ -38,7 +38,7 @@ public class ProductList {
     public void submitToDB(){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         for(Product p: arrayList){
-            ref.child("ProductList").child(this.getStoreOwner().getId()).child(String.valueOf(arrayList.indexOf(p))).setValue(p);
+            ref.child("ProductList").child(this.getStoreOwner().getUserId()).child(String.valueOf(arrayList.indexOf(p))).setValue(p);
         }
 /*        Product[] arr = arrayList.toArray(new Product[arrayList.size()]);
         ref.child("ProductList").child(this.getStoreOwner().getAddress()+
