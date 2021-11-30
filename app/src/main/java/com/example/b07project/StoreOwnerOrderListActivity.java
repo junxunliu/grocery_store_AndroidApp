@@ -20,13 +20,13 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
 
     StoreOrderAdapter adpt = null;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_owner_order_list);
 
         init();
+        displayListView();
 
         btn_product.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,8 +36,6 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        displayListView();
     }
 
     private void init(){
@@ -47,27 +45,24 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
     }
 
     private void displayListView(){
-        ArrayList<StoreOrder> stOrderList = new ArrayList<StoreOrder>();
         OrderList orderlist = new OrderList();
         orderlist.testData();
-        for(Order o:orderlist.getList()){
-            StoreOrder sto = new StoreOrder();
-            sto.setOrder(o);
-            sto.setCheck(o.getStatus());
-            stOrderList.add(sto);
 
-            //test data
-            User user2 = new User();
-            StoreOwner st = new StoreOwner();
-            st.setStoreName("KFC");
-            user2 = (User)st;
-            user2.setUserType("Store Owner");
-            OrderList StoreOrderList = new OrderList();
-            StoreOrderList = orderlist.search(user2);
-
-            adpt = new StoreOrderAdapter(this,R.layout.layout_store_order,stOrderList);
-            ListView lv = (ListView) findViewById(R.id.listView);
-            lv.setAdapter(adpt);
+        //test data
+        User user2 = new User();
+        StoreOwner st = new StoreOwner();
+        st.setStoreName("Walmart");
+        user2 = (User)st;
+        user2.setUserType("Store Owner");
+        OrderList StoreOrderList = new OrderList();
+        StoreOrderList = orderlist.search(user2);
+        ArrayList<Order> list = new ArrayList<>();
+        for(Order o:StoreOrderList.getList()){
+            list.add(o);
         }
+
+        adpt = new StoreOrderAdapter(this,R.layout.layout_store_order,list);
+        ListView lv = (ListView) findViewById(R.id.listView);
+        lv.setAdapter(adpt);
     }
 }

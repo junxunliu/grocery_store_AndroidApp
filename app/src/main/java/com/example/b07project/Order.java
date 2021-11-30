@@ -3,10 +3,10 @@ package com.example.b07project;
 import java.util.HashSet;
 
 public class Order {
-    StoreOwner s;
-    Customer c;
-    HashSet<OrderedProduct> order = new HashSet<OrderedProduct>();
-    boolean status;
+    private StoreOwner s;
+    private Customer c;
+    private HashSet<OrderedProduct> order = new HashSet<OrderedProduct>();
+    private boolean status;
 
     public Order(){ }
 
@@ -15,10 +15,6 @@ public class Order {
         this.c = c;
         this.order = order;
         this.status = false;
-    }
-
-    public void addOrderedProduct(OrderedProduct p){
-        order.add(p);
     }
 
     public StoreOwner getStore(){
@@ -35,8 +31,12 @@ public class Order {
         return status;
     }
 
-    public void changeStatus(boolean s){
+    public void setStatus(boolean s){
         status = s;
+    }
+
+    public void addOrderedProduct(OrderedProduct p){
+        order.add(p);
     }
 
     @Override

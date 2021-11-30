@@ -99,7 +99,6 @@ public class OrderList {
         Customer c = new Customer();
         c.setFirstName("Kitty");
         c.setLastName("Y");
-        c.setUserType("Customer");
         OrderedProduct p = new OrderedProduct("KFC","chicken","9.99",4);
         HashSet<OrderedProduct> list = new HashSet<>();
         list.add(p);
@@ -111,7 +110,6 @@ public class OrderList {
         Customer c2 = new Customer();
         c2.setFirstName("Kitty");
         c2.setLastName("Y");
-        c2.setUserType("Customer");
         OrderedProduct p2 = new OrderedProduct("POP EYES","french fries","3.5",1);
         OrderedProduct p3 = new OrderedProduct("POP EYES","coke","2",5);
         HashSet<OrderedProduct> list2 = new HashSet<>();
@@ -125,14 +123,26 @@ public class OrderList {
         Customer c3 = new Customer();
         c3.setFirstName("Jerry");
         c3.setLastName("D");
-        c3.setUserType("Customer");
-        OrderedProduct p4 = new OrderedProduct("POP EYES","french fries","3.5",1);
-        OrderedProduct p5 = new OrderedProduct("POP EYES","coke","2",5);
+        OrderedProduct p4 = new OrderedProduct("","tomato","3.5",2);
+        OrderedProduct p5 = new OrderedProduct("","pork","2",1);
         HashSet<OrderedProduct> list3 = new HashSet<>();
         list3.add(p4);
         list3.add(p5);
         Order o3 = new Order(sto3,c3,list3);
         orderList.add(o3);
+
+        StoreOwner sto4 = new StoreOwner();
+        sto4.setStoreName("Walmart");
+        Customer c4 = new Customer();
+        c4.setFirstName("David");
+        c4.setLastName("K");
+        OrderedProduct p6 = new OrderedProduct("","milk","3.5",8);
+        OrderedProduct p7 = new OrderedProduct("","bread","2",2);
+        HashSet<OrderedProduct> list4 = new HashSet<>();
+        list4.add(p6);
+        list4.add(p7);
+        Order o4 = new Order(sto4,c4,list4);
+        orderList.add(o4);
     }
 
     @Override

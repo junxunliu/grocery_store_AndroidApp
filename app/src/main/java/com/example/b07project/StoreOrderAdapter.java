@@ -12,13 +12,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class StoreOrderAdapter extends ArrayAdapter<StoreOrder> {
+public class StoreOrderAdapter extends ArrayAdapter<Order> {
 
-    private ArrayList<StoreOrder> stOrderList;
+    private ArrayList<Order> stOrderList;
 
-    public StoreOrderAdapter(Context context, int textViewResourceId, ArrayList<StoreOrder> stOrderList){
+    public StoreOrderAdapter(Context context, int textViewResourceId, ArrayList<Order> stOrderList){
         super(context, textViewResourceId, stOrderList);
-        this.stOrderList = new ArrayList<StoreOrder>();
+        this.stOrderList = new ArrayList<Order>();
         this.stOrderList.addAll(stOrderList);
     }
 
@@ -55,8 +55,8 @@ public class StoreOrderAdapter extends ArrayAdapter<StoreOrder> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        StoreOrder order = stOrderList.get(position);
-        holder.check.setChecked(order.isChecked());
+        Order order = stOrderList.get(position);
+        holder.check.setChecked(order.getStatus());
         holder.stOrder.setText(order.toString());
         return convertView;
     }
@@ -77,12 +77,9 @@ public class StoreOrderAdapter extends ArrayAdapter<StoreOrder> {
                         responseText.append("\n" + country.getName());
                     }
                 }
-
                 Toast.makeText(getApplicationContext(),
                         responseText, Toast.LENGTH_LONG).show();
-
             }
         });
-
     }*/
 }
