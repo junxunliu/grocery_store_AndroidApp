@@ -1,8 +1,9 @@
 package com.example.b07project;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Serializable {
     String name;
     String brand;
     String price;
