@@ -22,7 +22,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
     private String thisUser;
 
-    private StoreOwner store;
+    private StoreOwner store = null;
 
     private ListView ProductList;
 
@@ -32,14 +32,15 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_owner_main_page);
 
-        thisUser = getIntent().getStringExtra("currentUserID");
+        store = (StoreOwner) getIntent().getSerializableExtra("Store Owner");
 
         findStore();
 
         findViewById(R.id.btListOfOrders).setOnClickListener(this);
         findViewById(R.id.btAddProduct).setOnClickListener(this);
-        ProductList = (ListView) findViewById(R.id.lvItems);
+        ProductList = findViewById(R.id.lvItems);
         ProductList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(StoreOwnerMainPageActivity.this, AddProductActivity.class);
@@ -52,18 +53,20 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
     private void findStore(){
 
         //find the current store in the database
-        FirebaseDatabase.getInstance().getReference("user")
-                .child("key").addListenerForSingleValueEvent(new ValueEventListener(){
+        FirebaseDatabase.getInstance().getReference("")
+                .child("").addListenerForSingleValueEvent(new ValueEventListener(){
 
-            private StoreOwner store;
+            //private StoreOwner store;
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                StoreOwner store = snapshot.getValue(StoreOwner.class);
-                if(store != null){
+                StoreOwner s = snapshot.getValue(StoreOwner.class);
+                if(s != null){
                     //update the product list to the store
+
                     this.store = store;
                     ProductListAdapter adapter = new ProductListAdapter(this, R.layout.product_list, (List<Product>) store.getProductList());
+
                     ProductList.setAdapter(adapter);
                 }
             }

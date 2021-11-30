@@ -8,6 +8,10 @@ public class StoreOwner extends User implements Serializable {
 
     private ProductList productList = new ProductList(this);
 
+    public StoreOwner(String email, String firstName, String lastName, String storeName, String storeAddress){
+        super(email, firstName, lastName, storeName, storeAddress);
+    }
+
     public StoreOwner(String email, String firstName, String lastName) {
         super(email, firstName, lastName);
     }
