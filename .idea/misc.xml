@@ -18,14 +18,12 @@
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_add_product.xml" value="0.14716312056737588" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customerstorelistviw2.xml" value="0.14716312056737588" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_owner_main_page.xml" value="0.14716312056737588" />
+        <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/product_list.xml" value="0.21875" />
         <entry key="..\:/b07-app/app/src/main/res/layout/activity_sign_up.xml" value="0.35520833333333335" />
-        <entry key="..\:/b07-app/app/src/main/res/layout/activity_store_owner_main_page.xml" value="0.25885416666666666" />
-        <entry key="..\:/b07-app/app/src/main/res/layout/activity_store_owner_order_list.xml" value="0.25885416666666666" />
-        <entry key="..\:/b07-app/app/src/main/res/layout/layout_store_order.xml" value="0.25885416666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
