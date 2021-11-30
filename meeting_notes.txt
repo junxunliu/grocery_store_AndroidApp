@@ -133,3 +133,49 @@ Things to Do:
 -check current progress
 
 ==============================================
+
+November 30 Meeting
+
+Things to Do:
+-check current progress
+-connect all the activities (pages)
+
+Meeting Notes:
+-all the activities (pages) is connected properly
+-need more tests for expected functionality in next few days
+-issues with connect to database and update database need to be discussed in next meeting (December 1)
+-current progress: (* means still need debugging)
+Junxun:
+-Customer
+-LoginActivity *
+-Model
+-Presenter
+-SignUpActivity *
+-User
+Kaiwen:
+-AddProductActivity *
+-ProductListAdapter *
+-StoreOwnerMainPageActivity
+Yunlong:
+-CustomerStoreListViewActivity * (p5.1)
+-CustomerProductlistDisplayActivity * (p5.2)
+Xinyi:
+-CustomerOrderListActivity
+-Order
+-OrderList *
+-StoreOrderAdapter *
+-StoreOrderListActivity
+Ziyao:
+-CustomerProductActivity * (p5.3)
+-OrderedProduct
+-Product
+-ProductList
+-StoreOwner
+Empty activity :
+-DisplayStoreProductActivity (need to determine whether it is needed)
+
+==============================================
+
+December 1 Meeting
+
+==============================================
