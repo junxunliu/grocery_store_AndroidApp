@@ -93,7 +93,9 @@ public class OrderList {
         }
     }
 
+    //test activities
     public void testData(){
+        /*
         StoreOwner sto = new StoreOwner();
         sto.setStoreName("KFC");
         Customer c = new Customer();
@@ -142,7 +144,7 @@ public class OrderList {
         list4.add(p6);
         list4.add(p7);
         Order o4 = new Order(sto4,c4,list4);
-        orderList.add(o4);
+        orderList.add(o4);*/
     }
 
     @Override

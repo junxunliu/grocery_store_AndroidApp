@@ -17,13 +17,13 @@
             android:exported="false" />
         <activity
             android:name=".StoreOwnerOrderListActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".CustomerProductActivity"
             android:exported="false" />
         <activity
             android:name=".CustomerOrderListActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />

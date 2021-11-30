@@ -46,8 +46,8 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
                 @Override
                 public void onClick(View v) {
                     CheckBox cb = (CheckBox) v;
-                    StoreOrder order = (StoreOrder) cb.getTag();
-                    order.setCheck(cb.isChecked());
+                    Order order = (Order) cb.getTag();
+                    order.setStatus(cb.isChecked());
                 }
             });*/
         }
@@ -60,26 +60,4 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
         holder.stOrder.setText(order.toString());
         return convertView;
     }
-    /*private void checkButtonClick() {
-        Button complete = (Button) findViewById(R.id.button2);
-        myButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                StringBuffer responseText = new StringBuffer();
-                responseText.append("The following were selected...\n");
-
-                ArrayList<Country> countryList = dataAdapter.countryList;
-                for(int i=0;i<countryList.size();i++){
-                    Country country = countryList.get(i);
-                    if(country.isSelected()){
-                        responseText.append("\n" + country.getName());
-                    }
-                }
-                Toast.makeText(getApplicationContext(),
-                        responseText, Toast.LENGTH_LONG).show();
-            }
-        });
-    }*/
 }
