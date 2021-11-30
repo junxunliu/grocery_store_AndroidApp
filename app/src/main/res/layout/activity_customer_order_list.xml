@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".CustomerOrderListActivity">
 
+    <TextView
+        android:id="@+id/my_order"
+        android:layout_width="128dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/tv_myOrder"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="130dp"
@@ -34,14 +46,14 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="278dp"
-        android:layout_height="592dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="292dp"
+        android:layout_height="540dp"
+        android:layout_marginTop="85dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-=======
->>>>>>> 98fdf88 (create CustomerOrderListActivity and StoreOwnerOrderListActivity)
+    =======
+    >>>>>>> 98fdf88 (create CustomerOrderListActivity and StoreOwnerOrderListActivity)
 </androidx.constraintlayout.widget.ConstraintLayout>
