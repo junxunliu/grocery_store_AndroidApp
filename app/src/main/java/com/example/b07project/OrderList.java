@@ -21,6 +21,10 @@ public class OrderList {
 
     public OrderList() { }
 
+    public ArrayList<Order> getList(){
+        return orderList;
+    }
+
     public void addOrder(Order order){
         orderList.add(order);
     }

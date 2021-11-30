@@ -29,6 +29,8 @@ public class Order {
         return c;
     }
 
+    public HashSet<OrderedProduct> getOrder(){ return order; }
+
     public boolean getStatus(){
         return status;
     }

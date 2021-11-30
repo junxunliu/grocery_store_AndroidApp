@@ -49,23 +49,25 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
     private void displayListView(){
         ArrayList<StoreOrder> stOrderList = new ArrayList<StoreOrder>();
         OrderList orderlist = new OrderList();
-        orderlist.readFromDB();
-        OrderList storeOrderList = new OrderList();
-        //storeOrderList = orderlist.search(user);
+        orderlist.testData();
+        for(Order o:orderlist.getList()){
+            StoreOrder sto = new StoreOrder();
+            sto.setOrder(o);
+            sto.setCheck(o.getStatus());
+            stOrderList.add(sto);
 
-        //for(Order o :){
-            //StoreOrder order = new StoreOrder(o.toString(),false);
+            //test data
+            User user2 = new User();
+            StoreOwner st = new StoreOwner();
+            st.setStoreName("KFC");
+            user2 = (User)st;
+            user2.setUserType("Store Owner");
+            OrderList StoreOrderList = new OrderList();
+            StoreOrderList = orderlist.search(user2);
 
-        //}
-
-        adpt = new StoreOrderAdapter(this,R.layout.layout_store_order,stOrderList);
-        ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adpt);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                StoreOrder order = (StoreOrder) parent.getItemAtPosition(position);
-            }
-        });
+            adpt = new StoreOrderAdapter(this,R.layout.layout_store_order,stOrderList);
+            ListView lv = (ListView) findViewById(R.id.listView);
+            lv.setAdapter(adpt);
+        }
     }
 }

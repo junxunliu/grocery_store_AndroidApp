@@ -44,13 +44,9 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         user.setFirstName("Kitty");
         user.setLastName("Y");
         user.setUserType("Customer");
-        User user2 = new User();
-        StoreOwner st = new StoreOwner();
-        st.setStoreName("KFC");
-        user2 = (User)st;
-        user2.setUserType("Store Owner");
         OrderList CustomerOrderList = new OrderList();
-        CustomerOrderList = orderlist.search(user2);
+        CustomerOrderList = orderlist.search(user);
+
         tv_display.setText(CustomerOrderList.toString());
 
         /*OrderList orderlist = new OrderList();

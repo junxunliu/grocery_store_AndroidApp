@@ -15,12 +15,9 @@ import java.util.ArrayList;
 public class StoreOrderAdapter extends ArrayAdapter<StoreOrder> {
 
     private ArrayList<StoreOrder> stOrderList;
-    private int resourceID;
-    //private ArrayList<StoreOrder> stOrderList;
 
     public StoreOrderAdapter(Context context, int textViewResourceId, ArrayList<StoreOrder> stOrderList){
         super(context, textViewResourceId, stOrderList);
-        resourceID = textViewResourceId;
         this.stOrderList = new ArrayList<StoreOrder>();
         this.stOrderList.addAll(stOrderList);
     }
@@ -33,12 +30,12 @@ public class StoreOrderAdapter extends ArrayAdapter<StoreOrder> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        StoreOrder st_order = getItem(position);
-        View view;
-        ViewHolder holder;
+        ViewHolder holder = null;
 
         if (convertView == null) {
-            view = LayoutInflater.from(getContext()).inflate(resourceID, parent,false);
+            LayoutInflater vi =
+                    (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = vi.inflate(R.layout.layout_store_order, null);
 
             holder = new ViewHolder();
             holder.stOrder = (TextView) convertView.findViewById(R.id.textView3);
@@ -55,14 +52,13 @@ public class StoreOrderAdapter extends ArrayAdapter<StoreOrder> {
             });*/
         }
         else {
-            view = convertView;
             holder = (ViewHolder) convertView.getTag();
         }
 
         StoreOrder order = stOrderList.get(position);
         holder.check.setChecked(order.isChecked());
         holder.stOrder.setText(order.toString());
-        return view;
+        return convertView;
     }
     /*private void checkButtonClick() {
         Button complete = (Button) findViewById(R.id.button2);
