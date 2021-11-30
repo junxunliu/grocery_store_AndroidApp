@@ -19,12 +19,12 @@ import java.util.List;
 
 public class ProductListAdapter extends ArrayAdapter<Product> {
 
-    private Context ctt;
+    private Context context;
     private int resource;
 
-    public ProductListAdapter(ValueEventListener context, int resource, ProductList objects) {
-        super(context, resource, objects);
-        this.ctt = context;
+    public ProductListAdapter(ValueEventListener context, int resource, List<Product> objects) {
+        super((Context) context, resource, objects);
+        this.context = (Context) context;
         this.resource = resource;
     }
 
@@ -47,7 +47,7 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 
         if (convertView == null) {
 
-            LayoutInflater inflater = LayoutInflater.from(ctt);
+            LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(resource, parent, false);
             holder = new ViewHolder();
 
