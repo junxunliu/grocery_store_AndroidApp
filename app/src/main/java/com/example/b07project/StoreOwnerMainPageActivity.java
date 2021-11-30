@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class StoreOwnerMainPageActivity extends AppCompatActivity implements View.OnClickListener{
 
     private String thisUser;
@@ -61,7 +63,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
                 if(store != null){
                     //update the product list to the store
                     this.store = store;
-                    ProductListAdapter adapter = new ProductListAdapter(this, R.layout.product_list, store.getProductList());
+                    ProductListAdapter adapter = new ProductListAdapter(this, R.layout.product_list, (List<Product>) store.getProductList());
                     ProductList.setAdapter(adapter);
                 }
             }

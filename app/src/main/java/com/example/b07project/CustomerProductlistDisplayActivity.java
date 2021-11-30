@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class CustomerProductlistDisplayActivity extends AppCompatActivity {
     private StoreOwner store;
     private String storeName;
@@ -41,7 +43,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
         });
     }
     private void avocado(Product item) {
-        Intent intent = new Intent(this, .class);
+        Intent intent = new Intent(this, CustomerProductActivity.class);
         intent.putExtra("item", (Parcelable) item);
         intent.putExtra("storeName", storeName);
         intent.putExtra("currentUser", (Parcelable) currentUser);
@@ -55,8 +57,8 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 store = snapshot.getValue(StoreOwner.class);
-                ProductListAdapter adapter = new ProductListAdapter(CustomerProductlistDisplayActivity.this,
-                        R.layout.product_list, store.getProductList());
+                ProductListAdapter adapter = new ProductListAdapter((ValueEventListener) CustomerProductlistDisplayActivity.this,
+                        R.layout.product_list, (List<Product>) store.getProductList());
                 listItems.setAdapter(adapter);
             }
             @Override
