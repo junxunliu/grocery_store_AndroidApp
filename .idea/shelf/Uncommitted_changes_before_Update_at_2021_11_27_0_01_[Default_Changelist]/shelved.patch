@@ -1,0 +1,287 @@
+Index: app/src/main/java/com/example/b07project/StoreOwner.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.b07project;\r\n\r\npublic class StoreOwner {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/b07project/StoreOwner.java b/app/src/main/java/com/example/b07project/StoreOwner.java
+--- a/app/src/main/java/com/example/b07project/StoreOwner.java	(revision 7585e174d61cb8f0e54d1fdf8a8816ecf2b3f8de)
++++ b/app/src/main/java/com/example/b07project/StoreOwner.java	(date 1637940993097)
+@@ -1,4 +1,12 @@
+ package com.example.b07project;
+ 
+-public class StoreOwner {
++public class StoreOwner extends User{
++    public StoreOwner(String email, String firstName, String lastName) {
++        super(email, firstName, lastName);
++    }
++
++    public StoreOwner() {
++        super();
++    }
+ }
++
+Index: app/src/main/java/com/example/b07project/LogInActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.b07project;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Bundle;\r\nimport android.util.Patterns;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.CheckBox;\r\nimport android.widget.EditText;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.android.gms.tasks.OnCompleteListener;\r\nimport com.google.android.gms.tasks.Task;\r\nimport com.google.firebase.auth.AuthResult;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\n\r\npublic class LogInActivity extends AppCompatActivity implements View.OnClickListener {\r\n    private static final String REMEMBER = \"remember\";\r\n    private static final String EMAIL = \"email\";\r\n    private static final String PASSWORD = \"password\";\r\n    private SharedPreferences preferences;\r\n    private SharedPreferences.Editor editor;\r\n\r\n    private EditText editTextEmail, editTextPassword;\r\n    private Button buttonLogin;\r\n    private CheckBox checkBoxRemember;\r\n    private TextView textViewSignup;\r\n\r\n    private FirebaseAuth mAuth;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_log_in);\r\n\r\n        editTextEmail = (EditText) findViewById(R.id.editTextEmail);\r\n        editTextPassword =  (EditText) findViewById(R.id.editTextPassword);\r\n        buttonLogin = (Button) findViewById(R.id.buttonLogin);\r\n        buttonLogin.setOnClickListener(this);\r\n        checkBoxRemember = (CheckBox) findViewById(R.id.checkBoxRemember);\r\n        textViewSignup = (TextView) findViewById(R.id.signup);\r\n        textViewSignup.setOnClickListener(this);\r\n\r\n        preferences = getSharedPreferences(\"test\", MODE_PRIVATE);\r\n        editor = preferences.edit();\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n\r\n        checkSharePreferences();\r\n    }\r\n\r\n    private void checkSharePreferences() {\r\n        Boolean remember = preferences.getBoolean(REMEMBER, false);\r\n        String email = preferences.getString(EMAIL, \"\");\r\n        String password = preferences.getString(PASSWORD, \"\");\r\n\r\n        editTextEmail.setText(email);\r\n        editTextPassword.setText(password);\r\n        checkBoxRemember.setChecked(remember);\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onClick(View v) {\r\n        switch (v.getId()) {\r\n            case R.id.buttonLogin:\r\n                logIn();\r\n                break;\r\n            case R.id.signup:\r\n                startActivity(new Intent(this, SignUpActivity.class));\r\n                break;\r\n        }\r\n    }\r\n\r\n    private void logIn() {\r\n        String email = editTextEmail.getText().toString().trim();\r\n        String password = editTextPassword.getText().toString().trim();\r\n\r\n        editor.putBoolean(REMEMBER, checkBoxRemember.isChecked());\r\n        editor.putString(EMAIL, checkBoxRemember.isChecked() ? email : \"\");\r\n        editor.putString(PASSWORD, checkBoxRemember.isChecked() ? password : \"\");\r\n        editor.apply();\r\n\r\n        if (email.isEmpty()) {\r\n            editTextEmail.setError(\"Email is required!\");\r\n            editTextEmail.requestFocus();\r\n        }\r\n\r\n        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {\r\n            editTextEmail.setError(\"Invalid email!\");\r\n            editTextEmail.requestFocus();\r\n        }\r\n\r\n        if (password.isEmpty()) {\r\n            editTextPassword.setError(\"Password is required!\");\r\n            editTextPassword.requestFocus();\r\n        }\r\n\r\n        if (password.length() < 6) {\r\n            editTextPassword.setError(\"Password should be at least 6 characters\");\r\n            editTextPassword.requestFocus();\r\n        }\r\n\r\n        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {\r\n            @Override\r\n            public void onComplete(@NonNull Task<AuthResult> task) {\r\n                // check if it's store owner or customer\r\n                // here is customer\r\n                if (task.isSuccessful()) {\r\n                    startActivity(new Intent(LogInActivity.this, CustomerProductActivity.class));\r\n                } else {\r\n                    Toast.makeText(LogInActivity.this, \"Fail to login!\", Toast.LENGTH_LONG).show();\r\n                }\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/b07project/LogInActivity.java b/app/src/main/java/com/example/b07project/LogInActivity.java
+--- a/app/src/main/java/com/example/b07project/LogInActivity.java	(revision 7585e174d61cb8f0e54d1fdf8a8816ecf2b3f8de)
++++ b/app/src/main/java/com/example/b07project/LogInActivity.java	(date 1637942063563)
+@@ -33,6 +33,8 @@
+ 
+     private FirebaseAuth mAuth;
+ 
++    private Presenter presenter;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -51,6 +53,8 @@
+ 
+         mAuth = FirebaseAuth.getInstance();
+ 
++        presenter = new Presenter(new Model(), this);
++
+         checkSharePreferences();
+     }
+ 
+@@ -106,17 +110,31 @@
+             editTextPassword.requestFocus();
+         }
+ 
+-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+-            @Override
+-            public void onComplete(@NonNull Task<AuthResult> task) {
+-                // check if it's store owner or customer
+-                // here is customer
+-                if (task.isSuccessful()) {
+-                    startActivity(new Intent(LogInActivity.this, CustomerProductActivity.class));
+-                } else {
+-                    Toast.makeText(LogInActivity.this, "Fail to login!", Toast.LENGTH_LONG).show();
+-                }
+-            }
+-        });
++        presenter.login(email, password);
++
++//        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
++//            @Override
++//            public void onComplete(@NonNull Task<AuthResult> task) {
++//                // check if it's store owner or customer
++//                // here is customer
++//                if (task.isSuccessful()) {
++//                    startActivity(new Intent(LogInActivity.this, CustomerProductActivity.class));
++//                } else {
++//                    Toast.makeText(LogInActivity.this, "Fail to login!", Toast.LENGTH_LONG).show();
++//                }
++//            }
++//        });
++    }
++
++    public void redirectToCustomer(String userId) {
++        Intent intent = new Intent(LogInActivity.this, CustomerProductActivity.class);
++        intent.putExtra("CustomerActivity", userId);
++        startActivity(intent);
++    }
++
++    public void redirectToStoreOwner(String userId) {
++        Intent intent = new Intent(LogInActivity.this, StoreOwnerActivity.class);
++        intent.putExtra("StoreOwnerActivity", userId);
++        startActivity(intent);
+     }
+ }
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n<<<<<<< HEAD\r\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\r\n=======\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n>>>>>>> 98fdf88 (create CustomerOrderListActivity and StoreOwnerOrderListActivity)\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+--- a/.idea/vcs.xml	(revision 7585e174d61cb8f0e54d1fdf8a8816ecf2b3f8de)
++++ b/.idea/vcs.xml	(date 1637940425267)
+@@ -1,10 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-<<<<<<< HEAD
+     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-=======
+-    <mapping directory="" vcs="Git" />
+->>>>>>> 98fdf88 (create CustomerOrderListActivity and StoreOwnerOrderListActivity)
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/java/com/example/b07project/Model.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/b07project/Model.java b/app/src/main/java/com/example/b07project/Model.java
+new file mode 100644
+--- /dev/null	(date 1637933529279)
++++ b/app/src/main/java/com/example/b07project/Model.java	(date 1637933529279)
+@@ -0,0 +1,67 @@
++package com.example.b07project;
++
++import android.os.Build;
++import android.util.Log;
++
++import androidx.annotation.NonNull;
++import androidx.annotation.RequiresApi;
++
++import com.google.android.gms.tasks.OnCompleteListener;
++import com.google.android.gms.tasks.Task;
++import com.google.firebase.auth.AuthResult;
++import com.google.firebase.auth.FirebaseAuth;
++import com.google.firebase.database.DataSnapshot;
++import com.google.firebase.database.DatabaseError;
++import com.google.firebase.database.FirebaseDatabase;
++import com.google.firebase.database.ValueEventListener;
++
++import java.util.function.Consumer;
++
++public class Model {
++
++    public Model() {
++
++    }
++
++    public void getUser(String email, String password, Consumer<User> callback) {
++        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
++                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
++                    @Override
++                    public void onComplete(@NonNull Task<AuthResult> task) {
++                        if (task.isSuccessful()) {
++                            // get current user id
++                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
++                            FirebaseDatabase.getInstance().getReference("UserTypes").child(userId).child("userType")
++                                    .addListenerForSingleValueEvent(new ValueEventListener() {
++                                        @RequiresApi(api = Build.VERSION_CODES.N)
++                                        @Override
++                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
++                                            String userType = snapshot.getValue(String.class);
++
++                                            if (userType == null) {
++                                                Log.d("Model", "Failed");
++                                                callback.accept(null);
++                                            }
++
++                                            else if (userType.equals("Store Owner")) {
++                                                StoreOwner storeOwner = new StoreOwner();
++                                                storeOwner.setId(userId);
++                                                callback.accept(storeOwner);
++                                            }
++                                            else if (userType.equals("Customer")) {
++                                                Customer customer = new Customer();
++                                                customer.setId(userId);
++                                                callback.accept(customer);
++                                            }
++                                        }
++
++                                        @Override
++                                        public void onCancelled(@NonNull DatabaseError error) {
++
++                                        }
++                                    });
++                        }
++                    }
++                });
++    }
++}
+Index: app/src/main/java/com/example/b07project/Presenter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/b07project/Presenter.java b/app/src/main/java/com/example/b07project/Presenter.java
+new file mode 100644
+--- /dev/null	(date 1637933981465)
++++ b/app/src/main/java/com/example/b07project/Presenter.java	(date 1637933981465)
+@@ -0,0 +1,26 @@
++package com.example.b07project;
++
++import android.util.Log;
++import android.view.View;
++
++public class Presenter {
++
++    private Model model;
++    private LogInActivity view;
++
++    public Presenter(Model model, LogInActivity view) {
++        this.model = model;
++        this.view = view;
++    }
++
++    public void login(String email, String password) {
++
++        model.getUser(email, password, (User user) -> {
++            if (user == null) return;
++            if (user instanceof Customer)
++                view.redirectToCustomer(user.getId());
++            else
++                view.redirectToStoreOwner(user.getId());
++        });
++    }
++}
+Index: app/src/main/java/com/example/b07project/Customer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/b07project/Customer.java b/app/src/main/java/com/example/b07project/Customer.java
+new file mode 100644
+--- /dev/null	(date 1637941144773)
++++ b/app/src/main/java/com/example/b07project/Customer.java	(date 1637941144773)
+@@ -0,0 +1,11 @@
++package com.example.b07project;
++
++public class Customer extends User{
++    public Customer(String email, String firstName, String lastName) {
++        super(email, firstName, lastName);
++    }
++
++    public Customer() {
++
++    }
++}
+Index: app/src/main/java/com/example/b07project/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.b07project;\r\n\r\npublic class User {\r\n    public String email;\r\n    public String firstName;\r\n    public String lastName;\r\n\r\n    public User(String email, String firstName, String lastName) {\r\n        this.email = email;\r\n        this.firstName = firstName;\r\n        this.lastName = lastName;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/b07project/User.java b/app/src/main/java/com/example/b07project/User.java
+--- a/app/src/main/java/com/example/b07project/User.java	(revision 7585e174d61cb8f0e54d1fdf8a8816ecf2b3f8de)
++++ b/app/src/main/java/com/example/b07project/User.java	(date 1637942460667)
+@@ -4,10 +4,23 @@
+     public String email;
+     public String firstName;
+     public String lastName;
++    public String userType;
++    public String userId;
+ 
+     public User(String email, String firstName, String lastName) {
+         this.email = email;
+         this.firstName = firstName;
+         this.lastName = lastName;
+     }
++
++    public User() {
++
++    }
++
++    public String getId() {
++        return userId;
++    }
++
++    public void setId(String userId) {
++    }
+ }

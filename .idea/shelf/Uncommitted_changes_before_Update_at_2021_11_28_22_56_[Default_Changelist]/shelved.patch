@@ -1,0 +1,141 @@
+Index: app/src/main/java/com/example/b07project/SignUpActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.b07project;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.util.Patterns;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.CheckBox;\r\nimport android.widget.EditText;\r\nimport android.widget.ProgressBar;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.android.gms.tasks.OnCompleteListener;\r\nimport com.google.android.gms.tasks.Task;\r\nimport com.google.firebase.auth.AuthResult;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\n\r\npublic class SignUpActivity extends AppCompatActivity implements View.OnClickListener{\r\n\r\n    private TextView banner;\r\n    private EditText editTextFirstName, editTextLastName, editTextEmail, editTextPassword;\r\n    private CheckBox checkBoxStoreOwner;\r\n    private Button buttonSignUp;\r\n    private ProgressBar progressBar;\r\n\r\n    private FirebaseAuth mAuth;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_sign_up);\r\n\r\n        banner = (TextView) findViewById(R.id.banner);\r\n        banner.setOnClickListener(this);\r\n\r\n        editTextEmail = (EditText) findViewById(R.id.email);\r\n        editTextFirstName = (EditText) findViewById(R.id.firstName);\r\n        editTextLastName = (EditText) findViewById(R.id.lastName);\r\n        editTextPassword = (EditText) findViewById(R.id.password);\r\n\r\n        buttonSignUp = (Button) findViewById(R.id.buttonSignup);\r\n        buttonSignUp.setOnClickListener(this);\r\n\r\n        progressBar = (ProgressBar) findViewById(R.id.progressBar);\r\n        progressBar.setVisibility(View.GONE);\r\n\r\n        checkBoxStoreOwner = (CheckBox) findViewById(R.id.checkboxStoreOwner);\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n    }\r\n\r\n    @Override\r\n    public void onClick(View v) {\r\n        switch (v.getId()) {\r\n            case R.id.banner:\r\n                startActivity(new Intent(this, MainActivity.class));\r\n                break;\r\n            case R.id.buttonSignup:\r\n                signUp();\r\n                break;\r\n        }\r\n    }\r\n\r\n    private void signUp() {\r\n        String firstName = editTextFirstName.getText().toString().trim();\r\n        String lastName = editTextLastName.getText().toString().trim();\r\n        String email = editTextEmail.getText().toString().trim();\r\n        String password = editTextPassword.getText().toString().trim();\r\n\r\n        // validate\r\n        if (firstName.isEmpty()) {\r\n            editTextFirstName.setError(\"First name is required!\");\r\n            editTextFirstName.requestFocus();\r\n        }\r\n        if (email.isEmpty()) {\r\n            editTextEmail.setError(\"Email is required!\");\r\n            editTextEmail.requestFocus();\r\n        }\r\n\r\n        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {\r\n            editTextEmail.setError(\"Invalid email!\");\r\n            editTextEmail.requestFocus();\r\n        }\r\n\r\n        if (password.isEmpty()) {\r\n            editTextPassword.setError(\"Password is required!\");\r\n            editTextPassword.requestFocus();\r\n        }\r\n\r\n        if (password.length() < 6) {\r\n            editTextPassword.setError(\"Password should be at least 6 characters\");\r\n            editTextPassword.requestFocus();\r\n        }\r\n\r\n\r\n        progressBar.setVisibility(View.VISIBLE);\r\n        mAuth.createUserWithEmailAndPassword(email, password)\r\n                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {\r\n                    @Override\r\n                    public void onComplete(@NonNull Task<AuthResult> task) {\r\n                        if (task.isSuccessful()) {\r\n                            User user = new User(email, firstName, lastName);\r\n                            if (checkBoxStoreOwner.isChecked()) {\r\n                                user.userType = \"StoreOwner\";\r\n                                FirebaseDatabase.getInstance().getReference(\"Store Owners\")\r\n                                        .child(mAuth.getCurrentUser().getUid())\r\n                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {\r\n                                    @Override\r\n                                    public void onComplete(@NonNull Task<Void> task) {\r\n                                        if (task.isSuccessful()) {\r\n                                            Toast.makeText(SignUpActivity.this, \"Store owner registered successfully!\", Toast.LENGTH_LONG).show();\r\n                                            progressBar.setVisibility(View.GONE);\r\n\r\n                                            // redirect to login or dashboard\r\n                                            startActivity(new Intent(SignUpActivity.this,MainActivity.class));\r\n                                        } else {\r\n                                            Toast.makeText(SignUpActivity.this, \"Failed to create a store owner\", Toast.LENGTH_LONG).show();\r\n                                            progressBar.setVisibility(View.GONE);\r\n                                        }\r\n                                    }\r\n                                });\r\n                            } else {\r\n                                user.userType = \"Customer\";\r\n                                FirebaseDatabase.getInstance().getReference(\"Customers\")\r\n                                        .child(mAuth.getCurrentUser().getUid()) // get current sign up user id\r\n                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {\r\n                                    @Override\r\n                                    public void onComplete(@NonNull Task<Void> task) {\r\n                                        if (task.isSuccessful()) {\r\n                                            Toast.makeText(SignUpActivity.this, \"Customer registered successfully!\", Toast.LENGTH_LONG).show();\r\n                                            progressBar.setVisibility(View.GONE);\r\n\r\n                                            // redirect to login or dashboard\r\n                                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));\r\n                                        } else {\r\n                                            Toast.makeText(SignUpActivity.this, \"Failed to create a customer\", Toast.LENGTH_LONG).show();\r\n                                            progressBar.setVisibility(View.GONE);\r\n                                        }\r\n                                    }\r\n                                });\r\n                            }\r\n                        } else {\r\n                            Toast.makeText(SignUpActivity.this, \"Failed to sign up\", Toast.LENGTH_LONG).show();\r\n                            progressBar.setVisibility(View.GONE);\r\n                        }\r\n                    }\r\n                });\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/b07project/SignUpActivity.java b/app/src/main/java/com/example/b07project/SignUpActivity.java
+--- a/app/src/main/java/com/example/b07project/SignUpActivity.java	(revision dbf8e2230dca182b2ae3ff80716ab71ba81f4080)
++++ b/app/src/main/java/com/example/b07project/SignUpActivity.java	(date 1638109516851)
+@@ -58,7 +58,7 @@
+     public void onClick(View v) {
+         switch (v.getId()) {
+             case R.id.banner:
+-                startActivity(new Intent(this, MainActivity.class));
++                startActivity(new Intent(this, LogInActivity.class));
+                 break;
+             case R.id.buttonSignup:
+                 signUp();
+Index: app/src/main/res/layout/activity_store_display_in_customer.xml
+===================================================================
+diff --git a/app/src/main/res/layout/activity_store_display_in_customer.xml b/app/src/main/res/layout/activity_store_display_in_customer.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/activity_store_display_in_customer.xml	(revision dbf8e2230dca182b2ae3ff80716ab71ba81f4080)
++++ /dev/null	(revision dbf8e2230dca182b2ae3ff80716ab71ba81f4080)
+@@ -1,91 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".DisplayStoreActivity">
+-
+-
+-    <ListView
+-        android:id="@+id/lvItems"
+-        android:layout_width="409dp"
+-        android:layout_height="480dp"
+-        android:layout_marginTop="50dp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="1.0"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="match_parent"
+-        app:layout_constraintVertical_bias="0.265" >
+-    </ListView>
+-
+-
+-    <Button
+-        android:id="@+id/btnSendOrder"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginEnd="32dp"
+-        android:text="Send Order"
+-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.581"
+-        app:layout_constraintStart_toEndOf="@+id/tvNumberOfItems"
+-        app:layout_constraintTop_toTopOf="@+id/textView3"
+-        app:layout_constraintVertical_bias="0.448" />
+-
+-    <TextView
+-        android:id="@+id/tvSelectedItem"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="36dp"
+-        android:layout_marginTop="24dp"
+-        android:text="TextView"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/lvItems" />
+-
+-    <EditText
+-        android:id="@+id/edTxtSelectedQuantity"
+-        android:layout_width="100dp"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="56dp"
+-        android:ems="10"
+-        android:inputType="number"
+-        android:minHeight="48dp"
+-        app:layout_constraintBottom_toBottomOf="@+id/tvSelectedItem"
+-        app:layout_constraintStart_toEndOf="@+id/tvSelectedItem"
+-        app:layout_constraintTop_toTopOf="@+id/tvSelectedItem"
+-        tools:ignore="SpeakableTextPresentCheck" />
+-
+-    <Button
+-        android:id="@+id/btnAdd"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="48dp"
+-        android:text="Add"
+-        app:layout_constraintBottom_toBottomOf="@+id/edTxtSelectedQuantity"
+-        app:layout_constraintStart_toEndOf="@+id/edTxtSelectedQuantity"
+-        app:layout_constraintTop_toTopOf="@+id/edTxtSelectedQuantity"
+-        app:layout_constraintVertical_bias="0.0" />
+-
+-    <TextView
+-        android:id="@+id/textView3"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="36dp"
+-        android:layout_marginTop="60dp"
+-        android:text="Items: "
+-        android:textStyle="bold"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/tvSelectedItem" />
+-
+-    <TextView
+-        android:id="@+id/tvNumberOfItems"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="12dp"
+-        android:text="0"
+-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+-        app:layout_constraintStart_toEndOf="@+id/textView3"
+-        app:layout_constraintTop_toTopOf="@+id/textView3"
+-        app:layout_constraintVertical_bias="0.0" />
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Android Project/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_main.xml\" value=\"0.35520833333333335\" />\r\n        <entry key=\"..\\:/AndroidProjects/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_customer.xml\" value=\"0.35520833333333335\" />\r\n        <entry key=\"..\\:/AndroidProjects/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_log_in.xml\" value=\"0.19739583333333333\" />\r\n        <entry key=\"..\\:/AndroidProjects/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_main.xml\" value=\"0.35520833333333335\" />\r\n        <entry key=\"..\\:/AndroidProjects/b07-app-xinyi-zion/b07-app-xinyi-zion/app/src/main/res/layout/activity_sign_up.xml\" value=\"0.19739583333333333\" />\r\n        <entry key=\"..\\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_customer.xml\" value=\"0.3046875\" />\r\n        <entry key=\"..\\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_log_in.xml\" value=\"0.3046875\" />\r\n        <entry key=\"..\\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_main.xml\" value=\"0.3046875\" />\r\n        <entry key=\"..\\:/Users/SuperMaru/OneDrive/course/cscb07/b07-app/app/src/main/res/layout/activity_sign_up.xml\" value=\"0.3046875\" />\r\n        <entry key=\"..\\:/Users/SuperMaru/OneDrive/course/cscb07/b07project/app/src/main/res/layout/activity_main.xml\" value=\"0.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_order_list.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_log_in.xml\" value=\"0.2\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_main.xml\" value=\"0.2\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_sign_up.xml\" value=\"0.176\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_owner_order_list.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_add_product.xml\" value=\"0.14716312056737588\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision dbf8e2230dca182b2ae3ff80716ab71ba81f4080)
++++ b/.idea/misc.xml	(date 1638111364146)
+@@ -20,6 +20,12 @@
+         <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_sign_up.xml" value="0.176" />
+         <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_owner_order_list.xml" value="0.264" />
+         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_add_product.xml" value="0.14716312056737588" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_customer_product.xml" value="0.35520833333333335" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_log_in.xml" value="0.20052083333333334" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_main.xml" value="0.20052083333333334" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_sign_up.xml" value="0.20052083333333334" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_store_display_in_customer.xml" value="0.35520833333333335" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_store_owner_main_page.xml" value="0.35520833333333335" />
+       </map>
+     </option>
+   </component>
