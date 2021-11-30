@@ -22,5 +22,8 @@
     <string name="storeOwner_register_failed">Failed to create a store owner</string>
     <string name="customer_register_failed">Failed to create a customer</string>
     <string name="signup_failed">Failed to sign up</string>
+    <string name="product_add_successfully">Product Added Successfully.</string>
+    <string name="product_fail_to_add">Product Not Added!</string>
+
 
 </resources>

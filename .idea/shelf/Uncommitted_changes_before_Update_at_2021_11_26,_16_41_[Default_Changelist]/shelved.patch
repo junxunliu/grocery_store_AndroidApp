@@ -1,0 +1,136 @@
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1637684371771)
++++ b/.idea/vcs.xml	(date 1637684371771)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DesignSurface\">\n    <option name=\"filePathToZoomLevelMap\">\n      <map>\n        <entry key=\"..\\:/Users/SuperMaru/OneDrive/course/cscb07/b07project/app/src/main/res/layout/activity_main.xml\" value=\"0.3333333333333333\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 59818b9dfd0f46ff8423aa02d39a029930a723f4)
++++ b/.idea/misc.xml	(date 1637846937511)
+@@ -4,6 +4,9 @@
+     <option name="filePathToZoomLevelMap">
+       <map>
+         <entry key="..\:/Users/SuperMaru/OneDrive/course/cscb07/b07project/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
++        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
++        <entry key="app/src/main/res/layout/activity_store_display_in_customer.xml" value="0.335" />
++        <entry key="app/src/main/res/layout/product_list.xml" value="0.25" />
+       </map>
+     </option>
+   </component>
+Index: app/src/main/res/layout/activity_store_display_in_customer.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_store_display_in_customer.xml b/app/src/main/res/layout/activity_store_display_in_customer.xml
+new file mode 100644
+--- /dev/null	(date 1637847926491)
++++ b/app/src/main/res/layout/activity_store_display_in_customer.xml	(date 1637847926491)
+@@ -0,0 +1,88 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".DisplayStoreActivity">
++
++
++    <ListView
++        android:id="@+id/lvItems"
++        android:layout_width="409dp"
++        android:layout_height="480dp"
++        android:layout_marginTop="50dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="1.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="match_parent"
++        app:layout_constraintVertical_bias="0.265" />
++
++
++    <Button
++        android:id="@+id/btnSendOrder"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginEnd="32dp"
++        android:text="Send Order"
++        app:layout_constraintBottom_toBottomOf="@+id/textView3"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.581"
++        app:layout_constraintStart_toEndOf="@+id/tvNumberOfItems"
++        app:layout_constraintTop_toTopOf="@+id/textView3"
++        app:layout_constraintVertical_bias="0.448" />
++
++    <TextView
++        android:id="@+id/tvSelectedItem"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="36dp"
++        android:layout_marginTop="24dp"
++        android:text="TextView"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/lvItems" />
++
++    <EditText
++        android:id="@+id/edTxtSelectedQuantity"
++        android:layout_width="100dp"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="56dp"
++        android:ems="10"
++        android:inputType="number"
++        app:layout_constraintBottom_toBottomOf="@+id/tvSelectedItem"
++        app:layout_constraintStart_toEndOf="@+id/tvSelectedItem"
++        app:layout_constraintTop_toTopOf="@+id/tvSelectedItem" />
++
++    <Button
++        android:id="@+id/btnAdd"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="48dp"
++        android:text="Add"
++        app:layout_constraintBottom_toBottomOf="@+id/edTxtSelectedQuantity"
++        app:layout_constraintStart_toEndOf="@+id/edTxtSelectedQuantity"
++        app:layout_constraintTop_toTopOf="@+id/edTxtSelectedQuantity"
++        app:layout_constraintVertical_bias="0.0" />
++
++    <TextView
++        android:id="@+id/textView3"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="36dp"
++        android:layout_marginTop="60dp"
++        android:text="Items: "
++        android:textStyle="bold"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/tvSelectedItem" />
++
++    <TextView
++        android:id="@+id/tvNumberOfItems"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="12dp"
++        android:text="0"
++        app:layout_constraintBottom_toBottomOf="@+id/textView3"
++        app:layout_constraintStart_toEndOf="@+id/textView3"
++        app:layout_constraintTop_toTopOf="@+id/textView3"
++        app:layout_constraintVertical_bias="0.0" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
