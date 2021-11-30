@@ -24,7 +24,6 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
     private ListView ProductList;
 
-    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
