@@ -30,7 +30,6 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     private List<String> storeNames;
     private User currentUser;
     private StoreOwner store;
-    private DatabaseReference ref;
     private Button btnViewOrder;
     private Model model;
 
@@ -42,12 +41,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
         //currentUserID = getIntent().getStringExtra("currentUserID");
 
         //getCurrentUser();
-        getStoreNames((List<String> storeNames) -> {
-            this.storeNames = storeNames;
-            ArrayAdapter<String> storeAdapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_list_item_1, storeNames);
-            listStores.setAdapter(storeAdapter);
-        });
+        getStoreNames();
 
          btnViewOrder = (Button) findViewById(R.id.button_view_order);
          btnViewOrder.setOnClickListener(this);
@@ -73,18 +67,21 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
 
 
 
-    private void getStoreNames(Consumer<List<String>> callback) {
-        ref = FirebaseDatabase.getInstance().getReference("store");
-        ref.addValueEventListener(new ValueEventListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void getStoreNames() {
+        FirebaseDatabase.getInstance().getReference("store")
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        List<String> storeNames = new ArrayList<String>();
+                        storeNames = new ArrayList<String>();
                         for (DataSnapshot userSnapShot: snapshot.getChildren()) {
                             StoreOwner store = userSnapShot.getValue(StoreOwner.class);
                             storeNames.add(store.getStoreName());
                         }
-                        callback.accept(storeNames);
+                       ArrayAdapter<String> storeAdapter = new ArrayAdapter<String>(
+                               CustomerStoreListViewActivity.this
+                               , android.R.layout.
+                                simple_list_item_1, storeNames);
+                        listStores.setAdapter(storeAdapter);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {}

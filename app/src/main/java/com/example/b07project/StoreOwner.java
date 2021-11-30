@@ -7,7 +7,7 @@ import java.util.Objects;
 public class StoreOwner extends User implements Serializable {
     private String storeName;
     private String address;
-    private ProductList productList = new ProductList(this);
+    private ProductList productList;
 
     public String getStoreName() {
         return storeName;
@@ -29,7 +29,7 @@ public class StoreOwner extends User implements Serializable {
         return productList;
     }
 
-    public StoreOwner(){}
+    public StoreOwner(){productList = new ProductList(this);}
 
     @Override
     public boolean equals(Object o) {

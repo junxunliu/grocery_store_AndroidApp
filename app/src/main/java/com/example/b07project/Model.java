@@ -20,6 +20,7 @@ import java.util.function.Consumer;
 
 public class Model {
     private DatabaseReference usersRef;
+    private static Model instance;
     public Model() {
 
     }
@@ -76,5 +77,10 @@ public class Model {
             @Override
             public void onCancelled(@NonNull  DatabaseError error) {}
         });
+    }
+    public static Model getInstance() {
+        if (instance == null)
+            instance = new Model();
+        return instance;
     }
 }
