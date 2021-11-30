@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class StoreOwnerOrderListActivity extends AppCompatActivity {
 
+    private TextView tv_title_orders;
     private Button btn_product;
     private Button btn_order;
     private ListView lv_display;
@@ -42,6 +43,7 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
     }
 
     private void init(){
+        tv_title_orders = (TextView) findViewById(R.id.stoList);
         btn_product = (Button) findViewById(R.id.button4);
         btn_order = (Button) findViewById(R.id.button5);
         lv_display = (ListView) findViewById(R.id.listView);

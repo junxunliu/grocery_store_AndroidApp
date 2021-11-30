@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".StoreOwnerOrderListActivity">
 
+    <TextView
+        android:id="@+id/stoList"
+        android:layout_width="128dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="#2196F3"
+        app:layout_constraintBottom_toTopOf="@+id/listView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/stoList" />
+
     <Button
         android:id="@+id/button4"
         android:layout_width="130dp"
@@ -30,9 +44,9 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="332dp"
-        android:layout_height="587dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="341dp"
+        android:layout_height="478dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
