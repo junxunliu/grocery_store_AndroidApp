@@ -7,10 +7,9 @@ import java.util.Objects;
 public class StoreOwner extends User implements Serializable {
     private String storeName;
     private String address;
-    private ProductList productList;
+    private ProductList productList = new ProductList(this);
 
 
-    ProductList productList = new ProductList(this);
 
     public StoreOwner(String email, String firstName, String lastName) {
         super(email, firstName, lastName);
