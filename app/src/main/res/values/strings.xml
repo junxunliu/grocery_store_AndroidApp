@@ -13,4 +13,17 @@
     <string name="button_myorder">My Order</string>
     <string name="button_products">Products</string>
     <string name="button_orders">Orders</string>
+    <string name="email_require">Email is required!</string>
+    <string name="email_invalid">Invalid email!</string>
+    <string name="password_require">Password is required!</string>
+    <string name="password_valid">Password should be at least 6 characters</string>
+    <string name="storeOwner_register_success">Store owner registered successfully!</string>
+    <string name="customer_register_success">Customer registered successfully!</string>
+    <string name="storeOwner_register_failed">Failed to create a store owner</string>
+    <string name="customer_register_failed">Failed to create a customer</string>
+    <string name="signup_failed">Failed to sign up</string>
+    <string name="product_add_successfully">Product Added Successfully.</string>
+    <string name="product_fail_to_add">Product Not Added!</string>
+
+
 </resources>

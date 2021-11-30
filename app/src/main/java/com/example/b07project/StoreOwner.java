@@ -4,33 +4,24 @@ package com.example.b07project;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class StoreOwner extends User {
+public class StoreOwner extends User implements Serializable {
     private String storeName;
     private String address;
     private ProductList productList = new ProductList(this);
+
+
 
     public StoreOwner(String email, String firstName, String lastName) {
         super(email, firstName, lastName);
     }
 
+    public StoreOwner(String storeName, String address){
+        storeName = getStoreName();
+        address = getStoreAddress();
+    }
+
     public StoreOwner() {
 
-    }
-
-    public String getStoreName() {
-        return storeName;
-    }
-
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public ProductList getProductList() {
@@ -42,22 +33,17 @@ public class StoreOwner extends User {
         if (this == o) return true;
         if (!(o instanceof StoreOwner)) return false;
         StoreOwner that = (StoreOwner) o;
-        return getStoreName().equals(that.getStoreName()) && getAddress().equals(that.getAddress());
+        return getStoreName().equals(that.getStoreName()) && getStoreName().equals(that.getStoreAddress());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStoreName(), getAddress());
-    }
-
-    public StoreOwner(String storeName, String address){
-        this.storeName=storeName;
-        this.address=address;
+        return Objects.hash(getStoreName(), getStoreAddress());
     }
 
     @Override
     public String toString() {
-        return address + ":" + storeName;
+        return getStoreAddress() + ":" + getStoreName();
 
     }
 }
