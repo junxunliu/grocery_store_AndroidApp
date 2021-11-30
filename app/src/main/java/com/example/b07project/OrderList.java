@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class OrderList {
 
@@ -20,38 +21,55 @@ public class OrderList {
 
     public OrderList() { }
 
+    public ArrayList<Order> getList(){
+        return orderList;
+    }
+
     public void addOrder(Order order){
         orderList.add(order);
     }
 
-    public ArrayList<Order> search(User user){
-        ArrayList<Order> storeOrderList = new ArrayList<Order>();
+    public OrderList search(User user){
+        OrderList list = new OrderList();
         String type = user.getUserType();
         if(type.equals("Customer")){
             for(Order o:orderList) {
-                if ((Customer) user == o.getCustomer()) {
-                    storeOrderList.add(o);
+                if (user.getFirstName().equals(o.getCustomer().getFirstName())
+                        && user.getLastName().equals(o.getCustomer().getLastName())) {
+                    list.addOrder(o);
                 }
             }
         }
-        else if (type.equals("StoreOwner")) {
-            for (Order o : orderList) {
-                if ((StoreOwner) user == o.getStore()) {
-                    storeOrderList.add(o);
+        else if (type.equals("Store Owner")) {
+            for (Order o :orderList) {
+                StoreOwner st = new StoreOwner();
+                st = (StoreOwner) user;
+                if (st.getStoreName().equals(o.getStore().getStoreName())) {
+                    list.addOrder(o);
                 }
             }
         }
-        return storeOrderList;
+        return list;
     }
 
-    /*public ArrayList<Order> search_by_customer(Customer c){
-        ArrayList<Order> customerOrderList = new ArrayList<Order>();
-        for(Order o:orderList){
-            if(o.getCustomer() == c){
-                customerOrderList.add(o);
+    /*public OrderList search(User user){
+        OrderList list = new OrderList();
+        String type = user.getUserType();
+        if(type.equals("Customer")){
+            for(Order o:orderList) {
+                if (user.getFirstName().equals(o.getCustomer().getFirstName())) {
+                    list.addOrder(o);
+                }
             }
         }
-        return customerOrderList;
+        else if (type.equals("Store Owner")) {
+            for (Order o :orderList) {
+                if ((StoreOwner) user == o.getStore()) {
+                    list.addOrder(o);
+                }
+            }
+        }
+        return list;
     }*/
 
     public void readFromDB(){
@@ -75,11 +93,65 @@ public class OrderList {
         }
     }
 
+    //test activities
+    public void testData(){
+        /*
+        StoreOwner sto = new StoreOwner();
+        sto.setStoreName("KFC");
+        Customer c = new Customer();
+        c.setFirstName("Kitty");
+        c.setLastName("Y");
+        OrderedProduct p = new OrderedProduct("KFC","chicken","9.99",4);
+        HashSet<OrderedProduct> list = new HashSet<>();
+        list.add(p);
+        Order o = new Order(sto,c,list);
+        orderList.add(o);
+
+        StoreOwner sto2 = new StoreOwner();
+        sto2.setStoreName("POP EYES");
+        Customer c2 = new Customer();
+        c2.setFirstName("Kitty");
+        c2.setLastName("Y");
+        OrderedProduct p2 = new OrderedProduct("POP EYES","french fries","3.5",1);
+        OrderedProduct p3 = new OrderedProduct("POP EYES","coke","2",5);
+        HashSet<OrderedProduct> list2 = new HashSet<>();
+        list2.add(p2);
+        list2.add(p3);
+        Order o2 = new Order(sto2,c2,list2);
+        orderList.add(o2);
+
+        StoreOwner sto3 = new StoreOwner();
+        sto3.setStoreName("Walmart");
+        Customer c3 = new Customer();
+        c3.setFirstName("Jerry");
+        c3.setLastName("D");
+        OrderedProduct p4 = new OrderedProduct("","tomato","3.5",2);
+        OrderedProduct p5 = new OrderedProduct("","pork","2",1);
+        HashSet<OrderedProduct> list3 = new HashSet<>();
+        list3.add(p4);
+        list3.add(p5);
+        Order o3 = new Order(sto3,c3,list3);
+        orderList.add(o3);
+
+        StoreOwner sto4 = new StoreOwner();
+        sto4.setStoreName("Walmart");
+        Customer c4 = new Customer();
+        c4.setFirstName("David");
+        c4.setLastName("K");
+        OrderedProduct p6 = new OrderedProduct("","milk","3.5",8);
+        OrderedProduct p7 = new OrderedProduct("","bread","2",2);
+        HashSet<OrderedProduct> list4 = new HashSet<>();
+        list4.add(p6);
+        list4.add(p7);
+        Order o4 = new Order(sto4,c4,list4);
+        orderList.add(o4);*/
+    }
+
     @Override
     public String toString(){
         String display = "";
         for(Order order:orderList){
-            display = (display + "ORDER " + String.valueOf(orderList.indexOf(order)) + "\n"
+            display = (display + "ORDER " + String.valueOf(orderList.indexOf(order) + 1) + "\n"
                     + order.toString() + "\n\n");
         }
         return display;

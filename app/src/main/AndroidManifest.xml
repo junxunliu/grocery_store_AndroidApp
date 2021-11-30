@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07project">
         <activity
-            android:name=".CustomerProductlistDisplayActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CustomerStoreListViewActivity"
-            android:exported="true" />
-        <activity
             android:name=".StoreOwnerMainPageActivity"
             android:exported="false" />
         <activity
             android:name=".AddProductActivity"
             android:exported="false" />
         <activity
+            android:name=".StoreOwnerOrderListActivity"
+            android:exported="false" />
+        <activity
             android:name=".CustomerProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerOrderListActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
@@ -37,5 +37,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
