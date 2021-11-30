@@ -55,8 +55,8 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 store = snapshot.getValue(StoreOwner.class);
-                ItemListAdapter adapter = new ItemListAdapter(CustomerProductlistDisplayActivity.this,
-                        R.layout.item_list_item, store.getProductList());
+                ProductListAdapter adapter = new ProductListAdapter(CustomerProductlistDisplayActivity.this,
+                        R.layout.product_list, store.getProductList());
                 listItems.setAdapter(adapter);
             }
             @Override
