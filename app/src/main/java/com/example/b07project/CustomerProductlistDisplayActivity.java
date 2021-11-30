@@ -22,7 +22,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
     private String storeName;
     private User currentUser;
     private ListView listItems;
-    private Model model;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +32,8 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
 
 
-        model = Model.getInstance();
-        listItems = (ListView) findViewById(R.id.ListProduct);
+
+        listItems = findViewById(R.id.ListProduct);
         listItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -44,26 +44,34 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
     }
     private void avocado(Product item) {
         Intent intent = new Intent(this, CustomerProductActivity.class);
-        intent.putExtra("item", (Parcelable) item);
+        intent.putExtra("item", item);
         intent.putExtra("storeName", storeName);
-        intent.putExtra("currentUser", (Parcelable) currentUser);
+        intent.putExtra("currentUser", currentUser);
         //intent.putExtra("order", order);
         startActivity(intent);
-
     }
+
     private void getStore(){
-        FirebaseDatabase.getInstance().getReference("Stores")
-                .child(storeName).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                store = snapshot.getValue(StoreOwner.class);
-                ProductListAdapter adapter = new ProductListAdapter((ValueEventListener) CustomerProductlistDisplayActivity.this,
-                        R.layout.product_list, (List<Product>) store.getProductList());
-                listItems.setAdapter(adapter);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
-        });
+        FirebaseDatabase.getInstance().getReference("Users/Store Owners")
+                .orderByChild("storeName").equalTo(storeName)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot sp : snapshot.getChildren()) {
+                            store = sp.getValue(StoreOwner.class);
+                            ProductListAdapter adapter = new ProductListAdapter(this, R.layout.product_list, store.getProductList());
+                            listItems.setAdapter(adapter);
+                            return;
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
     }
 }
 

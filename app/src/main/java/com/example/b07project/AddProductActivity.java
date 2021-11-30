@@ -30,7 +30,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
 
         store = (StoreOwner) getIntent().getSerializableExtra("store");
 
-        thisUserID = getIntent().getStringExtra("thisUsrID");
+        // thisUserID = getIntent().getStringExtra("thisUsrID");
 
         edTxtProductName = findViewById(R.id.edTxtProductName);
         edTxtBrandName = findViewById(R.id.edTxtBrandName);
@@ -48,7 +48,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                 edTxtPrice.getText().toString().trim());
 
         //add the product to the product list
-        store.getProductList().addProduct(NewProduct);
+        store.addProduct(NewProduct);
 
         //find the current user
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
