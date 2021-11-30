@@ -44,7 +44,8 @@ public class Order {
                 + "Customer Info: " + c.getFirstName() + " " + c.getLastName() + "\n"
                 + "Ordered Product: " + "\n");
         for(OrderedProduct p:order){
-            display = display + "  " + p.toString() + "\n";
+            display = (display + "  " + "product: " + p.name + "    "
+                    + "quantity: " + p.quantity + " " + "\n");
         }
         String s = "";
         if(status == false) s = "incomplete";
