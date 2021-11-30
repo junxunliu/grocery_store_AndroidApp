@@ -4,9 +4,9 @@ package com.example.b07project;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class StoreOwner extends User {
+public class StoreOwner extends User implements Serializable {
 
-    ProductList productList = new ProductList(this);
+    private ProductList productList = new ProductList(this);
 
     public StoreOwner(String email, String firstName, String lastName, String storeName, String storeAddress){
         super(email, firstName, lastName, storeName, storeAddress);

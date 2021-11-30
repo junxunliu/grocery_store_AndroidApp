@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductList {
 
@@ -25,6 +26,10 @@ public class ProductList {
 
     public StoreOwner getStoreOwner() {
         return storeOwner;
+    }
+
+    public Product get(int i) {
+        return arrayList.get(i);
     }
 
     public void addProduct(Product p){

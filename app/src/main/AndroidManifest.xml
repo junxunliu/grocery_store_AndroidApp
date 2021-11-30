@@ -16,10 +16,19 @@
             android:name=".AddProductActivity"
             android:exported="false" />
         <activity
+            android:name=".StoreOwnerOrderListActivity"
+            android:exported="false" />
+        <activity
             android:name=".CustomerProductActivity"
             android:exported="false" />
         <activity
+            android:name=".CustomerOrderListActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerStoreListViewActivity"
             android:exported="false" />
         <activity
             android:name=".LogInActivity"
@@ -31,5 +40,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

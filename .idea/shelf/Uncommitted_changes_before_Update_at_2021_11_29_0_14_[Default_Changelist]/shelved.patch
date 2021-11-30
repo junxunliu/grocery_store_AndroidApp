@@ -1,0 +1,41 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Users/SuperMaru/OneDrive/course/cscb07/b07project/app/src/main/res/layout/activity_main.xml\" value=\"0.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_add_product.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_order_list.xml\" value=\"0.176\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_product.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_log_in.xml\" value=\"0.536\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_main.xml\" value=\"0.2\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_sign_up.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_display_in_customer.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/YeXinYi/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_owner_order_list.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_add_product.xml\" value=\"0.14716312056737588\" />\r\n        <entry key=\"..\\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customerstorelistviw2.xml\" value=\"0.14716312056737588\" />\r\n        <entry key=\"..\\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_owner_main_page.xml\" value=\"0.14716312056737588\" />\r\n        <entry key=\"..\\:/b07-app/app/src/main/res/layout/activity_sign_up.xml\" value=\"0.35520833333333335\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -16,7 +16,12 @@
+         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_add_product.xml" value="0.14716312056737588" />
+         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customerstorelistviw2.xml" value="0.14716312056737588" />
+         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_owner_main_page.xml" value="0.14716312056737588" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_add_product.xml" value="0.35520833333333335" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_log_in.xml" value="0.35520833333333335" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_main.xml" value="0.35520833333333335" />
+         <entry key="..\:/b07-app/app/src/main/res/layout/activity_sign_up.xml" value="0.35520833333333335" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_store_display_in_customer.xml" value="0.35520833333333335" />
++        <entry key="..\:/b07-app/app/src/main/res/layout/activity_store_owner_main_page.xml" value="0.35520833333333335" />
+       </map>
+     </option>
+   </component>
+Index: app/src/main/java/com/example/b07project/Customer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.b07project;\r\n\r\npublic class Customer extends User{\r\n    public Customer(String email, String firstName, String lastName) {\r\n        super(email, firstName, lastName);\r\n    }\r\n\r\n    public Customer() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return firstName + lastName;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/b07project/Customer.java b/app/src/main/java/com/example/b07project/Customer.java
+--- a/app/src/main/java/com/example/b07project/Customer.java	
++++ b/app/src/main/java/com/example/b07project/Customer.java	
+@@ -11,6 +11,6 @@
+ 
+     @Override
+     public String toString() {
+-        return firstName + lastName;
++        return getFirstName() + getLastName();
+     }
+ }

@@ -1,0 +1,65 @@
+Index: app/src/main/java/com/example/b07project/Model.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.b07project;\r\n\r\nimport android.os.Build;\r\nimport android.util.Log;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.RequiresApi;\r\n\r\nimport com.google.android.gms.tasks.OnCompleteListener;\r\nimport com.google.android.gms.tasks.Task;\r\nimport com.google.firebase.auth.AuthResult;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\nimport java.util.function.Consumer;\r\n\r\npublic class Model {\r\n\r\n    public Model() {\r\n\r\n    }\r\n\r\n    public void getUser(String email, String password, Consumer<User> callback) {\r\n        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)\r\n                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {\r\n                    @Override\r\n                    public void onComplete(@NonNull Task<AuthResult> task) {\r\n                        if (task.isSuccessful()) {\r\n                            // get current user id\r\n                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();\r\n                            FirebaseDatabase.getInstance().getReference(\"UserTypes\").child(userId).child(\"userType\")\r\n                                    .addListenerForSingleValueEvent(new ValueEventListener() {\r\n                                        @RequiresApi(api = Build.VERSION_CODES.N)\r\n                                        @Override\r\n                                        public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                                            String userType = snapshot.getValue(String.class);\r\n\r\n                                            if (userType == null) {\r\n                                                Log.d(\"Model\", \"Failed\");\r\n                                                callback.accept(null);\r\n                                            }\r\n\r\n                                            else if (userType.equals(\"Store Owner\")) {\r\n                                                StoreOwner storeOwner = new StoreOwner();\r\n                                                storeOwner.setId(userId);\r\n                                                callback.accept(storeOwner);\r\n                                            }\r\n                                            else if (userType.equals(\"Customer\")) {\r\n                                                Customer customer = new Customer();\r\n                                                customer.setId(userId);\r\n                                                callback.accept(customer);\r\n                                            }\r\n                                        }\r\n\r\n                                        @Override\r\n                                        public void onCancelled(@NonNull DatabaseError error) {\r\n\r\n                                        }\r\n                                    });\r\n                        }\r\n                    }\r\n                });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/b07project/Model.java b/app/src/main/java/com/example/b07project/Model.java
+--- a/app/src/main/java/com/example/b07project/Model.java	(revision f0bebdaaa4fd7aed92c6fa13b4094337613a7236)
++++ b/app/src/main/java/com/example/b07project/Model.java	(date 1638132075196)
+@@ -23,44 +23,31 @@
+ 
+     }
+ 
+-    public void getUser(String email, String password, Consumer<User> callback) {
++    public void auth(String email, String password, Consumer<User> callback) {
+         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
++                    @RequiresApi(api = Build.VERSION_CODES.N)
+                     @Override
+                     public void onComplete(@NonNull Task<AuthResult> task) {
+-                        if (task.isSuccessful()) {
+-                            // get current user id
++                        if (!task.isSuccessful()) {
++                            callback.accept(null);
++                        } else {
+                             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+-                            FirebaseDatabase.getInstance().getReference("UserTypes").child(userId).child("userType")
++                            FirebaseDatabase.getInstance().getReference().child("Users").child(userId)
+                                     .addListenerForSingleValueEvent(new ValueEventListener() {
+-                                        @RequiresApi(api = Build.VERSION_CODES.N)
+                                         @Override
+                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+-                                            String userType = snapshot.getValue(String.class);
+-
+-                                            if (userType == null) {
+-                                                Log.d("Model", "Failed");
+-                                                callback.accept(null);
+-                                            }
+-
+-                                            else if (userType.equals("Store Owner")) {
+-                                                StoreOwner storeOwner = new StoreOwner();
+-                                                storeOwner.setId(userId);
+-                                                callback.accept(storeOwner);
+-                                            }
+-                                            else if (userType.equals("Customer")) {
+-                                                Customer customer = new Customer();
+-                                                customer.setId(userId);
+-                                                callback.accept(customer);
+-                                            }
++                                            User user = snapshot.getValue(User.class);
++                                            callback.accept(user);
+                                         }
+ 
+                                         @Override
+                                         public void onCancelled(@NonNull DatabaseError error) {
+ 
+                                         }
+-                                    });
++                                     });
+                         }
++
+                     }
+                 });
+     }
