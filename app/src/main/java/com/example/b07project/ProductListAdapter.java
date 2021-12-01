@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
     private Context context;
     private int resource;
 
-    public ProductListAdapter(ValueEventListener context, int resource, List<Product> objects) {
-        super((Context) context, resource, objects);
+    public ProductListAdapter(Context context, int resource, List<Product> objects) {
+        super(context, resource, objects);
         this.context = (Context) context;
         this.resource = resource;
     }

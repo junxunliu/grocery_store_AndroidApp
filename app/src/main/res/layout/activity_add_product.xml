@@ -13,7 +13,7 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=""
+        android:hint="Product Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.273"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_marginTop="56dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=""
+        android:hint="Brand Name"
         app:layout_constraintStart_toStartOf="@+id/edTxtProductName"
         app:layout_constraintTop_toBottomOf="@+id/edTxtProductName" />
 
@@ -38,7 +38,7 @@
         android:layout_marginTop="52dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=""
+        android:hint="Price"
         app:layout_constraintStart_toStartOf="@+id/edTxtBrandName"
         app:layout_constraintTop_toBottomOf="@+id/edTxtBrandName" />
 
