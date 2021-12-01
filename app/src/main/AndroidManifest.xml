@@ -20,7 +20,7 @@
             android:exported="false" />
         <activity
             android:name=".CustomerProductActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CustomerOrderListActivity"
             android:exported="false" />
@@ -29,7 +29,10 @@
             android:exported="false" />
         <activity
             android:name=".CustomerStoreListViewActivity"
-            android:exported="false" />
+            android:exported="true" />
+        <activity
+            android:name=".CustomerProductlistDisplayActivity"
+            android:exported="true" />
         <activity
             android:name=".LogInActivity"
             android:exported="true">

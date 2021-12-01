@@ -11,4 +11,7 @@ things done:
   create new UML diagram
 things to be done:
   create Product class
+
+11.30
+implemented the page where a user add a product into order.
     
