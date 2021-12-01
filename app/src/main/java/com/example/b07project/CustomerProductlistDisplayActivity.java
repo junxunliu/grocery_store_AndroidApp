@@ -71,7 +71,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot sp : snapshot.getChildren()) {
                             store = sp.getValue(StoreOwner.class);
-                            ProductListAdapter adapter = new ProductListAdapter(this, R.layout.
+                            ProductListAdapter adapter = new ProductListAdapter(CustomerProductlistDisplayActivity.this, R.layout.
                                     product_list, store.getProductList());
                             listItems.setAdapter(adapter);
                             return;

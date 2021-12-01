@@ -63,7 +63,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
                 if(s != null){
 
                     store = s;
-                    ProductListAdapter adapter = new ProductListAdapter(this, R.layout.product_list, (List<Product>) store.getProductList());
+                    ProductListAdapter adapter = new ProductListAdapter(StoreOwnerMainPageActivity.this, R.layout.product_list, (List<Product>) store.getProductList());
                     ProductList.setAdapter(adapter);
                 }
             }
