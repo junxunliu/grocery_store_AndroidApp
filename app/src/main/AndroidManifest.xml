@@ -11,7 +11,7 @@
         android:theme="@style/Theme.B07project">
         <activity
             android:name=".CustomerProductlistDisplayActivity"
-            android:exported="false"/>
+            android:exported="true"/>
         <activity
             android:name=".StoreOwnerMainPageActivity"
             android:exported="false" />
@@ -32,9 +32,6 @@
             android:exported="false" />
         <activity
             android:name=".CustomerStoreListViewActivity"
-            android:exported="true" />
-        <activity
-            android:name=".CustomerProductlistDisplayActivity"
             android:exported="true" />
         <activity
             android:name=".LogInActivity"
