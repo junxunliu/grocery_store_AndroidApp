@@ -29,7 +29,6 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     private String currentUserID;
     private List<String> storeNames;
     private User currentUser;
-    private StoreOwner store;
     private Button btnViewOrder;
     private Model model;
 
@@ -38,7 +37,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_store_list);
-        //currentUserID = getIntent().getStringExtra("currentUserID");
+        currentUserID = getIntent().getStringExtra("currentUserID");
 
         //getCurrentUser();
         getStoreNames();
@@ -55,7 +54,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
                 Intent intent = new Intent(CustomerStoreListViewActivity.this,
                         DisplayStoreProductActivity.class);
                 intent.putExtra("storeName", storeName);
-                intent.putExtra("currentUser", (Parcelable) currentUser);
+                intent.putExtra("currentUser", currentUser);
                 startActivity(intent);
             }
         });
@@ -68,7 +67,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
 
 
     private void getStoreNames() {
-        FirebaseDatabase.getInstance().getReference("store")
+        FirebaseDatabase.getInstance().getReference("Store")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

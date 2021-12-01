@@ -21,6 +21,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
     private StoreOwner store;
     private String storeName;
     private User currentUser;
+    private Order order;
     private ListView listItems;
 
     @Override
@@ -37,18 +38,29 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
         listItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                avocado(store.getProductList().get(i));
+                setActivity(store.getProductList().get(i));
                 getStore();
             }
         });
     }
-    private void avocado(Product item) {
+    private void setActivity(Product item) {
         Intent intent = new Intent(this, CustomerProductActivity.class);
-        intent.putExtra("item", item);
+        intent.putExtra("product", item);
         intent.putExtra("storeName", storeName);
         intent.putExtra("currentUser", currentUser);
-        //intent.putExtra("order", order);
+        intent.putExtra("order",  order);
         startActivity(intent);
+        //z: pass product and order to me
+        /*intent.putExtra("product", item);
+        intent.putExtra("order", order);
+        startActivityForResult(intent,1);*/
+
+/*        pass 2 things to 5.3: product the user chooses and the current maintained order. In 5.3,
+        a new orderedProduct is created and added into order. Since order is just a pointer, there is
+        no need to pass anything back. The newly created orderProduct is passed back in case you need it.
+        orderedProduct = (OrderedProduct) data.getSerializableExtra("resultOrderedProduct");
+*/
+
     }
 
     private void getStore(){
@@ -59,7 +71,8 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot sp : snapshot.getChildren()) {
                             store = sp.getValue(StoreOwner.class);
-                            ProductListAdapter adapter = new ProductListAdapter(this, R.layout.product_list, store.getProductList());
+                            ProductListAdapter adapter = new ProductListAdapter(this, R.layout.
+                                    product_list, store.getProductList());
                             listItems.setAdapter(adapter);
                             return;
                         }
@@ -72,6 +85,47 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+    //private void sendOrder() {
+
+        // create a Post
+        //model.postOrder(order, (Order order) -> {
+           // if (order == null) {
+             //   Toast.makeText(this, "failed to create Order.", Toast.LENGTH_LONG).show();
+               // return;
+            //}
+
+            // create a Post Description
+            //orderDescription = new OrderDescription(order.orderID, currentUser.name, order.createdDate);
+            //model.postOrderDescription(orderDescription, (OrderDescription orderDesc) -> {
+
+                // Get the Store
+              //  model.getStoreByName(storeName, (Store store) -> {
+
+                    // Update the store
+                //    store.pendingOrders.add(orderDesc);
+
+//                    for (Item orderItem : order.orderItems) {
+//                        Item item = store.inventory.get(store.inventory.indexOf(orderItem));
+//                        item.quantity -= orderItem.quantity;
+//                    }
+
+                  //  model.postStore(store, (Boolean storePosted) -> {
+                    //    Toast.makeText(this, "Order created.", Toast.LENGTH_LONG).show();
+                    //});
+                //});
+            //});
+        //});
+    //}
+    // after return, this function is called
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK)
+        {
+
+        }
     }
 }
 

@@ -1,8 +1,9 @@
 package com.example.b07project;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class Order {
+public class Order implements Serializable {
     private StoreOwner s;
     private Customer c;
     private HashSet<OrderedProduct> order = new HashSet<OrderedProduct>();
