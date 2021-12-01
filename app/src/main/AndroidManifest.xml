@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07project">
         <activity
+            android:name=".CustomerProductlistDisplayActivity"
+            android:exported="false"/>
+        <activity
             android:name=".StoreOwnerMainPageActivity"
             android:exported="false" />
         <activity

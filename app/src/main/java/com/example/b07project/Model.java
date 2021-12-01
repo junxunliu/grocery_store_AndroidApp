@@ -22,6 +22,7 @@ public class Model {
     private DatabaseReference usersRef;
     private static Model instance;
     public Model() {
+        usersRef = FirebaseDatabase.getInstance().getReference("User");
 
     }
 
