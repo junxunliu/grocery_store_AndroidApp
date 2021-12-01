@@ -32,8 +32,6 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
 
-
-
         listItems = findViewById(R.id.ListProduct);
         listItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -71,7 +69,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot sp : snapshot.getChildren()) {
                             store = sp.getValue(StoreOwner.class);
-                            ProductListAdapter adapter = new ProductListAdapter(this, R.layout.
+                            ProductListAdapter adapter = new ProductListAdapter(CustomerProductlistDisplayActivity.this, R.layout.
                                     product_list, store.getProductList());
                             listItems.setAdapter(adapter);
                             return;
@@ -95,20 +93,18 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
                // return;
             //}
 
+
+
             // create a Post Description
             //orderDescription = new OrderDescription(order.orderID, currentUser.name, order.createdDate);
             //model.postOrderDescription(orderDescription, (OrderDescription orderDesc) -> {
 
                 // Get the Store
-              //  model.getStoreByName(storeName, (Store store) -> {
+//              getStoreByName();
 
                     // Update the store
                 //    store.pendingOrders.add(orderDesc);
 
-//                    for (Item orderItem : order.orderItems) {
-//                        Item item = store.inventory.get(store.inventory.indexOf(orderItem));
-//                        item.quantity -= orderItem.quantity;
-//                    }
 
                   //  model.postStore(store, (Boolean storePosted) -> {
                     //    Toast.makeText(this, "Order created.", Toast.LENGTH_LONG).show();
@@ -117,7 +113,20 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
             //});
         //});
     //}
-    // after return, this function is called
+
+//    public void getStoreByName() {
+//       FirebaseDatabase.getInstance().getReference("Users/Store Owners")
+//               .child(storeName).addListenerForSingleValueEvent(new ValueEventListener(){
+//            @Override
+//           public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                StoreOwner store = snapshot.getValue(StoreOwner.class);
+//                callback.accept(store);
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {}
+//        });
+//
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

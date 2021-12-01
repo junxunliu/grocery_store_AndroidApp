@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +13,6 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListAdapter extends ArrayAdapter<Product> {
@@ -22,9 +20,9 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
     private Context context;
     private int resource;
 
-    public ProductListAdapter(ValueEventListener context, int resource, List<Product> objects) {
-        super((Context) context, resource, objects);
-        this.context = (Context) context;
+    public ProductListAdapter(Context context, int resource, List<Product> objects) {
+        super(context, resource, objects);
+        this.context = context;
         this.resource = resource;
     }
 

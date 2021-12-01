@@ -3,6 +3,7 @@ package com.example.b07project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -63,7 +64,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
                 if(s != null){
 
                     store = s;
-                    ProductListAdapter adapter = new ProductListAdapter(this, R.layout.product_list, (List<Product>) store.getProductList());
+                    ProductListAdapter adapter = new ProductListAdapter(StoreOwnerMainPageActivity.this, R.layout.product_list, (List<Product>) store.getProductList());
                     ProductList.setAdapter(adapter);
                 }
             }
