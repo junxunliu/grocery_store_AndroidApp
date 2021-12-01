@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class CustomerOrderListActivity extends AppCompatActivity {
 
     private TextView tv_display;
+    private TextView tv_title;
     private Button btn_storeList;
     private Button btn_myOrder;
 
@@ -33,6 +34,7 @@ public class CustomerOrderListActivity extends AppCompatActivity {
 
     private void init(){
         tv_display = (TextView) findViewById(R.id.textView2);
+        tv_title = (TextView) findViewById(R.id.my_order);
         btn_storeList = (Button) findViewById(R.id.button2);
         btn_myOrder = (Button) findViewById(R.id.button3);
     }

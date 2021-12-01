@@ -2,11 +2,14 @@ package com.example.b07project;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class StoreOwner extends User implements Serializable {
 
-    private ProductList productList = new ProductList(this);
+    //private ProductList productList = new ProductList(this);
+    private List<Product> productList = new ArrayList<>();
 
     public StoreOwner(String email, String firstName, String lastName, String storeName, String storeAddress){
         super(email, firstName, lastName, storeName, storeAddress);
@@ -25,9 +28,12 @@ public class StoreOwner extends User implements Serializable {
 
     }
 
-    public ProductList getProductList() {
-        return productList;
+    //public ProductList getProductList()
+
+    public void addProduct(Product p) {
+        productList.add(p);
     }
+    public List<Product> getProductList() {return productList;}
 
     @Override
     public boolean equals(Object o) {

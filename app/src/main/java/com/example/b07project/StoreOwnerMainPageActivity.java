@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.b07project.StoreOwner;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,7 +33,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_owner_main_page);
 
-        store = (StoreOwner) getIntent().getSerializableExtra("Store Owner");
+        //store = (StoreOwner) getIntent().getSerializableExtra("Store Owner");
 
         findStore();
 
@@ -51,22 +52,18 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
     }
 
     private void findStore(){
-
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //find the current store in the database
-        FirebaseDatabase.getInstance().getReference("")
-                .child("").addListenerForSingleValueEvent(new ValueEventListener(){
-
-            //private StoreOwner store;
+        FirebaseDatabase.getInstance().getReference("Users/Store Owners")
+                .child(userId).addListenerForSingleValueEvent(new ValueEventListener(){
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 StoreOwner s = snapshot.getValue(StoreOwner.class);
                 if(s != null){
-                    //update the product list to the store
 
-                    //this.store = store;
+                    store = s;
                     ProductListAdapter adapter = new ProductListAdapter(this, R.layout.product_list, (List<Product>) store.getProductList());
-
                     ProductList.setAdapter(adapter);
                 }
             }
