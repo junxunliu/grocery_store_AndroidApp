@@ -86,6 +86,12 @@ public class OrderList {
         });*/
     }
 
+    public void updateTest(){
+        /*
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Orders");
+        db.setValue("test");*/
+    }
+
     public void updateDB(){
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         for(Order o:orderList) {
@@ -95,7 +101,7 @@ public class OrderList {
 
     //test activities
     public void testData(){
-        /*
+
         StoreOwner sto = new StoreOwner();
         sto.setStoreName("KFC");
         Customer c = new Customer();
@@ -144,7 +150,19 @@ public class OrderList {
         list4.add(p6);
         list4.add(p7);
         Order o4 = new Order(sto4,c4,list4);
-        orderList.add(o4);*/
+        orderList.add(o4);
+
+        StoreOwner sto5 = new StoreOwner();
+        sto5.setStoreName("Walmart");
+        Customer c5 = new Customer();
+        c5.setFirstName("David");
+        c5.setLastName("K");
+        OrderedProduct p8 = new OrderedProduct("","salad","3.5",5);
+        HashSet<OrderedProduct> list5 = new HashSet<>();
+        list5.add(p8);
+        Order o5 = new Order(sto5,c5,list5);
+        o5.setStatus(true);
+        orderList.add(o5);
     }
 
     @Override

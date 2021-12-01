@@ -29,8 +29,6 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
 
         init();
         displayListView();
-        //checkClick();
-        //displayListView();
 
         btn_product.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,15 +68,4 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         ListView lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(adpt);
     }
-
-    /*private void checkClick() {
-        CheckBox cb = (CheckBox) findViewById(R.id.checkBox);
-        cb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Order order = (Order) cb.getTag();
-                order.setStatus(cb.isChecked());
-            }
-        });
-    }*/
 }

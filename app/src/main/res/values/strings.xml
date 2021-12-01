@@ -9,9 +9,9 @@
     <string name="last_name">Last Name</string>
     <string name="remember_me">Remember me</string>
     <string name="store_owner">Check if you are a store owner</string>
-    <string name="button_storelist">Store List</string>
+    <string name="button_storelist">View Store List</string>
     <string name="button_myorder">My Order</string>
-    <string name="button_products">Products</string>
+    <string name="button_products">View Product List</string>
     <string name="button_orders">Orders</string>
     <string name="email_require">Email is required!</string>
     <string name="email_invalid">Invalid email!</string>
