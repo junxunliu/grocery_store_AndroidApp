@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class CustomerProductlistDisplayActivity extends AppCompatActivity {
@@ -23,6 +24,8 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
     private User currentUser;
     private Order order;
     private ListView listItems;
+    private HashSet<OrderedProduct> OrderedProductList = new HashSet<OrderedProduct>();
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +34,21 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
 
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
+        Customer customer = new Customer(currentUser.getEmail(),currentUser.getFirstName(),
+                currentUser.getLastName());
+        order = new Order(store, customer, OrderedProductList);
+
+
 
         listItems = findViewById(R.id.ListProduct);
         listItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 setActivity(store.getProductList().get(i));
-                getStore();
+
             }
         });
+        getStore();
     }
     private void setActivity(Product item) {
         Intent intent = new Intent(this, CustomerProductActivity.class);
