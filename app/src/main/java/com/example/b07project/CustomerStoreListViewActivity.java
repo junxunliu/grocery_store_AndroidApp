@@ -39,7 +39,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
         setContentView(R.layout.activity_customer_store_list);
         currentUserID = getIntent().getStringExtra("currentUserID");
 
-        //getCurrentUser();
+        getCurrentUser();
         getStoreNames();
 
          btnViewOrder = (Button) findViewById(R.id.button_view_order);
@@ -61,13 +61,23 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     }
 
     private void getCurrentUser() {
-        model.gUser(currentUserID, (User user) -> { this.currentUser = user; });
+        FirebaseDatabase.getInstance().getReference("Users").child(currentUserID)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                        currentUser = (User) snapshot.getValue(User.class);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {}
+                });
     }
 
 
 
+
     private void getStoreNames() {
-        FirebaseDatabase.getInstance().getReference("Store")
+        FirebaseDatabase.getInstance().getReference("Users/Store Owners")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

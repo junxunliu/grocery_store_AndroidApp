@@ -18,6 +18,7 @@ public class Order implements Serializable {
         this.status = false;
     }
 
+
     public StoreOwner getStore(){
         return s;
     }

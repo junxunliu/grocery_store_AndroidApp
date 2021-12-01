@@ -28,6 +28,7 @@ public class User implements Serializable {
 
     public User() { }
 
+
     public String getFirstName() { return firstName; }
 
     public String getLastName() { return lastName; }

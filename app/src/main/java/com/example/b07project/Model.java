@@ -82,18 +82,6 @@ public class Model {
                     }
                 });
     }
-    public void gUser(String userID, Consumer<User> callback) {
-        usersRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                callback.accept(user);
-            }
-            @Override
-            public void onCancelled(@NonNull  DatabaseError error) {}
-        });
-    }
     public static Model getInstance() {
         if (instance == null)
             instance = new Model();
