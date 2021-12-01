@@ -32,6 +32,18 @@ public class Order implements Serializable {
         return status;
     }
 
+    public void setS(StoreOwner s) {
+        this.s = s;
+    }
+
+    public void setC(Customer c) {
+        this.c = c;
+    }
+
+    public void setOrder(HashSet<OrderedProduct> order) {
+        this.order = order;
+    }
+
     public void setStatus(boolean s){
         status = s;
     }
@@ -58,7 +70,7 @@ public class Order implements Serializable {
         display = display + "Current Status: " + s + "\n";
         display = display + "Ordered Product: " + "\n";
         for(OrderedProduct p:order){
-            display = (display + "   - " + p.name + " * " + p.quantity + "\n");
+            display = (display + "   - " + p.name + " $" + p.price + " * " + p.quantity + "\n");
         }
         return display;
     }
