@@ -16,36 +16,33 @@ import java.util.List;
 
 public class Order implements Serializable {
 
+    public String orderId;
     private String StoreName;
-    private String CustomerName;
     private String CustomerId;
     private List<OrderedProduct> order = new ArrayList<OrderedProduct>();
     private String status;
+    /*
+    private StoreOwner s;
+    private Customer c;
+    private HashSet<OrderedProduct> order = new HashSet<OrderedProduct>();
+    private boolean status;*/
 
     public void addOrderedProduct(OrderedProduct p){
         order.add(p);
     }
 
-    public Order(String storeName, String customerName, String customerId, List<OrderedProduct> order) {
-        StoreName = storeName;
-        CustomerName = customerName;
-        CustomerId = customerId;
+    public Order(String storeName, String CustomerId ,List<OrderedProduct> order) {
+        this.StoreName = storeName;
+        this.CustomerId = CustomerId;
         this.order = order;
-        status = "Incomplete";
+        this.status = "Incomplete";
     }
-    
 
     public String getStoreName() {
         return StoreName;
     }
 
-    public String getCustomerName() {
-        return CustomerName;
-    }
-
-    public String getCustomerId() {
-        return CustomerId;
-    }
+    public String getCustomerId() { return CustomerId; }
 
     public List<OrderedProduct> getOrder() {
         return order;
@@ -59,10 +56,6 @@ public class Order implements Serializable {
         StoreName = storeName;
     }
 
-    public void setCustomerName(String customerName) {
-        CustomerName = customerName;
-    }
-
     public void setCustomerId(String customerId) {
         CustomerId = customerId;
     }
@@ -74,14 +67,6 @@ public class Order implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public boolean convertStatus(){
-        if(status.equals("Complete")) {
-            return true;
-        }
-        return false;
-    }
-
     /*
     public void sendOrder(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -101,16 +86,26 @@ public class Order implements Serializable {
         });
     }*/
 
+    public String displayStatus(){
+        String s = "";
+        if(status) s = "Complete";
+        else s = "Incomplete";
+        return s;
+    }
+
     @Override
     public String toString(){
         String display = "";
-        display = ("Store Info: " + StoreName + "\n"
-                + "Customer Info: " + CustomerName + "\n"
-                + "Current Status: " + status + "\n");
+        display = ("Store Info: " + s.getStoreName() + "\n"
+                + "Customer Info: " + c.getFirstName() + " " + c.getLastName() + "\n");
+        String s = "";
+        if(status == false) s = "Incomplete";
+        else s = "Complete";
+        display = display + "Current Status: " + s + "\n";
+        display = display + "Ordered Product: " + "\n";
         for(OrderedProduct p:order){
             display = (display + "   - " + p.name + " $" + p.price + " * " + p.quantity + "\n");
         }
-        display = display + "\n";
         return display;
     }
 }

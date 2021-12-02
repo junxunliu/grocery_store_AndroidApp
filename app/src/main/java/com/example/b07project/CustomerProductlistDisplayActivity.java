@@ -10,7 +10,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -96,7 +99,23 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
 
     }
     private void sendOrder() {
-
+            String key = FirebaseDatabase.getInstance().getReference("Order").push().getKey();
+            order.orderId = key;
+            FirebaseDatabase.getInstance().getReference("Order").
+                    child(key).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (order == null) {
+                        Toast.makeText(CustomerProductlistDisplayActivity.this,
+                                "failed to create Order.",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    Toast.makeText(CustomerProductlistDisplayActivity.this,
+                            "Order Created",
+                            Toast.LENGTH_LONG).show();
+                }
+            });
     }
     @Override
     public void onClick(View view) {
