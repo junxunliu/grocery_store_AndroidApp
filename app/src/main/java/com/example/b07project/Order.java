@@ -31,11 +31,11 @@ public class Order implements Serializable {
 
     }
 
-    public Order(String storeName, String customerName, String customerId, List<OrderedProduct> order) {
+    public Order(String storeName, String customerName, String customerId) {
+        this();
         StoreName = storeName;
         CustomerName = customerName;
         CustomerId = customerId;
-        this.order = order;
         status = "Incomplete";
     }
     

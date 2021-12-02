@@ -29,7 +29,7 @@ public class CustomerProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int quantity = Integer.parseInt(textViewQuantity.getText().toString().trim());
                 OrderedProduct orderedProduct = new OrderedProduct(p.getBrand(),p.getName(),p.getPrice(),quantity);
-                order.addOrderedProduct(orderedProduct);
+//                order.addOrderedProduct(orderedProduct);
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("resultOrderedProduct",orderedProduct);
                 setResult(RESULT_OK,returnIntent);

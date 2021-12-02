@@ -65,7 +65,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
         intent.putExtra("storeName", storeName);
         intent.putExtra("currentUser", currentUser);
         intent.putExtra("order",  order);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
         //z: pass product and order to me
         /*intent.putExtra("product", item);
         intent.putExtra("order", order);
@@ -124,6 +124,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.place_order_button:
+                Log.i("demo debug", order.toString());
                 sendOrder();
         }
     }
@@ -172,11 +173,13 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        OrderedProduct orderedProduct;
 
         if(resultCode == RESULT_OK)
         {
+            orderedProduct = (OrderedProduct) data.getSerializableExtra("resultOrderedProduct");
+            order.addOrderedProduct(orderedProduct);
             Toast.makeText(CustomerProductlistDisplayActivity.this, "add to cart", Toast.LENGTH_LONG).show();
-
         }
     }
 }
