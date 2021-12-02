@@ -33,6 +33,7 @@ public class Order implements Serializable {
         this.order = order;
         status = "Incomplete";
     }
+    
 
     public String getStoreName() {
         return StoreName;
