@@ -40,7 +40,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
         String customerName = currentUser.getFirstName() + " " + currentUser.getLastName();
-        order = new Order(storeName,currentUser.getUserId() , OrderedProductList);
+        order = new Order(storeName,customerName,currentUser.getUserId() , OrderedProductList);
 
         place_order = findViewById(R.id.place_order_button);
         place_order.setOnClickListener(this);
