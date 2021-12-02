@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,17 +16,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class CustomerProductlistDisplayActivity extends AppCompatActivity {
+public class CustomerProductlistDisplayActivity extends AppCompatActivity implements View.OnClickListener {
     private StoreOwner store;
     private String storeName;
     private User currentUser;
     private Order order;
     private ListView listItems;
-    private HashSet<OrderedProduct> OrderedProductList = new HashSet<OrderedProduct>();
-    
+    private List<OrderedProduct> OrderedProductList = new ArrayList<OrderedProduct>();
+    private Button place_order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,11 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
 
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
-        Customer customer = new Customer(currentUser.getEmail(),currentUser.getFirstName(),
-                currentUser.getLastName());
-        order = new Order(store, customer, OrderedProductList);
+        String customerName = currentUser.getFirstName() + " " + currentUser.getLastName();
+        order = new Order(storeName,currentUser.getUserId() , OrderedProductList);
 
-
+        place_order = findViewById(R.id.place_order_button);
+        place_order.setOnClickListener(this);
 
         listItems = findViewById(R.id.ListProduct);
         listItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -93,9 +95,18 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
                 });
 
     }
-    //private void sendOrder() {
+    private void sendOrder() {
 
-        // create a Post
+    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.place_order_button:
+                sendOrder();
+        }
+    }
+
+    // create a Post
         //model.postOrder(order, (Order order) -> {
            // if (order == null) {
              //   Toast.makeText(this, "failed to create Order.", Toast.LENGTH_LONG).show();
@@ -136,14 +147,14 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
 //        });
 //
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    //@Override
+    //public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == RESULT_OK)
-        {
+        //if(resultCode == RESULT_OK)
+        //{
 
-        }
-    }
+        //}
+    //}
 }
 
