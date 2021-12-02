@@ -21,6 +21,14 @@ public class OrderList {
 
     public OrderList() { }
 
+    public OrderList(ArrayList<Order> orderList) {
+        this.orderList = orderList;
+    }
+
+    public void setOrderList(ArrayList<Order> orderList) {
+        this.orderList = orderList;
+    }
+
     public ArrayList<Order> getList(){
         return orderList;
     }
@@ -48,6 +56,7 @@ public class OrderList {
         }
         return list;
     }
+
 /*
     public String displayCustomerOrder(User user){
         String display = "";
@@ -62,8 +71,6 @@ public class OrderList {
         return display;
     }
 
- */
-/*
     public String displayStoreOrder(User user){
         String display = "";
         for(Order o:orderList){

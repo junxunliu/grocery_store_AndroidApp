@@ -40,6 +40,7 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_owner_order_list);
 
         init();
+        read();
         displayListView();
 
         btn_product.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +62,23 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         Log.i("demo debug", user.getEmail());
     }
 
+    //read orders from database and store them in the orderList
+    private void read(){
+        FirebaseDatabase.getInstance().getReference("Order/-MpvYbBdF4NbytymFylV").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Order order = snapshot.getValue(Order.class);
+                orderList.addOrder(order);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    //search orders belongs to the current store and display in the listView
     private void displayListView(){
 
         OrderList StoreOrderList = new OrderList();

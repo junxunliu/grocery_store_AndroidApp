@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashSet;
+import java.util.List;
 
 public class CustomerOrderListActivity extends AppCompatActivity {
 
@@ -28,6 +30,7 @@ public class CustomerOrderListActivity extends AppCompatActivity {
     private Button btn_storeList;
     private Button btn_myOrder;
 
+    private String userId;
     private User user;
     private OrderList orderList;
 
@@ -37,8 +40,8 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_order_list);
 
         init();
-        //read();
-        display();
+        displayOrders();
+        //display();
 
         btn_storeList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,38 +52,45 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         });
     }
 
+    //initialize all the fields
     private void init(){
         tv_display = (TextView) findViewById(R.id.textView2);
         tv_title = (TextView) findViewById(R.id.my_order);
         btn_storeList = (Button) findViewById(R.id.button2);
         btn_myOrder = (Button) findViewById(R.id.button3);
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         user = (User) getIntent().getSerializableExtra("currentUser");
+        user.setUserId(userId);
         orderList = new OrderList();
     }
-/*
-    public void read(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-        DatabaseReference usersRef = ref.child("Orders");
-        Product p = new Product("chicken","kfc","2.99");
-        usersRef.child("test").setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+    public void displayOrders(){
+        //read orders from database and store them in the orderList
+        FirebaseDatabase.getInstance().getReference("Order").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CustomerOrderListActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot child:snapshot.getChildren()) {
+                    Order order;
+                    order = child.getValue(Order.class);
+                    //Log.i("b07info", order.toString());
+                    orderList.addOrder(order);
+                    //Log.i("orderList", orderList.toString());
                 }
-                else{
-                    Toast.makeText(CustomerOrderListActivity.this, "Fail", Toast.LENGTH_SHORT).show();
-                }
+                //search in the orderList, find orders for the current customer and add them into CustomerOrderList
+                OrderList CustomerOrderList;
+                CustomerOrderList = orderList.search(user);
+                //display orders in the TextView
+                tv_display.setText(CustomerOrderList.toString());
             }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
 
- */
-
+    /*
     private void display(){
         OrderList CustomerOrderList = new OrderList();
         CustomerOrderList = orderList.search(user);
         tv_display.setText(CustomerOrderList.toString());
-    }
+    }*/
 }

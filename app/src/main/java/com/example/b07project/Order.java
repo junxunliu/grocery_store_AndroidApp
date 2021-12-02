@@ -38,7 +38,6 @@ public class Order implements Serializable {
         CustomerId = customerId;
         status = "Incomplete";
     }
-    
 
     public String getStoreName() {
         return StoreName;
@@ -111,7 +110,8 @@ public class Order implements Serializable {
         String display = "";
         display = ("Store Info: " + StoreName + "\n"
                 + "Customer Info: " + CustomerName + "\n"
-                + "Current Status: " + status + "\n");
+                + "Current Status: " + status + "\n"
+                + "Ordered Product: " + "\n");
         for(OrderedProduct p:order){
             display = (display + "   - " + p.name + " $" + p.price + " * " + p.quantity + "\n");
         }
