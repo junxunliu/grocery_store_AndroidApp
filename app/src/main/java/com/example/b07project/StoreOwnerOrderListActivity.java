@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,7 +12,14 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class StoreOwnerOrderListActivity extends AppCompatActivity {
 
@@ -31,7 +39,6 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_owner_order_list);
 
         init();
-        updateOrders();
         displayListView();
 
         btn_product.setOnClickListener(new View.OnClickListener() {
@@ -52,11 +59,8 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         user = (User) getIntent().getSerializableExtra("currentUserID");
     }
 
-    private void updateOrders(){
-
-    }
-
     private void displayListView(){
+
         OrderList StoreOrderList = new OrderList();
         StoreOrderList = orderList.search(user);
 

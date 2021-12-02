@@ -37,7 +37,7 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_order_list);
 
         init();
-        read();
+        //read();
         display();
 
         btn_storeList.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +57,7 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         user = (User) getIntent().getSerializableExtra("currentUser");
         orderList = new OrderList();
     }
-
+/*
     public void read(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
@@ -75,6 +75,8 @@ public class CustomerOrderListActivity extends AppCompatActivity {
             }
         });
     }
+
+ */
 
     private void display(){
         OrderList CustomerOrderList = new OrderList();
