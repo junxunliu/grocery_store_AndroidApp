@@ -193,7 +193,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                 });
                             }
                         } else {
-                            Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUpActivity.this, R.string.signup_failed, Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }

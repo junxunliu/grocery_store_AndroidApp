@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,7 +38,8 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_store_list);
-        currentUserID = getIntent().getStringExtra("currentUserID");
+        currentUser = (User) getIntent().getSerializableExtra("Customer");
+        currentUserID = currentUser.getUserId();
 
         getCurrentUser();
         getStoreNames();
@@ -61,7 +63,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     }
 
     private void getCurrentUser() {
-        FirebaseDatabase.getInstance().getReference("Users").child(currentUserID)
+        FirebaseDatabase.getInstance().getReference("Users/Customers").child(currentUserID)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull  DataSnapshot snapshot) {
