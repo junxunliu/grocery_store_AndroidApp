@@ -164,7 +164,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                             progressBar.setVisibility(View.GONE);
 
                                             // redirect to login or dashboard
-                                            startActivity(new Intent(SignUpActivity.this,LogInActivity.class));
+                                            startActivity(new Intent(SignUpActivity.this,StoreOwnerMainPageActivity.class));
                                         } else {
                                             Toast.makeText(SignUpActivity.this, R.string.storeOwner_register_failed, Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);
@@ -184,7 +184,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                             progressBar.setVisibility(View.GONE);
 
                                             // redirect to login or dashboard
-                                            startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
+                                            startActivity(new Intent(SignUpActivity.this, CustomerStoreListViewActivity.class));
                                         } else {
                                             Toast.makeText(SignUpActivity.this, R.string.customer_register_failed, Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);
