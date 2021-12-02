@@ -53,14 +53,16 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
                     CheckBox cb = (CheckBox) v;
                     if(cb.isChecked()){
                         Order order = stOrderList.get(position);
-                        order.setStatus(true);
-                        Toast.makeText(getContext().getApplicationContext(),"Order from " + order.getCustomer().getFirstName() + " " + order.getCustomer().getLastName() + " is " + order.displayStatus(),Toast.LENGTH_LONG).show();
+                        order.setStatus("Complete");
+                        Toast.makeText(getContext().getApplicationContext(),
+                                "Order from " + order.getCustomerName() + " is Complete !",Toast.LENGTH_LONG).show();
                         finalHolder.stOrder.setText(order.toString());
                     }
                     else if(!cb.isChecked()){
                         Order order = stOrderList.get(position);
-                        order.setStatus(false);
-                        Toast.makeText(getContext().getApplicationContext(),"Order from " + order.getCustomer().getFirstName() + " " + order.getCustomer().getLastName() + " is " + order.displayStatus(),Toast.LENGTH_LONG).show();
+                        order.setStatus("Incomplete");
+                        Toast.makeText(getContext().getApplicationContext(),
+                                "Order from " + order.getCustomerName() + " is Incomplete",Toast.LENGTH_LONG).show();
                         finalHolder.stOrder.setText(order.toString());
                     }
                 }
@@ -71,7 +73,7 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
         }
 
         Order order = stOrderList.get(position);
-        holder.check.setChecked(order.getStatus());
+        holder.check.setChecked(order.convertStatus());
         holder.stOrder.setText(order.toString());
 
         return convertView;
