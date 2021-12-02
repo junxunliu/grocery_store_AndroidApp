@@ -32,6 +32,8 @@ public class Order implements Serializable {
         CustomerId = customerId;
         this.order = order;
         status = "Incomplete";
+    }
+    
 
     public String getStoreName() {
         return StoreName;
