@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
     private User currentUser;
     private Order order;
     private ListView listItems;
-    private List<OrderedProduct> OrderedProductList;
+    private List<OrderedProduct> OrderedProductList = new ArrayList<OrderedProduct>();
     private Button place_order;
 
     @Override
@@ -40,10 +41,11 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
         String customerName = currentUser.getFirstName() + " " + currentUser.getLastName();
-        int i = 0;
-        OrderedProductList = new ArrayList<OrderedProduct>(i);
-        order = new Order(storeName,customerName,currentUser.getUserId() , OrderedProductList);
-
+        order = new Order();
+        order.setStoreName(storeName);
+        order.setStatus("Incomplete");
+        order.setCustomerName(customerName);
+        order.setCustomerId(currentUser.getUserId());
         place_order = findViewById(R.id.place_order_button);
         place_order.setOnClickListener(this);
 

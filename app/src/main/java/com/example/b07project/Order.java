@@ -27,6 +27,10 @@ public class Order implements Serializable {
         order.add(p);
     }
 
+    public Order() {
+
+    }
+
     public Order(String storeName, String customerName, String customerId, List<OrderedProduct> order) {
         StoreName = storeName;
         CustomerName = customerName;
