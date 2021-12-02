@@ -100,7 +100,6 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
     }
     private void sendOrder() {
             String key = FirebaseDatabase.getInstance().getReference("Order").push().getKey();
-            order.orderId = key;
             FirebaseDatabase.getInstance().getReference("Order").
                     child(key).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -166,14 +165,15 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
 //        });
 //
 
-    //@Override
-    //public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        //if(resultCode == RESULT_OK)
-        //{
+        if(resultCode == RESULT_OK)
+        {
+            Toast.makeText(CustomerProductlistDisplayActivity.this, "add to cart", Toast.LENGTH_LONG).show();
 
-        //}
-    //}
+        }
+    }
 }
 

@@ -41,7 +41,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
         currentUser = (User) getIntent().getSerializableExtra("Customer");
         currentUserID = currentUser.getUserId();
 
-        getCurrentUser();
+//        getCurrentUser();
         getStoreNames();
 
          btnViewOrder = (Button) findViewById(R.id.button_view_order);
@@ -54,7 +54,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String storeName = storeNames.get(i);
                 Intent intent = new Intent(CustomerStoreListViewActivity.this,
-                        DisplayStoreProductActivity.class);
+                        CustomerProductlistDisplayActivity.class);
                 intent.putExtra("storeName", storeName);
                 intent.putExtra("currentUser", currentUser);
                 startActivity(intent);
@@ -62,18 +62,18 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
         });
     }
 
-    private void getCurrentUser() {
-        FirebaseDatabase.getInstance().getReference("Users/Customers").child(currentUserID)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull  DataSnapshot snapshot) {
-                        currentUser = (User) snapshot.getValue(User.class);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
-                });
-    }
+//    private void getCurrentUser() {
+//        FirebaseDatabase.getInstance().getReference("Users/Customers").child(currentUserID)
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull  DataSnapshot snapshot) {
+//                        currentUser = (User) snapshot.getValue(User.class);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {}
+//                });
+//    }
 
 
 
