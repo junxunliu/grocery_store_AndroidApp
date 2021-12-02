@@ -20,6 +20,9 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
     private Button btn_order;
     private ListView lv_display;
 
+    private User user;
+    private OrderList orderList;
+
     StoreOrderAdapter adpt = null;
 
     @Override
@@ -28,6 +31,7 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_owner_order_list);
 
         init();
+        updateOrders();
         displayListView();
 
         btn_product.setOnClickListener(new View.OnClickListener() {
@@ -45,20 +49,17 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         btn_product = (Button) findViewById(R.id.button4);
         btn_order = (Button) findViewById(R.id.button5);
         lv_display = (ListView) findViewById(R.id.listView);
+        user = (User) getIntent().getSerializableExtra("currentUserID");
+    }
+
+    private void updateOrders(){
+
     }
 
     private void displayListView(){
-        OrderList orderlist = new OrderList();
-        orderlist.testData();
-
-        //test data
-        User user2 = new User();
-        StoreOwner st = new StoreOwner();
-        st.setStoreName("Walmart");
-        user2 = (User)st;
-        user2.setUserType("Store Owner");
         OrderList StoreOrderList = new OrderList();
-        StoreOrderList = orderlist.search(user2);
+        StoreOrderList = orderList.search(user);
+
         ArrayList<Order> list = new ArrayList<>();
         for(Order o:StoreOrderList.getList()){
             list.add(o);

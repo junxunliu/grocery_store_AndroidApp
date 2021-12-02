@@ -34,43 +34,22 @@ public class OrderList {
         String type = user.getUserType();
         if(type.equals("Customer")){
             for(Order o:orderList) {
-                if (user.getFirstName().equals(o.getCustomer().getFirstName())
-                        && user.getLastName().equals(o.getCustomer().getLastName())) {
+                if(user.getUserId().equals(o.getCustomer().getUserId())){
+                //if (user.getFirstName().equals(o.getCustomer().getFirstName())
+                //        && user.getLastName().equals(o.getCustomer().getLastName())) {
                     list.addOrder(o);
                 }
             }
         }
         else if (type.equals("Store Owner")) {
             for (Order o :orderList) {
-                StoreOwner st = new StoreOwner();
-                st = (StoreOwner) user;
-                if (st.getStoreName().equals(o.getStore().getStoreName())) {
+                if(user.getUserId().equals(o.getStore().getUserId())){
                     list.addOrder(o);
                 }
             }
         }
         return list;
     }
-
-    /*public OrderList search(User user){
-        OrderList list = new OrderList();
-        String type = user.getUserType();
-        if(type.equals("Customer")){
-            for(Order o:orderList) {
-                if (user.getFirstName().equals(o.getCustomer().getFirstName())) {
-                    list.addOrder(o);
-                }
-            }
-        }
-        else if (type.equals("Store Owner")) {
-            for (Order o :orderList) {
-                if ((StoreOwner) user == o.getStore()) {
-                    list.addOrder(o);
-                }
-            }
-        }
-        return list;
-    }*/
 
     public void readFromDB(){
         /*FirebaseDatabase.getInstance().getReference().child("OrderList").child("StoreOwner").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
