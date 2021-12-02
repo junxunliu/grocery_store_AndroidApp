@@ -37,6 +37,7 @@ public class OrderList {
         orderList.add(order);
     }
 
+    //search orders that belongs to current user
     public OrderList search(User user){
         OrderList list = new OrderList();
         String type = user.getUserType();
@@ -47,7 +48,7 @@ public class OrderList {
                 }
             }
         }
-        else if (type.equals("Store Owner")) {
+        else if (type.equals("StoreOwner")) {
             for (Order o :orderList) {
                 if(user.getStoreName().equals(o.getStoreName())){
                     list.addOrder(o);

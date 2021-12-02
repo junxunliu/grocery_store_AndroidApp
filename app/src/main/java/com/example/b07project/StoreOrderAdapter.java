@@ -1,6 +1,7 @@
 package com.example.b07project;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -24,10 +31,6 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
     private class ViewHolder {
         TextView stOrder;
         CheckBox check;
-    }
-
-    public void updateStatus(Order order){
-
     }
 
     @Override
@@ -48,24 +51,42 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
             holder.check.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
                     CheckBox cb = (CheckBox) v;
                     if(cb.isChecked()){
                         Order order = stOrderList.get(position);
                         order.setStatus("Complete");
+                        String ID = order.getOrderId();
+                        //Log.i("OrderID", ID);
 
-                        Toast.makeText(getContext().getApplicationContext(),
-                                "Order from " + order.getCustomerName() + " is Complete !",Toast.LENGTH_LONG).show();
-                        finalHolder.stOrder.setText(order.toString());
+                        FirebaseDatabase.getInstance().getReference("Order")
+                                .child(ID).child("status").setValue("Complete").addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(getContext().getApplicationContext(),
+                                            "Order from " + order.getCustomerName() + " is Complete !",Toast.LENGTH_LONG).show();
+                                    finalHolder.stOrder.setText(order.toString());
+                                }
+                            }
+                        });
                     }
                     else if(!cb.isChecked()){
                         Order order = stOrderList.get(position);
                         order.setStatus("Incomplete");
+                        String ID = order.getOrderId();
 
-                        Toast.makeText(getContext().getApplicationContext(),
-                                "Order from " + order.getCustomerName() + " is Incomplete",Toast.LENGTH_LONG).show();
-                        finalHolder.stOrder.setText(order.toString());
-                    }*/
+                        FirebaseDatabase.getInstance().getReference("Order")
+                                .child(ID).child("status").setValue("Incomplete").addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(getContext().getApplicationContext(),
+                                            "Order from " + order.getCustomerName() + " is Incomplete",Toast.LENGTH_LONG).show();
+                                    finalHolder.stOrder.setText(order.toString());
+                                }
+                            }
+                        });
+                    }
                 }
             });
         }

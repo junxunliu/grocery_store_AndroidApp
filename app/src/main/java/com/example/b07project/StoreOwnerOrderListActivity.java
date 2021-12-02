@@ -40,13 +40,12 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_owner_order_list);
 
         init();
-        read();
-        displayListView();
+        displayOrders();
+        //displayListView();
 
         btn_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //StoreOwnerMainPage CANNOT run
                 Intent intent = new Intent(StoreOwnerOrderListActivity.this, StoreOwnerMainPageActivity.class);
                 startActivity(intent);
             }
@@ -59,38 +58,52 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         btn_order = (Button) findViewById(R.id.button5);
         lv_display = (ListView) findViewById(R.id.listView);
         user = (User) getIntent().getSerializableExtra("store");
-        Log.i("demo debug", user.getEmail());
+        //Log.i("b07info", user.getStoreName());
+        orderList = new OrderList();
     }
 
     //read orders from database and store them in the orderList
-    private void read(){
-        FirebaseDatabase.getInstance().getReference("Order/-MpvYbBdF4NbytymFylV").addListenerForSingleValueEvent(new ValueEventListener() {
+    private void displayOrders(){
+        //read orders from database and store them in the orderList
+        FirebaseDatabase.getInstance().getReference("Order").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Order order = snapshot.getValue(Order.class);
-                orderList.addOrder(order);
+                for(DataSnapshot child:snapshot.getChildren()) {
+                    Order order;
+                    order = child.getValue(Order.class);
+                    //Log.i("b07info", order.toString());
+                    //Log.i("IDIDIDID", order.getOrderId());
+                    orderList.addOrder(order);
+                    //Log.i("orderList", orderList.toString());
+                }
+                //search in the orderList, find orders for the current store owner and add them into StoreOrderList
+                OrderList StoreOrderList;
+                StoreOrderList = orderList.search(user);
+                ArrayList<Order> list = new ArrayList<>();
+                for(Order o:StoreOrderList.getList()){
+                    list.add(o);
+                    //Log.i("list", list.toString());
+                }
+                //display orders in the ListView
+                adpt = new StoreOrderAdapter(StoreOwnerOrderListActivity.this,R.layout.layout_store_order,list);
+                ListView lv = (ListView) findViewById(R.id.listView);
+                lv.setAdapter(adpt);
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
 
-    //search orders belongs to the current store and display in the listView
+    /*
     private void displayListView(){
-
         OrderList StoreOrderList = new OrderList();
         StoreOrderList = orderList.search(user);
-
         ArrayList<Order> list = new ArrayList<>();
         for(Order o:StoreOrderList.getList()){
             list.add(o);
         }
-
         adpt = new StoreOrderAdapter(this,R.layout.layout_store_order,list);
         ListView lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(adpt);
-    }
+    }*/
 }
