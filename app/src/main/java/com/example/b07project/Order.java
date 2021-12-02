@@ -17,7 +17,7 @@ import java.util.List;
 public class Order implements Serializable {
 
     private String StoreName;
-    private String CusomerId;
+    private String CustomerId;
     private List<OrderedProduct> order = new ArrayList<OrderedProduct>();
     private String status;
     /*
@@ -30,20 +30,18 @@ public class Order implements Serializable {
         order.add(p);
     }
 
-    public Order(String storeName, String cusomerId, List<OrderedProduct> order, String status) {
-        StoreName = storeName;
-        CusomerId = cusomerId;
+    public Order(String storeName, String CustomerId ,List<OrderedProduct> order) {
+        this.StoreName = storeName;
+        this.CustomerId = CustomerId;
         this.order = order;
-        this.status = status;
+        this.status = "Incomplete";
     }
 
     public String getStoreName() {
         return StoreName;
     }
 
-    public String getCusomerId() {
-        return CusomerId;
-    }
+    public String getCustomerId() { return CustomerId; }
 
     public List<OrderedProduct> getOrder() {
         return order;
@@ -57,8 +55,8 @@ public class Order implements Serializable {
         StoreName = storeName;
     }
 
-    public void setCusomerId(String cusomerId) {
-        CusomerId = cusomerId;
+    public void setCustomerId(String customerId) {
+        CustomerId = customerId;
     }
 
     public void setOrder(List<OrderedProduct> order) {
