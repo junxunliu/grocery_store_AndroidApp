@@ -1,57 +1,91 @@
 package com.example.b07project;
 
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class Order implements Serializable {
+
+    private String StoreName;
+    private String CusomerId;
+    private List<OrderedProduct> order = new ArrayList<OrderedProduct>();
+    private String status;
+    /*
     private StoreOwner s;
     private Customer c;
     private HashSet<OrderedProduct> order = new HashSet<OrderedProduct>();
-    private boolean status;
-
-    public Order(){ }
-
-    public Order(StoreOwner s, Customer c, HashSet<OrderedProduct> order){
-        this.s = s;
-        this.c = c;
-        this.order = order;
-        this.status = false;
-    }
-
-
-    public StoreOwner getStore(){
-        return s;
-    }
-
-    public Customer getCustomer(){
-        return c;
-    }
-
-    public HashSet<OrderedProduct> getOrder(){ return order; }
-
-    public boolean getStatus(){
-        return status;
-    }
-
-    public void setS(StoreOwner s) {
-        this.s = s;
-    }
-
-    public void setC(Customer c) {
-        this.c = c;
-    }
-
-    public void setOrder(HashSet<OrderedProduct> order) {
-        this.order = order;
-    }
-
-    public void setStatus(boolean s){
-        status = s;
-    }
+    private boolean status;*/
 
     public void addOrderedProduct(OrderedProduct p){
         order.add(p);
     }
+
+    public Order(String storeName, String cusomerId, List<OrderedProduct> order, String status) {
+        StoreName = storeName;
+        CusomerId = cusomerId;
+        this.order = order;
+        this.status = status;
+    }
+
+    public String getStoreName() {
+        return StoreName;
+    }
+
+    public String getCusomerId() {
+        return CusomerId;
+    }
+
+    public List<OrderedProduct> getOrder() {
+        return order;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStoreName(String storeName) {
+        StoreName = storeName;
+    }
+
+    public void setCusomerId(String cusomerId) {
+        CusomerId = cusomerId;
+    }
+
+    public void setOrder(List<OrderedProduct> order) {
+        this.order = order;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    /*
+    public void sendOrder(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        DatabaseReference usersRef = ref.child("Orders");
+        Product p = new Product("chicken","kfc","2.99");
+        usersRef.child("test").setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(CustomerOrderListActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(CustomerOrderListActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }*/
 
     public String displayStatus(){
         String s = "";

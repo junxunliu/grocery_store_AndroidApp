@@ -178,4 +178,24 @@ Empty activity :
 
 December 1 Meeting
 
+Things to Do:
+-check current progress
+
+Meeting Notes:
+-debug AddProductActivity & StoreOwnerMainPageActivity (implement by kaiwen), these two activities are working properly
+-discuss log out
+
+-thing to do before Next Meeting (December 2):
+     issues with Login & SignUp need to be solved (junxun)
+     finish implementation of CustomerProductlistDisplayActivity (p5.2) (yunlong)
+     connect to database and debug reading & updating methods for CustomerOrderListActivity & StoreOrderListActivity
+
+==============================================
+
+December 2 Meeting
+
+Things to Do:
+-check current progress
+-
+
 ==============================================

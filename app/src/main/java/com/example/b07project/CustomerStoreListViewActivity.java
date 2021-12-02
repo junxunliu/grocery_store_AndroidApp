@@ -104,7 +104,9 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_view_order:
-                startActivity(new Intent(this, CustomerOrderListActivity.class));
+                Intent intent = new Intent(this, CustomerOrderListActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);
                 break;
         }
     }

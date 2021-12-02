@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,7 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,13 +28,16 @@ public class CustomerOrderListActivity extends AppCompatActivity {
     private Button btn_storeList;
     private Button btn_myOrder;
 
+    private User user;
+    private OrderList orderList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_order_list);
 
         init();
-        //Test();
+        read();
         display();
 
         btn_storeList.setOnClickListener(new View.OnClickListener() {
@@ -47,42 +54,31 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         tv_title = (TextView) findViewById(R.id.my_order);
         btn_storeList = (Button) findViewById(R.id.button2);
         btn_myOrder = (Button) findViewById(R.id.button3);
+        user = (User) getIntent().getSerializableExtra("currentUser");
+        orderList = new OrderList();
     }
 
-    public void Test(){
-        /*
-        StoreOwner sto = new StoreOwner();
-        sto.setStoreName("KFC");
-        Customer c = new Customer();
-        c.setFirstName("Kitty");
-        c.setLastName("Y");
-        OrderedProduct p = new OrderedProduct("KFC","chicken","9.99",4);
-        HashSet<OrderedProduct> list = new HashSet<>();
-        list.add(p);
-        Order o = new Order(sto,c,list);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("OrderList").child("1").setValue(o);*/
+    public void read(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        DatabaseReference usersRef = ref.child("Orders");
+        Product p = new Product("chicken","kfc","2.99");
+        usersRef.child("test").setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(CustomerOrderListActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(CustomerOrderListActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void display(){
-        OrderList orderlist = new OrderList();
-        orderlist.testData();
-        User user = new User();
-        user.setFirstName("David");
-        user.setLastName("K");
-        user.setUserType("Customer");
         OrderList CustomerOrderList = new OrderList();
-        CustomerOrderList = orderlist.search(user);
-
+        CustomerOrderList = orderList.search(user);
         tv_display.setText(CustomerOrderList.toString());
-
-        /*OrderList orderlist = new OrderList();
-        //orderlist.readFromDB();
-        OrderList customerOrderList = new OrderList();
-        //User implements Serializable
-        //data from customer main page: getIntent().getSerializableExtra();
-        //Person person =(Person) getIntent().getSerializableExtra("person_data");
-        //customerOrderList = orderlist.search(user);
-        tv_display.setText(customerOrderList.toString());*/
     }
 }

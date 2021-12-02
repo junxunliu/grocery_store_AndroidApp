@@ -27,6 +27,10 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
         CheckBox check;
     }
 
+    public void updateStatus(Order order){
+
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
