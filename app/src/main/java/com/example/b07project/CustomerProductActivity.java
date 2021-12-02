@@ -19,15 +19,15 @@ public class CustomerProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_product);
         button = (Button) findViewById(R.id.button);
+        TextView textView = (TextView) findViewById(R.id.textView);
+        Product p = (Product) getIntent().getSerializableExtra("product");
+        Order order = (Order) getIntent().getSerializableExtra("order");
+        textView.setText(p.toString());
         textViewQuantity = (TextView) findViewById(R.id.editTextNumber);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int quantity = Integer.parseInt(textViewQuantity.getText().toString().trim());
-                Product p = (Product) getIntent().getSerializableExtra("product");
-                Order order = (Order) getIntent().getSerializableExtra("order");
-                TextView textView = (TextView) findViewById(R.id.textView);
-                textView.setText(p.toString());
                 OrderedProduct orderedProduct = new OrderedProduct(p.getBrand(),p.getName(),p.getPrice(),quantity);
                 order.addOrderedProduct(orderedProduct);
                 Intent returnIntent = new Intent();
