@@ -22,8 +22,6 @@ import java.util.List;
 
 public class StoreOwnerMainPageActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private String thisUser;
-
     private StoreOwner store = null;
 
     private ListView ProductList;
@@ -83,8 +81,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
 
     private void listOfOrders() {
         Intent intent = new Intent(this, StoreOwnerOrderListActivity.class);
-        // intent.putExtra("store", store);
-        intent.putExtra("currentUserID", thisUser);
+        intent.putExtra("store", store);
         startActivity(intent);
     }
 

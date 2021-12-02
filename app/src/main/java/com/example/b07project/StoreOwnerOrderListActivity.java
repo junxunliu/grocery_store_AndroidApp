@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -56,7 +57,8 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         btn_product = (Button) findViewById(R.id.button4);
         btn_order = (Button) findViewById(R.id.button5);
         lv_display = (ListView) findViewById(R.id.listView);
-        user = (User) getIntent().getSerializableExtra("currentUserID");
+        user = (User) getIntent().getSerializableExtra("store");
+        Log.i("demo debug", user.getEmail());
     }
 
     private void displayListView(){

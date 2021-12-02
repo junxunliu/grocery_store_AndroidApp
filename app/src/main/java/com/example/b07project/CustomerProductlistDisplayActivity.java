@@ -29,7 +29,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
     private User currentUser;
     private Order order;
     private ListView listItems;
-    private List<OrderedProduct> OrderedProductList = new ArrayList<OrderedProduct>();
+    private List<OrderedProduct> OrderedProductList;
     private Button place_order;
 
     @Override
@@ -40,6 +40,8 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
         String customerName = currentUser.getFirstName() + " " + currentUser.getLastName();
+        int i = 0;
+        OrderedProductList = new ArrayList<OrderedProduct>(i);
         order = new Order(storeName,customerName,currentUser.getUserId() , OrderedProductList);
 
         place_order = findViewById(R.id.place_order_button);
