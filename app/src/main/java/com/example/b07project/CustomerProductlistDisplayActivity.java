@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -41,11 +42,12 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
         String customerName = currentUser.getFirstName() + " " + currentUser.getLastName();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         order = new Order();
         order.setStoreName(storeName);
         order.setStatus("Incomplete");
         order.setCustomerName(customerName);
-        order.setCustomerId(currentUser.getUserId());
+        order.setCustomerId(userId);
         place_order = findViewById(R.id.place_order_button);
         place_order.setOnClickListener(this);
 

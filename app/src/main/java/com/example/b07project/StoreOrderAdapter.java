@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class StoreOrderAdapter extends ArrayAdapter<Order> {
 
     private ArrayList<Order> stOrderList;
-    //TextView tv_order;
 
     public StoreOrderAdapter(Context context, int textViewResourceId, ArrayList<Order> stOrderList){
         super(context, textViewResourceId, stOrderList);
@@ -40,7 +39,6 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
             LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = vi.inflate(R.layout.layout_store_order, null);
 
-            //tv_order = convertView.findViewById(R.id.tv_order_display);
             holder = new ViewHolder();
             holder.stOrder = (TextView) convertView.findViewById(R.id.tv_order_display);
             holder.check = (CheckBox) convertView.findViewById(R.id.checkBox);
@@ -50,10 +48,12 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
             holder.check.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    /*
                     CheckBox cb = (CheckBox) v;
                     if(cb.isChecked()){
                         Order order = stOrderList.get(position);
                         order.setStatus("Complete");
+
                         Toast.makeText(getContext().getApplicationContext(),
                                 "Order from " + order.getCustomerName() + " is Complete !",Toast.LENGTH_LONG).show();
                         finalHolder.stOrder.setText(order.toString());
@@ -61,10 +61,11 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
                     else if(!cb.isChecked()){
                         Order order = stOrderList.get(position);
                         order.setStatus("Incomplete");
+
                         Toast.makeText(getContext().getApplicationContext(),
                                 "Order from " + order.getCustomerName() + " is Incomplete",Toast.LENGTH_LONG).show();
                         finalHolder.stOrder.setText(order.toString());
-                    }
+                    }*/
                 }
             });
         }
