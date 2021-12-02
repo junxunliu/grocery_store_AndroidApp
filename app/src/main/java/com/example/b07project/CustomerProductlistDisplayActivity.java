@@ -106,6 +106,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
     }
     private void sendOrder() {
             String key = FirebaseDatabase.getInstance().getReference("Order").push().getKey();
+            order.setOrderId(key);
             FirebaseDatabase.getInstance().getReference("Order").
                     child(key).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -126,7 +127,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.place_order_button:
-                Log.i("demo debug", order.toString());
+                //Log.i("demo debug", order.toString());
                 sendOrder();
         }
     }

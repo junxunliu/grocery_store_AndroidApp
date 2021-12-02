@@ -16,15 +16,15 @@ import java.util.List;
 
 public class Order implements Serializable {
 
-//    public String orderId;
+    public String orderId;
     private String StoreName;
     private String CustomerName;
     private String CustomerId;
-    private List<OrderedProduct> order = new ArrayList<OrderedProduct>();
+    private List<OrderedProduct> orderedProductList = new ArrayList<OrderedProduct>();
     private String status;
 
     public void addOrderedProduct(OrderedProduct p){
-        order.add(p);
+        orderedProductList.add(p);
     }
 
     public Order() {
@@ -37,6 +37,10 @@ public class Order implements Serializable {
         CustomerName = customerName;
         CustomerId = customerId;
         status = "Incomplete";
+    }
+
+    public String getOrderId() {
+        return orderId;
     }
 
     public String getStoreName() {
@@ -52,11 +56,15 @@ public class Order implements Serializable {
     }
 
     public List<OrderedProduct> getOrder() {
-        return order;
+        return orderedProductList;
     }
 
     public String getStatus() {
         return status;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public void setStoreName(String storeName) {
@@ -71,8 +79,8 @@ public class Order implements Serializable {
         CustomerId = customerId;
     }
 
-    public void setOrder(List<OrderedProduct> order) {
-        this.order = order;
+    public void setOrder(List<OrderedProduct> orderedProductList) {
+        this.orderedProductList = orderedProductList;
     }
 
     public void setStatus(String status) {
@@ -86,25 +94,6 @@ public class Order implements Serializable {
         return false;
     }
 
-    /*
-    public void sendOrder(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-        DatabaseReference usersRef = ref.child("Orders");
-        Product p = new Product("chicken","kfc","2.99");
-        usersRef.child("test").setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CustomerOrderListActivity.this, "Successful", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(CustomerOrderListActivity.this, "Fail", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }*/
-
     @Override
     public String toString(){
         String display = "";
@@ -112,7 +101,7 @@ public class Order implements Serializable {
                 + "Customer Info: " + CustomerName + "\n"
                 + "Current Status: " + status + "\n"
                 + "Ordered Product: " + "\n");
-        for(OrderedProduct p:order){
+        for(OrderedProduct p:orderedProductList){
             display = (display + "   - " + p.name + " $" + p.price + " * " + p.quantity + "\n");
         }
         display = display + "\n";
