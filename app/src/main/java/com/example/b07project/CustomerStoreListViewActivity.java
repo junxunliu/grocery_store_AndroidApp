@@ -27,7 +27,6 @@ import java.util.function.Consumer;
 
 public class CustomerStoreListViewActivity extends AddProductActivity  {
     private ListView listStores;
-    private String currentUserID;
     private List<String> storeNames;
     private User currentUser;
     private Button btnViewOrder;
@@ -39,7 +38,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_store_list);
         currentUser = (User) getIntent().getSerializableExtra("Customer");
-        currentUserID = currentUser.getUserId();
+
 
 //        getCurrentUser();
         getStoreNames();

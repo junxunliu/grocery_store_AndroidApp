@@ -46,8 +46,7 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         btn_storeList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustomerOrderListActivity.this, CustomerStoreListViewActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

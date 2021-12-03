@@ -41,6 +41,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
 
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
+        Log.i("demo debug", currentUser.getFirstName());
         String customerName = currentUser.getFirstName() + " " + currentUser.getLastName();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         order = new Order();
@@ -111,7 +112,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
                     child(key).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (order == null) {
+                    if (order.getOrder().size() == 0) {
                         Toast.makeText(CustomerProductlistDisplayActivity.this,
                                 "failed to create Order.",
                                 Toast.LENGTH_LONG).show();
@@ -127,8 +128,8 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.place_order_button:
-                //Log.i("demo debug", order.toString());
                 sendOrder();
+                finish();
         }
     }
 

@@ -48,27 +48,26 @@
         android:id="@+id/btListOfOrders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="616dp"
+        android:layout_marginStart="24dp"
         android:text="Orders"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/lvItems"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintBottom_toBottomOf="@+id/btAddProduct"
+        app:layout_constraintEnd_toStartOf="@+id/btAddProduct"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/headers"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="@+id/btAddProduct"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btAddProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="550dp"
+        android:layout_marginRight="40dp"
         android:text="Add New Product"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toEndOf="@+id/btListOfOrders"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.901" />
+        app:layout_constraintTop_toTopOf="@+id/headers"
+        app:layout_constraintVertical_bias="0.503" />
 
     <ListView
 
