@@ -39,15 +39,16 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
         findViewById(R.id.btListOfOrders).setOnClickListener(this);
         findViewById(R.id.btAddProduct).setOnClickListener(this);
         ProductList = findViewById(R.id.lvItems);
-        ProductList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //could be a new page having the delete button
+//        ProductList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(StoreOwnerMainPageActivity.this, AddProductActivity.class);
-                intent.putExtra("store", store);
-                startActivity(intent);
-            }
-        });
+//            @Override
+//           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent = new Intent(StoreOwnerMainPageActivity.this, AddProductActivity.class);
+//                intent.putExtra("store", store);
+//                startActivity(intent);
+//           }
+//       });
     }
 
     private void findStore(){
@@ -62,7 +63,7 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
                 if(s != null){
 
                     store = s;
-                    ProductListAdapter adapter = new ProductListAdapter(StoreOwnerMainPageActivity.this, R.layout.product_list, (List<Product>) store.getProductList());
+                    ProductListAdapter adapter = new ProductListAdapter(StoreOwnerMainPageActivity.this, R.layout.product_list, (List<Product>)store.getProductList());
                     ProductList.setAdapter(adapter);
                 }
             }
