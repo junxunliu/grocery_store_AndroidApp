@@ -182,6 +182,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
         {
             orderedProduct = (OrderedProduct) data.getSerializableExtra("resultOrderedProduct");
             order.addOrderedProduct(orderedProduct);
+            Log.i("product demo", order.toString());
             Toast.makeText(CustomerProductlistDisplayActivity.this, "add to cart", Toast.LENGTH_LONG).show();
         }
     }

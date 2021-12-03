@@ -1,6 +1,16 @@
 package com.example.b07project;
 
-public class OrderedProduct extends Product{
+import java.io.Serializable;
+
+public class OrderedProduct extends Product implements Serializable {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     int quantity;
 
     public OrderedProduct() {
