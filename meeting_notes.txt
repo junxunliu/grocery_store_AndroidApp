@@ -188,7 +188,7 @@ Meeting Notes:
 -thing to do before Next Meeting (December 2):
      issues with Login & SignUp need to be solved (junxun)
      finish implementation of CustomerProductlistDisplayActivity (p5.2) (yunlong)
-     connect to database and debug reading & updating methods for CustomerOrderListActivity & StoreOrderListActivity
+     connect to database and debug reading & updating methods for CustomerOrderListActivity & StoreOrderListActivity (xinyi)
 
 ==============================================
 
@@ -196,6 +196,14 @@ December 2 Meeting
 
 Things to Do:
 -check current progress
--
+
+Meeting Notes:
+-problems with Login & SignUp are already solved
+-debug CustomerStoreListViewActivity (p5.1) & CustomerProductlistDisplayActivity (p5.2) & CustomerProductActivity (p5.3)
+-still have problem with CustomerProductActivity (p5.3), the quantity of the ordered product can't be passed to order
+
+==============================================
+
+December 3 Meeting
 
 ==============================================
