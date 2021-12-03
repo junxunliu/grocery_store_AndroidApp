@@ -1,6 +1,7 @@
 package com.example.b07project;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,17 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class StoreOrderAdapter extends ArrayAdapter<Order> {
 
     private ArrayList<Order> stOrderList;
-    //TextView tv_order;
 
     public StoreOrderAdapter(Context context, int textViewResourceId, ArrayList<Order> stOrderList){
         super(context, textViewResourceId, stOrderList);
@@ -36,7 +42,6 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
             LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = vi.inflate(R.layout.layout_store_order, null);
 
-            //tv_order = convertView.findViewById(R.id.tv_order_display);
             holder = new ViewHolder();
             holder.stOrder = (TextView) convertView.findViewById(R.id.tv_order_display);
             holder.check = (CheckBox) convertView.findViewById(R.id.checkBox);
@@ -49,15 +54,38 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
                     CheckBox cb = (CheckBox) v;
                     if(cb.isChecked()){
                         Order order = stOrderList.get(position);
-                        order.setStatus(true);
-                        Toast.makeText(getContext().getApplicationContext(),"Order from " + order.getCustomer().getFirstName() + " " + order.getCustomer().getLastName() + " is " + order.displayStatus(),Toast.LENGTH_LONG).show();
-                        finalHolder.stOrder.setText(order.toString());
+                        order.setStatus("Complete");
+                        String ID = order.getOrderId();
+                        //Log.i("OrderID", ID);
+
+                        FirebaseDatabase.getInstance().getReference("Order")
+                                .child(ID).child("status").setValue("Complete").addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(getContext().getApplicationContext(),
+                                            "Order from " + order.getCustomerName() + " is Complete !",Toast.LENGTH_LONG).show();
+                                    finalHolder.stOrder.setText(order.toString());
+                                }
+                            }
+                        });
                     }
                     else if(!cb.isChecked()){
                         Order order = stOrderList.get(position);
-                        order.setStatus(false);
-                        Toast.makeText(getContext().getApplicationContext(),"Order from " + order.getCustomer().getFirstName() + " " + order.getCustomer().getLastName() + " is " + order.displayStatus(),Toast.LENGTH_LONG).show();
-                        finalHolder.stOrder.setText(order.toString());
+                        order.setStatus("Incomplete");
+                        String ID = order.getOrderId();
+
+                        FirebaseDatabase.getInstance().getReference("Order")
+                                .child(ID).child("status").setValue("Incomplete").addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(getContext().getApplicationContext(),
+                                            "Order from " + order.getCustomerName() + " is Incomplete",Toast.LENGTH_LONG).show();
+                                    finalHolder.stOrder.setText(order.toString());
+                                }
+                            }
+                        });
                     }
                 }
             });
@@ -67,7 +95,7 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
         }
 
         Order order = stOrderList.get(position);
-        holder.check.setChecked(order.getStatus());
+        holder.check.setChecked(order.convertStatus());
         holder.stOrder.setText(order.toString());
 
         return convertView;

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,9 +38,10 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_store_list);
-        currentUserID = getIntent().getStringExtra("currentUserID");
+        currentUser = (User) getIntent().getSerializableExtra("Customer");
+        currentUserID = currentUser.getUserId();
 
-        getCurrentUser();
+//        getCurrentUser();
         getStoreNames();
 
          btnViewOrder = (Button) findViewById(R.id.button_view_order);
@@ -52,7 +54,7 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String storeName = storeNames.get(i);
                 Intent intent = new Intent(CustomerStoreListViewActivity.this,
-                        DisplayStoreProductActivity.class);
+                        CustomerProductlistDisplayActivity.class);
                 intent.putExtra("storeName", storeName);
                 intent.putExtra("currentUser", currentUser);
                 startActivity(intent);
@@ -60,18 +62,18 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
         });
     }
 
-    private void getCurrentUser() {
-        FirebaseDatabase.getInstance().getReference("Users").child(currentUserID)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull  DataSnapshot snapshot) {
-                        currentUser = (User) snapshot.getValue(User.class);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
-                });
-    }
+//    private void getCurrentUser() {
+//        FirebaseDatabase.getInstance().getReference("Users/Customers").child(currentUserID)
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull  DataSnapshot snapshot) {
+//                        currentUser = (User) snapshot.getValue(User.class);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {}
+//                });
+//    }
 
 
 
@@ -104,7 +106,9 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_view_order:
-                startActivity(new Intent(this, CustomerOrderListActivity.class));
+                Intent intent = new Intent(this, CustomerOrderListActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);
                 break;
         }
     }

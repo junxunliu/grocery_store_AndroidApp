@@ -6,26 +6,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class CustomerProductlistDisplayActivity extends AppCompatActivity {
+public class CustomerProductlistDisplayActivity extends AppCompatActivity implements View.OnClickListener {
     private StoreOwner store;
     private String storeName;
     private User currentUser;
     private Order order;
     private ListView listItems;
-    private HashSet<OrderedProduct> OrderedProductList = new HashSet<OrderedProduct>();
-    
+    private List<OrderedProduct> OrderedProductList = new ArrayList<OrderedProduct>();
+    private Button place_order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +41,15 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
 
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
-        Customer customer = new Customer(currentUser.getEmail(),currentUser.getFirstName(),
-                currentUser.getLastName());
-        order = new Order(store, customer, OrderedProductList);
-
-
+        String customerName = currentUser.getFirstName() + " " + currentUser.getLastName();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        order = new Order();
+        order.setStoreName(storeName);
+        order.setStatus("Incomplete");
+        order.setCustomerName(customerName);
+        order.setCustomerId(userId);
+        place_order = findViewById(R.id.place_order_button);
+        place_order.setOnClickListener(this);
 
         listItems = findViewById(R.id.ListProduct);
         listItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,7 +67,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
         intent.putExtra("storeName", storeName);
         intent.putExtra("currentUser", currentUser);
         intent.putExtra("order",  order);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
         //z: pass product and order to me
         /*intent.putExtra("product", item);
         intent.putExtra("order", order);
@@ -93,9 +104,35 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
                 });
 
     }
-    //private void sendOrder() {
+    private void sendOrder() {
+            String key = FirebaseDatabase.getInstance().getReference("Order").push().getKey();
+            order.setOrderId(key);
+            FirebaseDatabase.getInstance().getReference("Order").
+                    child(key).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (order == null) {
+                        Toast.makeText(CustomerProductlistDisplayActivity.this,
+                                "failed to create Order.",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    Toast.makeText(CustomerProductlistDisplayActivity.this,
+                            "Order Created",
+                            Toast.LENGTH_LONG).show();
+                }
+            });
+    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.place_order_button:
+                //Log.i("demo debug", order.toString());
+                sendOrder();
+        }
+    }
 
-        // create a Post
+    // create a Post
         //model.postOrder(order, (Order order) -> {
            // if (order == null) {
              //   Toast.makeText(this, "failed to create Order.", Toast.LENGTH_LONG).show();
@@ -137,10 +174,13 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        OrderedProduct orderedProduct;
 
         if(resultCode == RESULT_OK)
         {
-
+            orderedProduct = (OrderedProduct) data.getSerializableExtra("resultOrderedProduct");
+            order.addOrderedProduct(orderedProduct);
+            Toast.makeText(CustomerProductlistDisplayActivity.this, "add to cart", Toast.LENGTH_LONG).show();
         }
     }
 }

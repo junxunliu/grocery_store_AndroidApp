@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,7 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashSet;
+import java.util.List;
 
 public class CustomerOrderListActivity extends AppCompatActivity {
 
@@ -24,14 +30,18 @@ public class CustomerOrderListActivity extends AppCompatActivity {
     private Button btn_storeList;
     private Button btn_myOrder;
 
+    private String userId;
+    private User user;
+    private OrderList orderList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_order_list);
 
         init();
-        //Test();
-        display();
+        displayOrders();
+        //display();
 
         btn_storeList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,47 +52,45 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         });
     }
 
+    //initialize all the fields
     private void init(){
         tv_display = (TextView) findViewById(R.id.textView2);
         tv_title = (TextView) findViewById(R.id.my_order);
         btn_storeList = (Button) findViewById(R.id.button2);
         btn_myOrder = (Button) findViewById(R.id.button3);
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        user = (User) getIntent().getSerializableExtra("currentUser");
+        user.setUserId(userId);
+        orderList = new OrderList();
     }
 
-    public void Test(){
-        /*
-        StoreOwner sto = new StoreOwner();
-        sto.setStoreName("KFC");
-        Customer c = new Customer();
-        c.setFirstName("Kitty");
-        c.setLastName("Y");
-        OrderedProduct p = new OrderedProduct("KFC","chicken","9.99",4);
-        HashSet<OrderedProduct> list = new HashSet<>();
-        list.add(p);
-        Order o = new Order(sto,c,list);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("OrderList").child("1").setValue(o);*/
+    public void displayOrders(){
+        //read orders from database and store them in the orderList
+        FirebaseDatabase.getInstance().getReference("Order").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot child:snapshot.getChildren()) {
+                    Order order;
+                    order = child.getValue(Order.class);
+                    //Log.i("b07info", order.toString());
+                    orderList.addOrder(order);
+                    //Log.i("orderList", orderList.toString());
+                }
+                //search in the orderList, find orders for the current customer and add them into CustomerOrderList
+                OrderList CustomerOrderList;
+                CustomerOrderList = orderList.search(user);
+                //display orders in the TextView
+                tv_display.setText(CustomerOrderList.toString());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
     }
 
+    /*
     private void display(){
-        OrderList orderlist = new OrderList();
-        orderlist.testData();
-        User user = new User();
-        user.setFirstName("David");
-        user.setLastName("K");
-        user.setUserType("Customer");
         OrderList CustomerOrderList = new OrderList();
-        CustomerOrderList = orderlist.search(user);
-
+        CustomerOrderList = orderList.search(user);
         tv_display.setText(CustomerOrderList.toString());
-
-        /*OrderList orderlist = new OrderList();
-        //orderlist.readFromDB();
-        OrderList customerOrderList = new OrderList();
-        //User implements Serializable
-        //data from customer main page: getIntent().getSerializableExtra();
-        //Person person =(Person) getIntent().getSerializableExtra("person_data");
-        //customerOrderList = orderlist.search(user);
-        tv_display.setText(customerOrderList.toString());*/
-    }
+    }*/
 }
