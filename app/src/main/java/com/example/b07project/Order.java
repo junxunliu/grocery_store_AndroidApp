@@ -16,6 +16,7 @@ import java.util.List;
 
 public class Order implements Serializable {
 
+
     public String orderId;
     private String StoreName;
     private String CustomerName;
@@ -25,6 +26,7 @@ public class Order implements Serializable {
 
     public void addOrderedProduct(OrderedProduct p){
         orderedProductList.add(p);
+
     }
 
     public Order() {

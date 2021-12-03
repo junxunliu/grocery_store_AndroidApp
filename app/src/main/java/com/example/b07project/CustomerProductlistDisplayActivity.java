@@ -139,8 +139,6 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
                // return;
             //}
 
-
-
             // create a Post Description
             //orderDescription = new OrderDescription(order.orderID, currentUser.name, order.createdDate);
             //model.postOrderDescription(orderDescription, (OrderDescription orderDesc) -> {
