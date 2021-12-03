@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -79,14 +82,15 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
                 OrderList StoreOrderList;
                 StoreOrderList = orderList.search(user);
                 ArrayList<Order> list = new ArrayList<>();
-                for(Order o:StoreOrderList.getList()){
-                    list.add(o);
+                list = StoreOrderList.getList();
+                //for(Order o:StoreOrderList.getList()){
+                    //list.add(o);
                     //Log.i("list", list.toString());
-                }
+                //}
                 //display orders in the ListView
                 adpt = new StoreOrderAdapter(StoreOwnerOrderListActivity.this,R.layout.layout_store_order,list);
-                ListView lv = (ListView) findViewById(R.id.listView);
-                lv.setAdapter(adpt);
+                //ListView lv = (ListView) findViewById(R.id.listView);
+                lv_display.setAdapter(adpt);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}

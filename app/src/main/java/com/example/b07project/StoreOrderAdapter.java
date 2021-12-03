@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StoreOrderAdapter extends ArrayAdapter<Order> {
 
@@ -34,6 +36,11 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
     }
 
     @Override
+    public Order getItem(int position) {
+        return stOrderList.get(position);
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder = null;
@@ -48,15 +55,27 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
             convertView.setTag(holder);
 
             ViewHolder finalHolder = holder;
+
             holder.check.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     CheckBox cb = (CheckBox) v;
+
+                    //Order order = cb.getText();
+                    //EachRow row=list.get((Integer)v.getTag());
+
+                    //Order order = stOrderList.get(position);
+                    //Log.i("position",String.valueOf(position));
+                    //Log.i("Current Order",order.toString());
+                    //Log.i("ID",order.getOrderId());
+                    //Log.i("Order",(String)cb.getText());
+
                     if(cb.isChecked()){
                         Order order = stOrderList.get(position);
                         order.setStatus("Complete");
                         String ID = order.getOrderId();
                         //Log.i("OrderID", ID);
+                        //finalHolder.stOrder.setText(order.toString());
 
                         FirebaseDatabase.getInstance().getReference("Order")
                                 .child(ID).child("status").setValue("Complete").addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -74,6 +93,7 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
                         Order order = stOrderList.get(position);
                         order.setStatus("Incomplete");
                         String ID = order.getOrderId();
+                        //holder.stOrder.setText(order.toString());
 
                         FirebaseDatabase.getInstance().getReference("Order")
                                 .child(ID).child("status").setValue("Incomplete").addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -95,7 +115,11 @@ public class StoreOrderAdapter extends ArrayAdapter<Order> {
         }
 
         Order order = stOrderList.get(position);
+        //Log.i("position",String.valueOf(position));
+        //Log.i("Current Order",order.toString());
+        //Log.i("ID",order.getOrderId());
         holder.check.setChecked(order.convertStatus());
+        //holder.check.setText(order.toString());
         holder.stOrder.setText(order.toString());
 
         return convertView;
