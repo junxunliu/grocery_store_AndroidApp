@@ -9,12 +9,16 @@ public class Order implements Serializable {
     private HashSet<OrderedProduct> order = new HashSet<OrderedProduct>();
     private boolean status;
 
+
+    private String customer;
+
     public Order(){ }
 
-    public Order(StoreOwner s, Customer c, HashSet<OrderedProduct> order){
+    public Order(StoreOwner s, Customer c, HashSet<OrderedProduct> order, String Owner){
         this.s = s;
         this.c = c;
         this.order = order;
+        this.Owner = Owner;
         this.status = false;
     }
 
