@@ -18,7 +18,6 @@ public class Order implements Serializable {
         this.s = s;
         this.c = c;
         this.order = order;
-        this.Owner = Owner;
         this.status = false;
     }
 
