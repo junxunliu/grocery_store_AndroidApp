@@ -18,54 +18,70 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="33.3"
+            android:fontFamily="casual"
             android:gravity="center"
             android:text="Name"
-            android:textSize="18dp"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="#03A9F4"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_weight="33.3"
+            android:fontFamily="casual"
             android:gravity="center"
             android:text="Price"
-            android:textSize="18dp"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="#03A9F4"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_weight="33.3"
+            android:fontFamily="casual"
             android:gravity="center"
             android:text="Brand Name"
-            android:textSize="18dp" />
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="#03A9F4"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btListOfOrders"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="616dp"
+        android:layout_width="110dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/coiny"
         android:text="Orders"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btAddProduct"
         app:layout_constraintEnd_toEndOf="@+id/lvItems"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintHorizontal_bias="0.174"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/headers"
+        app:layout_constraintTop_toTopOf="@+id/btAddProduct"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btAddProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/coiny"
         android:text="Add New Product"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintHorizontal_bias="0.212"
         app:layout_constraintStart_toEndOf="@+id/btListOfOrders"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.901" />
@@ -73,13 +89,13 @@
     <ListView
 
         android:id="@+id/lvItems"
-        android:layout_width="409dp"
-        android:layout_height="480dp"
+        android:layout_width="408dp"
+        android:layout_height="513dp"
         app:layout_constraintBottom_toTopOf="@+id/btListOfOrders"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headers"
-        app:layout_constraintVertical_bias="0.214" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
