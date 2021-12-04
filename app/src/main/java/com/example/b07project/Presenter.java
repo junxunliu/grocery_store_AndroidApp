@@ -1,9 +1,5 @@
 package com.example.b07project;
 
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
 public class Presenter {
 
     private Model model;
@@ -19,7 +15,7 @@ public class Presenter {
         model.auth(email, password, (User user) -> {
 
             if (user == null) {
-                Toast.makeText(view, "failed to login", Toast.LENGTH_LONG).show();
+                view.failedToLogIn();
                 return;
             }
             if (user.getUserType().equals("Customer"))

@@ -41,7 +41,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
 
         storeName = getIntent().getStringExtra("storeName");
         currentUser = (User) getIntent().getSerializableExtra("currentUser");
-        Log.i("demo debug", currentUser.getFirstName());
+//        Log.i("demo debug", currentUser.getFirstName());
         String customerName = currentUser.getFirstName() + " " + currentUser.getLastName();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         order = new Order();

@@ -30,8 +30,6 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     private List<String> storeNames;
     private User currentUser;
     private Button btnViewOrder;
-    private Model model;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +72,6 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
 //                });
 //    }
 
-
-
-
     private void getStoreNames() {
         FirebaseDatabase.getInstance().getReference("Users/Store Owners")
                 .addValueEventListener(new ValueEventListener() {
@@ -97,9 +92,6 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
                     public void onCancelled(@NonNull DatabaseError error) {}
                 });
     }
-
-
-
 
     @Override
     public void onClick(View view) {
