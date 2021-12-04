@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -29,7 +30,7 @@ public class CustomerProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int quantity = Integer.parseInt(textViewQuantity.getText().toString().trim());
                 OrderedProduct orderedProduct = new OrderedProduct(p.getBrand(),p.getName(),p.getPrice(),quantity);
-//                order.addOrderedProduct(orderedProduct);
+                Log.i("product demo", orderedProduct.toString());
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("resultOrderedProduct",orderedProduct);
                 setResult(RESULT_OK,returnIntent);

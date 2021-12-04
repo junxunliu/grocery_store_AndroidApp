@@ -28,7 +28,6 @@ public class CustomerOrderListActivity extends AppCompatActivity {
     private TextView tv_display;
     private TextView tv_title;
     private Button btn_storeList;
-    private Button btn_myOrder;
 
     private String userId;
     private User user;
@@ -46,8 +45,7 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         btn_storeList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustomerOrderListActivity.this, CustomerStoreListViewActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -57,7 +55,6 @@ public class CustomerOrderListActivity extends AppCompatActivity {
         tv_display = (TextView) findViewById(R.id.textView2);
         tv_title = (TextView) findViewById(R.id.my_order);
         btn_storeList = (Button) findViewById(R.id.button2);
-        btn_myOrder = (Button) findViewById(R.id.button3);
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         user = (User) getIntent().getSerializableExtra("currentUser");
         user.setUserId(userId);

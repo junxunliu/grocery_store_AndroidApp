@@ -27,19 +27,16 @@ import java.util.function.Consumer;
 
 public class CustomerStoreListViewActivity extends AddProductActivity  {
     private ListView listStores;
-    private String currentUserID;
     private List<String> storeNames;
     private User currentUser;
     private Button btnViewOrder;
-    private Model model;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_store_list);
         currentUser = (User) getIntent().getSerializableExtra("Customer");
-        currentUserID = currentUser.getUserId();
+
 
 //        getCurrentUser();
         getStoreNames();
@@ -75,9 +72,6 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
 //                });
 //    }
 
-
-
-
     private void getStoreNames() {
         FirebaseDatabase.getInstance().getReference("Users/Store Owners")
                 .addValueEventListener(new ValueEventListener() {
@@ -98,9 +92,6 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
                     public void onCancelled(@NonNull DatabaseError error) {}
                 });
     }
-
-
-
 
     @Override
     public void onClick(View view) {

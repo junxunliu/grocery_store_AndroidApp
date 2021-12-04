@@ -1,7 +1,6 @@
 package com.example.b07project;
 
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -82,6 +81,7 @@ public class Model {
                     }
                 });
     }
+
     public static Model getInstance() {
         if (instance == null)
             instance = new Model();

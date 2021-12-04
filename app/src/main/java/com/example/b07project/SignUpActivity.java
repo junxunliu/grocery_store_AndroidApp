@@ -19,11 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -164,7 +160,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                             progressBar.setVisibility(View.GONE);
 
                                             // redirect to login or dashboard
-                                            startActivity(new Intent(SignUpActivity.this,StoreOwnerMainPageActivity.class));
+                                            Intent intent = new Intent(SignUpActivity.this,StoreOwnerMainPageActivity.class);
+                                            intent.putExtra("Store Owner", user);
+                                            startActivity(intent);
                                         } else {
                                             Toast.makeText(SignUpActivity.this, R.string.storeOwner_register_failed, Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);
@@ -184,7 +182,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                             progressBar.setVisibility(View.GONE);
 
                                             // redirect to login or dashboard
-                                            startActivity(new Intent(SignUpActivity.this, CustomerStoreListViewActivity.class));
+                                            Intent intent = new Intent(SignUpActivity.this, CustomerStoreListViewActivity.class);
+                                            intent.putExtra("Customer", user);
+                                            startActivity(intent);
+
                                         } else {
                                             Toast.makeText(SignUpActivity.this, R.string.customer_register_failed, Toast.LENGTH_LONG).show();
                                             progressBar.setVisibility(View.GONE);

@@ -22,10 +22,13 @@
     <string name="storeOwner_register_failed">Failed to create a store owner</string>
     <string name="customer_register_failed">Failed to create a customer</string>
     <string name="signup_failed">Failed to sign up</string>
+    <string name="login_failed">Failed to log in</string>
     <string name="product_add_successfully">Product Added Successfully.</string>
     <string name="product_fail_to_add">Product Not Added!</string>
     <string name="stoList">Store\'s Order List</string>
     <string name="tv_myOrder">My Orders</string>
+    <string name="type_customer">Customer</string>
+    <string name="type_storeOwner">Store Owner</string>
 
 
 </resources>

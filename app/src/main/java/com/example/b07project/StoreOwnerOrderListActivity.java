@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +29,6 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
 
     private TextView tv_title_orders;
     private Button btn_product;
-    private Button btn_order;
     private ListView lv_display;
 
     private User user;
@@ -46,8 +48,7 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
         btn_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StoreOwnerOrderListActivity.this, StoreOwnerMainPageActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -55,7 +56,6 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
     private void init(){
         tv_title_orders = (TextView) findViewById(R.id.stoList);
         btn_product = (Button) findViewById(R.id.button4);
-        btn_order = (Button) findViewById(R.id.button5);
         lv_display = (ListView) findViewById(R.id.listView);
         user = (User) getIntent().getSerializableExtra("store");
         //Log.i("b07info", user.getStoreName());
@@ -80,14 +80,15 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
                 OrderList StoreOrderList;
                 StoreOrderList = orderList.search(user);
                 ArrayList<Order> list = new ArrayList<>();
-                for(Order o:StoreOrderList.getList()){
-                    list.add(o);
+                list = StoreOrderList.getList();
+                //for(Order o:StoreOrderList.getList()){
+                    //list.add(o);
                     //Log.i("list", list.toString());
-                }
+                //}
                 //display orders in the ListView
                 adpt = new StoreOrderAdapter(StoreOwnerOrderListActivity.this,R.layout.layout_store_order,list);
-                ListView lv = (ListView) findViewById(R.id.listView);
-                lv.setAdapter(adpt);
+                //ListView lv = (ListView) findViewById(R.id.listView);
+                lv_display.setAdapter(adpt);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}

@@ -11,8 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
+import android.widget.Toast;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String REMEMBER = "remember";
@@ -25,8 +24,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private Button buttonLogin;
     private CheckBox checkBoxRemember;
     private TextView textViewSignup;
-
-//    private FirebaseAuth mAuth;
 
     private Presenter presenter;
 
@@ -45,8 +42,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         preferences = getSharedPreferences("test", MODE_PRIVATE);
         editor = preferences.edit();
-
-//        mAuth = FirebaseAuth.getInstance();
 
         presenter = new Presenter(new Model(), this);
 
@@ -111,18 +106,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         presenter.login(email, password);
 
-//        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                // check if it's store owner or customer
-//                // here is customer
-//                if (task.isSuccessful()) {
-//                    startActivity(new Intent(LogInActivity.this, CustomerProductActivity.class));
-//                } else {
-//                    Toast.makeText(LogInActivity.this, "Fail to login!", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
     }
 
     public void redirectToCustomer(User user) {
@@ -135,5 +118,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent(this, StoreOwnerMainPageActivity.class);
         intent.putExtra("Store Owner", user);
         startActivity(intent);
+    }
+
+    public void failedToLogIn() {
+        Toast.makeText(LogInActivity.this, R.string.login_failed, Toast.LENGTH_LONG).show();
     }
 }
