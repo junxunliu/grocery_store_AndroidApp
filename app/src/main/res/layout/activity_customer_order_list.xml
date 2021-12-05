@@ -53,9 +53,8 @@
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="292dp"
-                android:layout_height="3000dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="92dp"
-                android:text="TextView"
                 android:textSize="20dp" />
         </LinearLayout>
     </ScrollView>

@@ -8,13 +8,10 @@
 
     <TextView
         android:id="@+id/stoList"
-        android:textSize="25dp"
         android:layout_width="143dp"
         android:layout_height="33dp"
         android:layout_marginTop="32dp"
         android:text="@string/stoList"
-        android:fontFamily="casual"
-        android:textColor="#03A9F4"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,13 +19,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="354dp"
-        android:layout_height="630dp"
-        android:scaleType="fitStart"
+        android:layout_width="343dp"
+        android:layout_height="570dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stoList">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,10 +35,7 @@
             <ListView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
-                android:layout_height="3000dp"
-                android:layout_marginTop="100dp"
-                android:fontFamily="@font/coiny"
-                android:layout_marginBottom="120dp" />
+                android:layout_height="5000dp" />
         </LinearLayout>
     </ScrollView>
 
