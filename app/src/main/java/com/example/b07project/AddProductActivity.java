@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Pattern;
+
 public class AddProductActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText edTxtProductName, edTxtBrandName, edTxtPrice;
@@ -22,6 +24,9 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
 
     private StoreOwner store;
     private String thisUserID;
+
+    //Pattern patternPrice = new Pattern(
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +47,31 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
 
     private void add() {
 
-        Product NewProduct = new Product(
-                edTxtProductName.getText().toString().trim(),
-                edTxtBrandName.getText().toString().trim(),
-                edTxtPrice.getText().toString().trim());
+        String productName = edTxtProductName.getText().toString().trim();
+        String brandName = edTxtBrandName.getText().toString().trim();
+        String price = edTxtPrice.getText().toString().trim();
+
+        Product NewProduct = new Product(productName, brandName, price);
+
+        if (productName.isEmpty()) {
+            edTxtProductName.setError("Product name is required!");
+            edTxtProductName.requestFocus();
+            return;
+        }
+
+        if (brandName.isEmpty()) {
+            edTxtBrandName.setError("Brand name is required!");
+            edTxtBrandName.requestFocus();
+            return;
+        }
+
+        if (price.isEmpty()) {
+            edTxtPrice.setError("Price is required!");
+            edTxtPrice.requestFocus();
+            return;
+        }
+
+
 
         //add the product to the product list
         store.addProduct(NewProduct);
