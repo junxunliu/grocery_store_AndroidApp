@@ -1,0 +1,33 @@
+Work Assignment:
+
+Junxun Liu:
+-Customer
+-LoginActivity activity_log_in
+-Model
+-Presenter
+-SignUpActivity activity_sign_up
+-User
+-Unit Test
+
+Kaiwen Niu:
+-AddProductActivity activity_add_product
+-ProductListAdapter product_list
+-StoreOwnerMainPageActivity activity_store_owner_main_page
+
+Yunlong Chen:
+-CustomerStoreListViewActivity activity_customer_list
+-CustomerProductlistDisplayActivity activity_customer_productlist_display
+
+Xinyi Ye:
+-CustomerOrderListActivity activity_customer_order_list
+-Order
+-OrderList
+-StoreOrderAdapter layout_store_order
+-StoreOrderListActivity activity_store_owner_order_list
+
+Ziyao Yin:
+-CustomerProductActivity activity_customer_product
+-OrderedProduct
+-Product
+-ProductList
+-StoreOwner
