@@ -13,7 +13,12 @@
         android:layout_height="80dp"
         android:layout_marginTop="80dp"
         android:text="TextView"
+
+        android:textColor="#03A9F4"
+        android:fontFamily="casual"
+
         android:gravity="center"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,9 +26,11 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+
+        android:layout_width="206dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/coiny"
         android:text="@string/add_to_cart"
         app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
         app:layout_constraintHorizontal_bias="0.454"

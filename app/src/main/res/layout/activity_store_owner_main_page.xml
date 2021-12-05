@@ -14,6 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -26,7 +27,6 @@
             android:textColor="#03A9F4"
             android:textSize="20sp"
             android:textStyle="bold" />
-
 
         <TextView
             android:layout_width="match_parent"
@@ -72,6 +72,7 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
+
     <Button
         android:id="@+id/btAddProduct"
         android:layout_width="200dp"
@@ -81,17 +82,16 @@
         android:text="Add New Product"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toEndOf="@+id/btListOfOrders"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.901" />
-
+        app:layout_constraintVertical_bias="0.943" />
 
     <ListView
 
         android:id="@+id/lvItems"
-        android:layout_width="408dp"
-        android:layout_height="513dp"
+        android:layout_width="407dp"
+        android:layout_height="530dp"
         app:layout_constraintBottom_toTopOf="@+id/btListOfOrders"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

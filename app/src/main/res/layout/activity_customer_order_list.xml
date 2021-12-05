@@ -13,7 +13,12 @@
         android:layout_marginTop="32dp"
         android:text="@string/tv_myOrder"
         android:textAlignment="center"
+
+        android:textColor="#03A9F4"
+        android:fontFamily="casual"
+
         android:textSize="25dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +30,7 @@
         android:layout_height="52dp"
         android:layout_marginBottom="32dp"
         android:text="@string/button_storelist"
+        android:fontFamily="@font/coiny"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -33,11 +39,11 @@
     <ScrollView
         android:layout_width="294dp"
         android:layout_height="536dp"
-        android:layout_marginTop="80dp"
+        android:scaleType="fitStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/my_order">
 
         <LinearLayout
             android:layout_width="match_parent"

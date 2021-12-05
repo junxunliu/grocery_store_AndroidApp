@@ -40,6 +40,8 @@ November 26 - November 28
   3.What is stopping me / what impediments am I facing?
     no
 
+==============================================================
+
 November 29 - November 30
 
  1.What did I finish since the last standup?
@@ -48,3 +50,37 @@ November 29 - November 30
     implement signup activity, if checkbox is checked, the textview changed.
   3.What is stopping me / what impediments am I facing?
     no
+
+==============================================================
+
+December 1
+ 1.What did I finish since the last standup?
+    no
+  2.What am I going to finish by the next standup?
+    debug the issue that only my computer can access the firebase authentication, others can not
+  3.What is stopping me / what impediments am I facing?
+    no
+
+==============================================================
+
+December 2
+ 1.What did I finish since the last standup?
+    problems with Login & SignUp are already solved
+  2.What am I going to finish by the next standup?
+   no
+  3.What is stopping me / what impediments am I facing?
+   no
+
+==============================================================
+
+December 3
+just go through app, and check our progress
+
+==============================================================
+
+December 4
+optimize the user UI, delete junk date or testing date on datebase
+
+==============================================================
+
+December 5
