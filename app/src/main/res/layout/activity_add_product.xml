@@ -14,6 +14,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Product Name"
+        android:fontFamily="casual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.273"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Brand Name"
+        android:fontFamily="casual"
         app:layout_constraintStart_toStartOf="@+id/edTxtProductName"
         app:layout_constraintTop_toBottomOf="@+id/edTxtProductName" />
 
@@ -39,6 +41,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Price"
+        android:fontFamily="casual"
         app:layout_constraintStart_toStartOf="@+id/edTxtBrandName"
         app:layout_constraintTop_toBottomOf="@+id/edTxtBrandName" />
 
@@ -46,15 +49,16 @@
     <Button
         android:id="@+id/btAdd"
         style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="195dp"
-        android:layout_height="54dp"
+        android:layout_width="204dp"
+        android:layout_height="57dp"
         android:layout_marginTop="72dp"
         android:background="#B15E5E"
         android:backgroundTint="#4CAF50"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/coiny"
         android:scrollbarThumbHorizontal="@android:drawable/alert_light_frame"
         android:text="Add New Product"
         android:textIsSelectable="false"
+        android:textSize="14sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/edTxtPrice"
         app:layout_constraintHorizontal_bias="1.0"
