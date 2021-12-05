@@ -29,6 +29,7 @@
     <string name="tv_myOrder">My Orders</string>
     <string name="type_customer">Customer</string>
     <string name="type_storeOwner">Store Owner</string>
+    <string name="add_to_cart">Add to cart</string>
 
 
 </resources>

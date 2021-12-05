@@ -13,8 +13,12 @@
         android:layout_marginTop="32dp"
         android:text="@string/tv_myOrder"
         android:textAlignment="center"
+
         android:textColor="#03A9F4"
         android:fontFamily="casual"
+
+        android:textSize="25dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,16 +36,38 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="292dp"
-        android:layout_height="540dp"
-        android:layout_marginTop="85dp"
-        android:text="TextView"
+    <ScrollView
+        android:layout_width="294dp"
+        android:layout_height="536dp"
+        android:scaleType="fitStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/my_order">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="292dp"
+                android:layout_height="3000dp"
+                android:layout_marginTop="92dp"
+                android:text="TextView"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </ScrollView>
+    <![CDATA[
+
+
+
+
+
     =======
     >>>>>>> 98fdf88 (create CustomerOrderListActivity and StoreOwnerOrderListActivity)
+
+
+]]>
 </androidx.constraintlayout.widget.ConstraintLayout>
