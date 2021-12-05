@@ -13,6 +13,8 @@
         android:layout_height="33dp"
         android:layout_marginTop="32dp"
         android:text="@string/stoList"
+        android:fontFamily="casual"
+        android:textColor="#03A9F4"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -38,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="3000dp"
                 android:layout_marginTop="100dp"
+                android:fontFamily="@font/coiny"
                 android:layout_marginBottom="120dp" />
         </LinearLayout>
     </ScrollView>

@@ -24,6 +24,7 @@
         android:layout_marginTop="100dp"
         android:text="Check if Complete"
         android:textSize="14sp"
+        android:fontFamily="casual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_order_display"
