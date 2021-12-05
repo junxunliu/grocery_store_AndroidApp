@@ -206,4 +206,27 @@ Meeting Notes:
 
 December 3 Meeting
 
+Things to Do:
+-check current progress
+
+Meeting Notes:
+-debug CustomerOrderListActivity & StoreOwnerOrderListActivity
+-problems with CustomerProductActivity (p5.3) are solved
+-finish unit test
+
+==============================================
+
+December 4 Meeting
+
+Meeting Notes:
+-run the whole app
+-improve the interface
+-use the app to add some more resonable data to the database
+
+==============================================
+
+December 5 Meeting
+
+Meeting Notes:
+
 ==============================================
