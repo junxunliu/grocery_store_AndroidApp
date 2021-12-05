@@ -106,23 +106,24 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
 
     }
     private void sendOrder() {
-            String key = FirebaseDatabase.getInstance().getReference("Order").push().getKey();
-            order.setOrderId(key);
-            FirebaseDatabase.getInstance().getReference("Order").
-                    child(key).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+        if (order.getOrder().size() == 0) {
+            Toast.makeText(CustomerProductlistDisplayActivity.this,
+                    "Empty Order!\nFailed to create Order.",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+        String key = FirebaseDatabase.getInstance().getReference("Order").push().getKey();
+        order.setOrderId(key);
+        FirebaseDatabase.getInstance().getReference("Order").
+                child(key).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (order.getOrder().size() == 0) {
-                        Toast.makeText(CustomerProductlistDisplayActivity.this,
-                                "failed to create Order.",
-                                Toast.LENGTH_LONG).show();
-                        return;
-                    }
+
                     Toast.makeText(CustomerProductlistDisplayActivity.this,
                             "Order Created",
                             Toast.LENGTH_LONG).show();
                 }
-            });
+                });
     }
     @Override
     public void onClick(View view) {
