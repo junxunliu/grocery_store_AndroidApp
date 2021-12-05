@@ -24,6 +24,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
+        android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/checkBox"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
