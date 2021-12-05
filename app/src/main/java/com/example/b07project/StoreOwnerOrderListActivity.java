@@ -86,9 +86,14 @@ public class StoreOwnerOrderListActivity extends AppCompatActivity {
                     //Log.i("list", list.toString());
                 //}
                 //display orders in the ListView
-                adpt = new StoreOrderAdapter(StoreOwnerOrderListActivity.this,R.layout.layout_store_order,list);
-                //ListView lv = (ListView) findViewById(R.id.listView);
-                lv_display.setAdapter(adpt);
+                if(StoreOrderList.getList().size() == 0){
+                    Toast.makeText(StoreOwnerOrderListActivity.this, "There is NO order !",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    adpt = new StoreOrderAdapter(StoreOwnerOrderListActivity.this,R.layout.layout_store_order,list);
+                    //ListView lv = (ListView) findViewById(R.id.listView);
+                    lv_display.setAdapter(adpt);
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}

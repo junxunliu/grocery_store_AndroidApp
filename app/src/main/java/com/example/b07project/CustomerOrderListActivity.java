@@ -77,7 +77,12 @@ public class CustomerOrderListActivity extends AppCompatActivity {
                 OrderList CustomerOrderList;
                 CustomerOrderList = orderList.search(user);
                 //display orders in the TextView
-                tv_display.setText(CustomerOrderList.toString());
+                if(CustomerOrderList.getList().size() == 0){
+                    Toast.makeText(CustomerOrderListActivity.this, "There is NO order !",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    tv_display.setText(CustomerOrderList.toString());
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
