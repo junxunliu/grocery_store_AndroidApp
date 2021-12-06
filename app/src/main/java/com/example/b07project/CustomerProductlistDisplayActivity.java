@@ -134,44 +134,7 @@ public class CustomerProductlistDisplayActivity extends AppCompatActivity implem
         }
     }
 
-    // create a Post
-        //model.postOrder(order, (Order order) -> {
-           // if (order == null) {
-             //   Toast.makeText(this, "failed to create Order.", Toast.LENGTH_LONG).show();
-               // return;
-            //}
 
-            // create a Post Description
-            //orderDescription = new OrderDescription(order.orderID, currentUser.name, order.createdDate);
-            //model.postOrderDescription(orderDescription, (OrderDescription orderDesc) -> {
-
-                // Get the Store
-//              getStoreByName();
-
-                    // Update the store
-                //    store.pendingOrders.add(orderDesc);
-
-
-                  //  model.postStore(store, (Boolean storePosted) -> {
-                    //    Toast.makeText(this, "Order created.", Toast.LENGTH_LONG).show();
-                    //});
-                //});
-            //});
-        //});
-    //}
-
-//    public void getStoreByName() {
-//       FirebaseDatabase.getInstance().getReference("Users/Store Owners")
-//               .child(storeName).addListenerForSingleValueEvent(new ValueEventListener(){
-//            @Override
-//           public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                StoreOwner store = snapshot.getValue(StoreOwner.class);
-//                callback.accept(store);
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {}
-//        });
-//
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

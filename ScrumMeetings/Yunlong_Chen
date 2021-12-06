@@ -6,7 +6,7 @@ November 19 - November 23
    Setting up all the class and activity I need for the program.
   3.What is stopping me  what impediments am I facing
    How to display the product on the interface
-    
+
 ==============================================================
 
 November 23 - November 24
@@ -20,12 +20,90 @@ November 23 - November 24
 
 ==============================================================
 
-Novermber 24 - November 26
+November 24 - November 26
 
   1.What did I finish since the last standup
     I complete a roughly interface design of store display for customer.
   2.What am I going to finish by the next standup
     Finish the code for the activity
   3.What is stopping me  what impediments am I facing.
-    Don't know how to put inside a list of items.
+    Don't know how to put the product inside a list of items.
 ==============================================================
+
+November 26 - November 28
+
+  1.What did I finish since the last standup
+    Finished the code for Customer Store List View Activity
+  2.What am I going to finish by the next standup
+    Finished the code for Customer Product List display Activity
+  3.What is stopping me  what impediments am I facing.
+    Having problem on tracking the current user
+==============================================================
+
+November 28 - November 29
+    1.What did I finish since the last standup
+     Finished the design for Customer Product List display Activity
+    2.What am I going to finish by the next standup
+     Start to write the code for Customer Product List display Activity
+    3.What is stopping me  what impediments am I facing.
+     Having problem on tracking the current user
+==============================================================
+
+November 29 - November 30
+
+  1.What did I finish since the last standup
+    Finished the code for Customer Product List display Activity
+  2.What am I going to finish by the next standup
+    Debugging the code
+  3.What is stopping me  what impediments am I facing.
+    Having problem on connecting on data base
+==============================================================
+
+November 30 - December 1
+
+  1.What did I finish since the last standup
+    Finished debugging
+  2.What am I going to finish by the next standup
+    Check weather the program can run or not with other group members
+  3.What is stopping me  what impediments am I facing.
+    Having problem on connecting on data base
+==============================================================
+
+ December 1 - December 2
+
+  1.What did I finish since the last standup
+    Helping other group members to debug the code
+  2.What am I going to finish by the next standup
+    Check the program to see if there are any problem on our program
+  3.What is stopping me  what impediments am I facing.
+    Having problem on returning back the data from current activity to previous activity
+==============================================================
+
+ December 2 - December 3
+
+  1.What did I finish since the last standup
+    Helping other group members to debug the code
+  2.What am I going to finish by the next standup
+    Check the program to see if there are any problem on our program
+  3.What is stopping me  what impediments am I facing.
+    Having problem on returning back the data from current activity to previous activity
+==============================================================
+
+ December 3 - December 4
+
+  1.What did I finish since the last standup
+    Helping other group members to debug the code
+  2.What am I going to finish by the next standup
+    Check the program to see if there are any problem on our program
+  3.What is stopping me  what impediments am I facing.
+    Some problems on signup activity lead the related code having erro
+==============================================================
+
+ December 4 - December 5
+
+  1.What did I finish since the last standup
+    Helping other group members to debug the code
+  2.What am I going to finish by the next standup
+    To do the finished check for the program
+  3.What is stopping me  what impediments am I facing.
+    Finished

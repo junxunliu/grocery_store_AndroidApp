@@ -2,6 +2,7 @@
 
 November 16 - November 19
 
+
   1.What did I finish since the last standup?
     read through the user stories
     create a rough design of the interface
@@ -10,23 +11,13 @@ November 16 - November 19
     construct UML diagram for stores' order list and customers' order list
   3.What is stopping me / what impediments am I facing?
     no
-    
+
 ==============================================================
 
-November 19 - November 23
-
-  1.What did I finish since the last standup?
-    construct UML diagram for stores' order list and customers' order list
-    discuss the construction of product list with Kaiwen
-    discuss the UML diagram with group members
-  2.What am I going to finish by the next standup?
-    modify the UML diagram
-  3.What is stopping me / what impediments am I facing?
-    how the data is transferred between different classes
-    
-==============================================================
-
-November 23 - November 24
+November 19 Meeting
+  Things done:
+    Discussed the interface design with group members
+    Assigned tasks by the master
 
   1.What did I finish since the last standup?
     modify the UML diagram
@@ -38,9 +29,12 @@ November 23 - November 24
   3.What is stopping me / what impediments am I facing?
     no
 
-==============================================================
+===============================================
 
-November 24 - November 26
+November 23 Meeting
+  Things done:
+    Discussed the UML diagram with group members
+    Assigned tasks by the master
 
  1.What did I finish since the last standup?
     create and construct interface for Customer Order List Activity (page6) and Store Owner Order List Activity (page4)
