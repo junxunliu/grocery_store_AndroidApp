@@ -19,13 +19,24 @@
         <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v1/app/src/main/res/layout/activity_store_owner_order_list.xml" value="0.264" />
         <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v1/app/src/main/res/layout/layout_store_order.xml" value="0.5873544093178037" />
         <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v1/app/src/main/res/layout/product_list.xml" value="0.2" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v2/app/src/main/res/layout/activity_customer_order_list.xml" value="0.16634920634920636" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v2/app/src/main/res/layout/activity_customer_productlist_display.xml" value="0.2" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v2/app/src/main/res/layout/activity_customer_store_list.xml" value="0.264" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v2/app/src/main/res/layout/activity_store_owner_order_list.xml" value="0.14323809523809525" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v2/app/src/main/res/layout/layout_store_order.xml" value="0.2" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v2/app/src/main/res/layout/product_list.xml" value="0.2" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v4/app/src/main/res/layout/activity_add_product.xml" value="0.5507649513212796" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v4/app/src/main/res/layout/activity_customer_order_list.xml" value="0.264" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v4/app/src/main/res/layout/activity_customer_productlist_display.xml" value="0.2" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v4/app/src/main/res/layout/activity_store_owner_order_list.xml" value="0.13362193362193361" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v4/app/src/main/res/layout/layout_store_order.xml" value="0.6589018302828619" />
+        <entry key="..\:/Users/YeXinYi/AndroidStudioProjects/v4/app/src/main/res/layout/product_list.xml" value="0.536" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_add_product.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_order_list.xml" value="0.254981884057971" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_product.xml" value="0.254981884057971" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_productlist_display.xml" value="0.254981884057971" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customer_store_list.xml" value="0.254981884057971" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_customerstorelistviw2.xml" value="0.14716312056737588" />
-
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_display_store_product.xml" value="0.254981884057971" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_log_in.xml" value="0.254981884057971" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_sign_up.xml" value="0.254981884057971" />
@@ -33,7 +44,6 @@
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/activity_store_owner_order_list.xml" value="0.23885714285714285" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/layout_store_order.xml" value="0.254981884057971" />
         <entry key="..\:/Users/kaiwen/AndroidStudioProjects/b07-app/app/src/main/res/layout/product_list.xml" value="0.20199275362318841" />
-
         <entry key="..\:/b07-app/app/src/main/res/layout/activity_add_product.xml" value="0.4466666666666667" />
         <entry key="..\:/b07-app/app/src/main/res/layout/activity_customer_order_list.xml" value="0.2438326778691455" />
         <entry key="..\:/b07-app/app/src/main/res/layout/activity_customer_product.xml" value="0.4466666666666667" />

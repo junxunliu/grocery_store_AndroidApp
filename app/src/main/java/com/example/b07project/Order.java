@@ -109,4 +109,14 @@ public class Order implements Serializable {
         display = display + "\n";
         return display;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(o==null) return false;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order)o;
+        return orderId.equals(order.orderId) && StoreName.equals(order.StoreName)
+                && CustomerName.equals(order.CustomerName) && CustomerId.equals(order.CustomerId)
+                && status.equals(order.status) && orderedProductList.equals(order.orderedProductList) ;
+    }
 }

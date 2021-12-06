@@ -93,4 +93,12 @@ public class OrderList {
         }
         return display;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(o==null) return false;
+        if (!(o instanceof OrderList)) return false;
+        OrderList list = (OrderList) o;
+        return orderList.equals(list.orderList);
+    }
 }

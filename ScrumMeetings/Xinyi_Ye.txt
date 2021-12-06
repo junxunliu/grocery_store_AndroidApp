@@ -2,8 +2,15 @@
 
 November 16 - November 19
 
-  Things done:
-    Read through the user story carefully
+
+  1.What did I finish since the last standup?
+    read through the user stories
+    create a rough design of the interface
+    think about the division of works and assign works to group members
+  2.What am I going to finish by the next standup?
+    construct UML diagram for stores' order list and customers' order list
+  3.What is stopping me / what impediments am I facing?
+    no
 
 ==============================================================
 
@@ -12,10 +19,15 @@ November 19 Meeting
     Discussed the interface design with group members
     Assigned tasks by the master
 
-  Things to do:
-    using UML diagram to match the interface design
-    Create class and construct with Yunlong that we need for assigned tasks
-      -> Store owners' product list and Customers' store and product list
+  1.What did I finish since the last standup?
+    modify the UML diagram
+    think about the data format
+    finalize the UML diagram & data structure with group members
+    work assigned: the Order System
+  2.What am I going to finish by the next standup?
+    construct the interface for page 4&6
+  3.What is stopping me / what impediments am I facing?
+    no
 
 ===============================================
 
@@ -24,104 +36,126 @@ November 23 Meeting
     Discussed the UML diagram with group members
     Assigned tasks by the master
 
-  Things to do:
-    Have the correct fileds and constructors for each class with Yunlong
+ 1.What did I finish since the last standup?
+    create and construct interface for Customer Order List Activity (page6) and Store Owner Order List Activity (page4)
+  2.What am I going to finish by the next standup?
+    implement Order, Customer Order List Activity and Store Owner Order List Activity by November 29
+  3.What is stopping me / what impediments am I facing?
+    need to learn how to read and update database
+    
+==============================================================
 
-==============================================
+November 26 - November 28
 
-November 24 Meeting
-  Things done:
-    Finalize interface design
-    Discussed the fileds and constructors under each class and activity
-    Based on the final interface design, reassigned work
+  1.What did I finish since the last standup?
+    implement Order and OrderList Class
+  2.What am I going to finish by the next standup?
+    finish impletation for Customer Order List Activity and Store Owner Order List Activity
+  3.What is stopping me / what impediments am I facing?
+    Since each group members construct different parts, it seems difficult to connect together, 
+    we need time to discuss and apply changes when everyone finishes implementation.
 
-  Things to do:
-    Figure out the logic behind activities and xml design
+==============================================================
 
-==============================================
+November 28 - November 29
 
-November 26 Meeting
-  Things done:
-    Finished the layout for AddProductActivity and storeOwnerMainPage
-    Solved commit & push issues with GitHub, thanks to Ziyao
+  1.What did I finish since the last standup?
+    finish impletation for Customer Order List Activity
+    decide to use a ListView to achieve the functionality of Store Owner Order List Activity
+  2.What am I going to finish by the next standup?
+    debug Customer Order List Activity, implement StoreOwnerAdapter, the layout would 
+    be like a TextView which displays an order and a CheckBox which could be checked by 
+    the store owner when this order is complete
+  3.What is stopping me / what impediments am I facing?
+    no
 
-  Things to do:
-    Keep working on assigned works
+==============================================================
 
-==============================================
+November 29 - November 30
 
-November 28 - 29Meeting
-  Things done:
-    Stared coding the storeOwnerMainPage
-    Finished coding AddProductActivity Page using couple textview
+  1.What did I finish since the last standup?
+    debug CustomerOrderListActivity
+    implement StoreOwnerAdapter, the layout works properly
+  2.What am I going to finish by the next standup?
+    implement code for CheckBox OnClick event, make sure when the store owner click 
+    the checkbox, the status of current order changes    
+  3.What is stopping me / what impediments am I facing?
+    no
 
-  Things to do:
-    Find a way to display the added product to the store as a listview
+==============================================================
 
-==============================================
+November 30 - December 1
 
-November 30 Meeting
-  Things done:
-    Used an ArraylistAdapter to display the listview on the screen
-    updated the AddProductActivity
+  1.What did I finish since the last standup?
+    implement and debug StoreOwnerAdapter & StoreOwnerOrderListActivity, the 
+    CheckBox and TextView works properly, try to connect with database
+  2.What am I going to finish by the next standup?
+    connect to database, complete the method of reading data and updating data
+  3.What is stopping me / what impediments am I facing?
+    no
 
-  Things to do:
-    Finish the store main page code
+==============================================================
 
+November 1 - December 2
 
-==============================================
+  1.What did I finish since the last standup?
+    discuss the structure of the database that stores Order with Yunlong & Kaiwen
+    the data structure of Order changes to be:
+	orderId
+	storeName
+	customerName
+	customerId
+	List<OrderedProduct>
+	status
+    modify Order & OrderList with its new format
+    connect to database
+  2.What am I going to finish by the next standup?
+    complete the method of reading data and updating data for CustomerOrderListActivity & 
+    StoreOwnerAdapter & StoreOwnerOrderListActivity
+  3.What is stopping me / what impediments am I facing?
+    no
 
-December 1 Meeting
+==============================================================
 
-Things to Do:
--check current progress
+November 2 - December 3
 
-Meeting Notes:
--debug AddProductActivity & StoreOwnerMainPageActivity (implement by kaiwen), these two activities are working properly
--discuss log out
+  1.What did I finish since the last standup?
+    finish implementation of CustomerOrderListActivity & StoreOwnerAdapter & StoreOwnerOrderListActivity
+    debug these two activities and it works properly
+  2.What am I going to finish by the next standup?
+    check if the whole app works properly
+    keep debugging
+  3.What is stopping me / what impediments am I facing?
+    no
 
--thing to do before Next Meeting (December 2):
-     issues with Login & SignUp need to be solved (junxun)
-     finish implementation of CustomerProductlistDisplayActivity (p5.2) (yunlong)
-     connect to database and debug reading & updating methods for CustomerOrderListActivity & StoreOrderListActivity (xinyi)
+==============================================================
 
-==============================================
+November 3 - December 4
 
-December 2 Meeting
+  1.What did I finish since the last standup?
+    find some problems with StoreOwnerOrderListActivity, it works properly now
+    debug StoreOwnerAdapter & StoreOwnerOrderListActivity
+    modify layouts for StoreOwnerOrderListActivity & CustomerOrderListActivity
+  2.What am I going to finish by the next standup?
+    debug
+    write some store & customer data into database
+    delete some testing data from database
+  3.What is stopping me / what impediments am I facing?
+    no
 
-Things to Do:
--check current progress
+==============================================================
 
-Meeting Notes:
--problems with Login & SignUp are already solved
--debug CustomerStoreListViewActivity (p5.1) & CustomerProductlistDisplayActivity (p5.2) & CustomerProductActivity (p5.3)
--still have problem with CustomerProductActivity (p5.3), the quantity of the ordered product can't be passed to order
+November 4 - December 5
 
-==============================================
+  1.What did I finish since the last standup?
+    complete the work assignment file and check with group members
+    find bugs with send order and fix it
+    improve the scroll view in CustomerOrderListActivity
+    check and modify strings.xml
+    complete meeting_notes file
+  2.What am I going to finish by the next standup?
+    debug the whole app
+  3.What is stopping me / what impediments am I facing?
+    no
 
-December 3 Meeting
-
-Things to Do:
--check current progress
-
-Meeting Notes:
--debug CustomerOrderListActivity & StoreOwnerOrderListActivity
--problems with CustomerProductActivity (p5.3) are solved
--finish unit test
-
-==============================================
-
-December 4 Meeting
-
-Meeting Notes:
--run the whole app
--improve the interface
--use the app to add some more resonable data to the database
-
-==============================================
-
-December 5 Meeting
-
-Meeting Notes:
-
-==============================================
+==============================================================
