@@ -19,13 +19,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView banner;
     private EditText editTextFirstName, editTextLastName, editTextEmail, editTextPassword,
-    editTextStoreName, editTextStoreAddress;
+            editTextStoreName, editTextStoreAddress;
     private CheckBox checkBoxStoreOwner;
     private Button buttonSignUp;
     private ProgressBar progressBar;
@@ -82,7 +86,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.banner:
-                startActivity(new Intent(this,LogInActivity.class));
+                startActivity(new Intent(this, LogInActivity.class));
                 break;
             case R.id.buttonSignup:
                 signUp();
@@ -97,6 +101,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         String password = editTextPassword.getText().toString().trim();
         String storeName = editTextStoreName.getText().toString().trim();
         String storeAddress = editTextStoreAddress.getText().toString().trim();
+
+        DatabaseReference refStoreOwner = FirebaseDatabase.getInstance().getReference("Users").child("Store Owners");
+        DatabaseReference refCustomer = FirebaseDatabase.getInstance().getReference("Users").child("Customers");
+
+        progressBar.setVisibility(View.VISIBLE);
 
         // validate
         if (firstName.isEmpty()) {
@@ -129,76 +138,112 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
+        if (checkBoxStoreOwner.isChecked()) {
+            if (storeName.isEmpty()) {
+                editTextStoreName.setError("Store name is required!");
+                editTextStoreName.requestFocus();
+                return;
+            }
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            if (checkBoxStoreOwner.isChecked()) {
-                                if (storeName.isEmpty()) {
-                                    editTextStoreName.setError("Store name is required!");
-                                    editTextStoreName.requestFocus();
-                                    return;
-                                }
+            if (storeAddress.isEmpty()) {
+                editTextStoreAddress.setError("Store address is required!");
+                editTextStoreAddress.requestFocus();
+                return;
+            }
 
-                                if (storeAddress.isEmpty()) {
-                                    editTextStoreAddress.setError("Store address is required!");
+            // Check if the store name and address have existed
+            refStoreOwner.orderByChild("storeName").equalTo(storeName).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        editTextStoreName.setError("Store has already existed");
+                        editTextStoreName.requestFocus();
+                        progressBar.setVisibility(View.GONE);
+                        return;
+                    } else {
+                        refStoreOwner.orderByChild("storeAddress").equalTo(storeAddress).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    editTextStoreAddress.setError("Store address has already existed");
                                     editTextStoreAddress.requestFocus();
+                                    progressBar.setVisibility(View.GONE);
                                     return;
+                                } else {
+                                    progressBar.setVisibility(View.VISIBLE);
+                                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            User user = new StoreOwner(email, firstName, lastName, storeName, storeAddress);
+                                            user.setUserType("StoreOwner");
+                                            refStoreOwner.child(mAuth.getCurrentUser().getUid())
+                                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(SignUpActivity.this, R.string.storeOwner_register_success, Toast.LENGTH_LONG).show();
+                                                        progressBar.setVisibility(View.GONE);
+
+                                                        // redirect to login or dashboard
+                                                        Intent intent = new Intent(SignUpActivity.this, StoreOwnerMainPageActivity.class);
+                                                        intent.putExtra("Store Owner", user);
+                                                        startActivity(intent);
+                                                    } else {
+                                                        Toast.makeText(SignUpActivity.this, R.string.storeOwner_register_failed, Toast.LENGTH_LONG).show();
+                                                        progressBar.setVisibility(View.GONE);
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
                                 }
-                                User user = new StoreOwner(email, firstName, lastName, storeName, storeAddress);
-                                user.setUserType("StoreOwner");
-                                FirebaseDatabase.getInstance().getReference("Users")
-                                        .child("Store Owners").child(mAuth.getCurrentUser().getUid())
-                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(SignUpActivity.this, R.string.storeOwner_register_success, Toast.LENGTH_LONG).show();
-                                            progressBar.setVisibility(View.GONE);
-
-                                            // redirect to login or dashboard
-                                            Intent intent = new Intent(SignUpActivity.this,StoreOwnerMainPageActivity.class);
-                                            intent.putExtra("Store Owner", user);
-                                            startActivity(intent);
-                                        } else {
-                                            Toast.makeText(SignUpActivity.this, R.string.storeOwner_register_failed, Toast.LENGTH_LONG).show();
-                                            progressBar.setVisibility(View.GONE);
-                                        }
-                                    }
-                                });
-                            } else {
-                                User user = new User(email, firstName, lastName);
-                                user.setUserType("Customer");
-                                FirebaseDatabase.getInstance().getReference("Users")
-                                        .child("Customers").child(mAuth.getCurrentUser().getUid()) // get current sign up user id
-                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(SignUpActivity.this, R.string.customer_register_success, Toast.LENGTH_LONG).show();
-                                            progressBar.setVisibility(View.GONE);
-
-                                            // redirect to login or dashboard
-                                            Intent intent = new Intent(SignUpActivity.this, CustomerStoreListViewActivity.class);
-                                            intent.putExtra("Customer", user);
-                                            startActivity(intent);
-
-                                        } else {
-                                            Toast.makeText(SignUpActivity.this, R.string.customer_register_failed, Toast.LENGTH_LONG).show();
-                                            progressBar.setVisibility(View.GONE);
-                                        }
-                                    }
-                                });
                             }
-                        } else {
-                            Toast.makeText(SignUpActivity.this, R.string.signup_failed, Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    }
-                });
-    }
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        } else {
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        User user = new User(email, firstName, lastName);
+                        user.setUserType("Customer");
+                        refCustomer.child(mAuth.getCurrentUser().getUid()) // get current sign up user id
+                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(SignUpActivity.this, R.string.customer_register_success, Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
+
+                                    // redirect to login or dashboard
+                                    Intent intent = new Intent(SignUpActivity.this, CustomerStoreListViewActivity.class);
+                                    intent.putExtra("Customer", user);
+                                    startActivity(intent);
+
+                                } else {
+                                    Toast.makeText(SignUpActivity.this, R.string.customer_register_failed, Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            }
+                        });
+                    } else {
+                        Toast.makeText(SignUpActivity.this, R.string.signup_failed, Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }
+            });
+        }
+    }
 }

@@ -14,4 +14,19 @@ things to be done:
 
 11.30
 implemented the page where a user add a product into order.
+
+11.25
+create OrderedProduct, StoreOwner, update Product
+
+11.26-28
+Implement submitTodb method for Product
+
+11.29-30
+Create a page where user can add a product into shopping cart
+
+12.1
+link the previously created page to the one Yunlong created so that after a user clicking any product in the product list they are directed to the page to add the product to shopping cart.
+
+12.2-4
+update UI design
     
