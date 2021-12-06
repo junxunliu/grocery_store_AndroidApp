@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.b07project.StoreOwner;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +27,7 @@ import java.util.List;
 public class StoreOwnerMainPageActivity extends AppCompatActivity implements View.OnClickListener{
 
     private StoreOwner store = null;
-
+    private TextView textViewSignOut;
     private ListView ProductList;
 
 
@@ -39,6 +43,8 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
         findViewById(R.id.btListOfOrders).setOnClickListener(this);
         findViewById(R.id.btAddProduct).setOnClickListener(this);
         ProductList = findViewById(R.id.lvItems);
+        textViewSignOut = (TextView) findViewById(R.id.signout);
+        textViewSignOut.setOnClickListener(this);
         //could be a new page having the delete button
 //        ProductList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -95,6 +101,10 @@ public class StoreOwnerMainPageActivity extends AppCompatActivity implements Vie
             case R.id.btListOfOrders:
                 listOfOrders();
                 break;
+            case R.id.signout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LogInActivity.class));
+                finish();
         }
     }
 

@@ -10,11 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,12 +32,16 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
     private List<String> storeNames;
     private User currentUser;
     private Button btnViewOrder;
+    private TextView textViewSignOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_store_list);
         currentUser = (User) getIntent().getSerializableExtra("Customer");
+
+        textViewSignOut = (TextView) findViewById(R.id.customerSignOut);
+        textViewSignOut.setOnClickListener(this);
 
 
         getStoreNames();
@@ -88,6 +94,10 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
                 intent.putExtra("currentUser", currentUser);
                 startActivity(intent);
                 break;
+            case R.id.customerSignOut:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LogInActivity.class));
+                finish();
         }
     }
 }
