@@ -3,6 +3,7 @@
 November 16 - November 19
 
   1.What did I finish since the last standup?
+    read through the user stories
     create a rough design of the interface
     think about the division of works and assign works to group members
   2.What am I going to finish by the next standup?
@@ -30,6 +31,8 @@ November 23 - November 24
   1.What did I finish since the last standup?
     modify the UML diagram
     think about the data format
+    finalize the UML diagram & data structure with group members
+    work assigned: the Order System
   2.What am I going to finish by the next standup?
     construct the interface for page 4&6
   3.What is stopping me / what impediments am I facing?
@@ -42,10 +45,123 @@ November 24 - November 26
  1.What did I finish since the last standup?
     create and construct interface for Customer Order List Activity (page6) and Store Owner Order List Activity (page4)
   2.What am I going to finish by the next standup?
-    finish code impletation for Order, Customer Order List Activity and Store Owner Order List Activity
+    implement Order, Customer Order List Activity and Store Owner Order List Activity by November 29
   3.What is stopping me / what impediments am I facing?
-    no
+    need to learn how to read and update database
     
 ==============================================================
 
 November 26 - November 28
+
+  1.What did I finish since the last standup?
+    implement Order and OrderList Class
+  2.What am I going to finish by the next standup?
+    finish impletation for Customer Order List Activity and Store Owner Order List Activity
+  3.What is stopping me / what impediments am I facing?
+    Since each group members construct different parts, it seems difficult to connect together, 
+    we need time to discuss and apply changes when everyone finishes implementation.
+
+==============================================================
+
+November 28 - November 29
+
+  1.What did I finish since the last standup?
+    finish impletation for Customer Order List Activity
+    decide to use a ListView to achieve the functionality of Store Owner Order List Activity
+  2.What am I going to finish by the next standup?
+    debug Customer Order List Activity, implement StoreOwnerAdapter, the layout would 
+    be like a TextView which displays an order and a CheckBox which could be checked by 
+    the store owner when this order is complete
+  3.What is stopping me / what impediments am I facing?
+    no
+
+==============================================================
+
+November 29 - November 30
+
+  1.What did I finish since the last standup?
+    debug CustomerOrderListActivity
+    implement StoreOwnerAdapter, the layout works properly
+  2.What am I going to finish by the next standup?
+    implement code for CheckBox OnClick event, make sure when the store owner click 
+    the checkbox, the status of current order changes    
+  3.What is stopping me / what impediments am I facing?
+    no
+
+==============================================================
+
+November 30 - December 1
+
+  1.What did I finish since the last standup?
+    implement and debug StoreOwnerAdapter & StoreOwnerOrderListActivity, the 
+    CheckBox and TextView works properly, try to connect with database
+  2.What am I going to finish by the next standup?
+    connect to database, complete the method of reading data and updating data
+  3.What is stopping me / what impediments am I facing?
+    no
+
+==============================================================
+
+November 1 - December 2
+
+  1.What did I finish since the last standup?
+    discuss the structure of the database that stores Order with Yunlong & Kaiwen
+    the data structure of Order changes to be:
+	orderId
+	storeName
+	customerName
+	customerId
+	List<OrderedProduct>
+	status
+    modify Order & OrderList with its new format
+    connect to database
+  2.What am I going to finish by the next standup?
+    complete the method of reading data and updating data for CustomerOrderListActivity & 
+    StoreOwnerAdapter & StoreOwnerOrderListActivity
+  3.What is stopping me / what impediments am I facing?
+    no
+
+==============================================================
+
+November 2 - December 3
+
+  1.What did I finish since the last standup?
+    finish implementation of CustomerOrderListActivity & StoreOwnerAdapter & StoreOwnerOrderListActivity
+    debug these two activities and it works properly
+  2.What am I going to finish by the next standup?
+    check if the whole app works properly
+    keep debugging
+  3.What is stopping me / what impediments am I facing?
+    no
+
+==============================================================
+
+November 3 - December 4
+
+  1.What did I finish since the last standup?
+    find some problems with StoreOwnerOrderListActivity, it works properly now
+    debug StoreOwnerAdapter & StoreOwnerOrderListActivity
+    modify layouts for StoreOwnerOrderListActivity & CustomerOrderListActivity
+  2.What am I going to finish by the next standup?
+    debug
+    write some store & customer data into database
+    delete some testing data from database
+  3.What is stopping me / what impediments am I facing?
+    no
+
+==============================================================
+
+November 4 - December 5
+
+  1.What did I finish since the last standup?
+    complete the work assignment file and check with group members
+    find bugs with send order and fix it
+    improve the scroll view in CustomerOrderListActivity
+    check and modify strings.xml
+    complete meeting_notes file
+  2.What am I going to finish by the next standup?
+    debug the whole app
+  3.What is stopping me / what impediments am I facing?
+    no
+
+==============================================================

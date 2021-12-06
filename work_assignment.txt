@@ -1,33 +1,34 @@
-Work Assignment:
+Work Assignment
 
 Junxun Liu:
--Customer
--LoginActivity activity_log_in
 -Model
 -Presenter
--SignUpActivity activity_sign_up
 -User
+-Customer
+-LoginActivity & activity_log_in
+-SignUpActivity & activity_sign_up
 -Unit Test
 
 Kaiwen Niu:
--AddProductActivity activity_add_product
--ProductListAdapter product_list
--StoreOwnerMainPageActivity activity_store_owner_main_page
+-StoreOwnerMainPageActivity & activity_store_owner_main_page
+-ProductListAdapter & product_list
+-AddProductActivity & activity_add_product
 
 Yunlong Chen:
--CustomerStoreListViewActivity activity_customer_list
--CustomerProductlistDisplayActivity activity_customer_productlist_display
+-CustomerStoreListViewActivity & activity_customer_list
+-CustomerProductlistDisplayActivity & activity_customer_productlist_display
 
 Xinyi Ye:
--CustomerOrderListActivity activity_customer_order_list
 -Order
 -OrderList
--StoreOrderAdapter layout_store_order
--StoreOrderListActivity activity_store_owner_order_list
+-CustomerOrderListActivity & activity_customer_order_list
+-StoreOrderAdapter & layout_store_order
+-StoreOwnerOrderListActivity & activity_store_owner_order_list
+-meeting_notes
 
 Ziyao Yin:
--CustomerProductActivity activity_customer_product
--OrderedProduct
+-StoreOwner
 -Product
 -ProductList
--StoreOwner
+-OrderedProduct
+-CustomerProductActivity & activity_customer_product

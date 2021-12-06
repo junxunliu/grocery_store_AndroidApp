@@ -1,17 +1,39 @@
 ===============================================
 
+November 16 Meeting
+
+Group Info:
+-Tutorial: TUT0013
+-Scrum Master: Xinyi Ye
+-Group Members: Kaiwen Niu, Ziyao Yin, Yunlong Chen, Junxun Liu
+-Version Control System: github
+
+Meeting Notes:
+-first meeting
+-thing to do:
+read through user stories
+
+===============================================
+
 November 19 Meeting
 
 Things to Do:
 -discuss user stories & project overview
+-discuss interface design
 -assign works
 -start building UML diagram
 -discuss working timeline
 -set the time for next meeting
 -discuss things to do before next meeting
 
+Current Progress:
+-get familiar with user stories
+-create a rough design of the interface & work division pattern, more 
+  detailed information in interface_design.pdf (xinyi)
+
 Meeting Notes:
--discuss interface design and the division of works, more detailed information in interface_design.pdf
+-read through user stories
+-discuss interface design and the division of works
 
 -work assigned as followings:
 Junxun Liu:
@@ -26,7 +48,7 @@ Store owners' order list and Customers' order list
 -UML diagram link:
 https://app.creately.com/diagram/1cnIHM7qJEs/edit
 
--meetings:
+-meeting info:
 mode of contact: zoom meeting
 time: Tuesday 9am and Friday 9am every week
 
@@ -50,7 +72,7 @@ November 24 Meeting
 
 Things to Do:
 -finalize interface design
--finalize data format
+-finalize data structure
 -more detailed work assignment
 
 Meeting Notes:
@@ -86,6 +108,7 @@ page 1&2, StoreOwner, Customer: Junxun Liu
 page 3: Kaiwen Niu
 page 4&6, Order: Xinyi Ye
 page 5, Product, OrderedProduct: Ziyao Yin & Yunlong Chen
+* page description can be find in the interface_design.pdf
 
 -thing to do before Next Meeting (November 26):
 basic interface
@@ -144,7 +167,8 @@ Meeting Notes:
 -all the activities (pages) is connected properly
 -need more tests for expected functionality in next few days
 -issues with connect to database and update database need to be discussed in next meeting (December 1)
--current progress: (* means still need debugging)
+
+Current Progress: (* means still need debugging)
 Junxun:
 -Customer
 -LoginActivity *
@@ -152,25 +176,30 @@ Junxun:
 -Presenter
 -SignUpActivity *
 -User
+
 Kaiwen:
 -AddProductActivity *
 -ProductListAdapter *
 -StoreOwnerMainPageActivity
+
 Yunlong:
 -CustomerStoreListViewActivity * (p5.1)
 -CustomerProductlistDisplayActivity * (p5.2)
+
 Xinyi:
 -CustomerOrderListActivity
 -Order
 -OrderList *
 -StoreOrderAdapter *
 -StoreOrderListActivity
+
 Ziyao:
 -CustomerProductActivity * (p5.3)
 -OrderedProduct
 -Product
 -ProductList
 -StoreOwner
+
 Empty activity :
 -DisplayStoreProductActivity (need to determine whether it is needed)
 
@@ -182,8 +211,10 @@ Things to Do:
 -check current progress
 
 Meeting Notes:
--debug AddProductActivity & StoreOwnerMainPageActivity (implement by kaiwen), these two activities are working properly
--discuss log out
+-debug AddProductActivity & StoreOwnerMainPageActivity, these two activities are working properly
+
+Current Progress:
+-finish AddProductActivity & StoreOwnerMainPageActivity (kaiwen)
 
 -thing to do before Next Meeting (December 2):
      issues with Login & SignUp need to be solved (junxun)
@@ -198,9 +229,13 @@ Things to Do:
 -check current progress
 
 Meeting Notes:
--problems with Login & SignUp are already solved
 -debug CustomerStoreListViewActivity (p5.1) & CustomerProductlistDisplayActivity (p5.2) & CustomerProductActivity (p5.3)
 -still have problem with CustomerProductActivity (p5.3), the quantity of the ordered product can't be passed to order
+
+Current Progress:
+-problems with Login & SignUp are already solved(junxun)
+-finish CustomerStoreListViewActivity (p5.1) & CustomerProductlistDisplayActivity (p5.2) (yunlong)
+-finish CustomerOrderListActivity & StoreOwnerOrderListActivity (xinyi)
 
 ==============================================
 
@@ -212,7 +247,11 @@ Things to Do:
 Meeting Notes:
 -debug CustomerOrderListActivity & StoreOwnerOrderListActivity
 -problems with CustomerProductActivity (p5.3) are solved
--finish unit test
+
+Current Progress:
+-finish unit test (junxun)
+-finish CustomerProductActivity (p5.3) (ziyao)
+-finish implementation of basic functionalities of the whole app
 
 ==============================================
 
@@ -228,5 +267,7 @@ Meeting Notes:
 December 5 Meeting
 
 Meeting Notes:
+-complete the work_assignment file
+-final check with the app's functionalities
 
 ==============================================
