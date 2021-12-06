@@ -38,7 +38,6 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
         currentUser = (User) getIntent().getSerializableExtra("Customer");
 
 
-//        getCurrentUser();
         getStoreNames();
 
          btnViewOrder = (Button) findViewById(R.id.button_view_order);
@@ -59,18 +58,6 @@ public class CustomerStoreListViewActivity extends AddProductActivity  {
         });
     }
 
-//    private void getCurrentUser() {
-//        FirebaseDatabase.getInstance().getReference("Users/Customers").child(currentUserID)
-//                .addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull  DataSnapshot snapshot) {
-//                        currentUser = (User) snapshot.getValue(User.class);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {}
-//                });
-//    }
 
     private void getStoreNames() {
         FirebaseDatabase.getInstance().getReference("Users/Store Owners")
