@@ -78,8 +78,11 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
             return;
         }
 
-
-
+        if(store.getProductList().contains(NewProduct)){
+            Toast.makeText(AddProductActivity.this, "Product Already Existed.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
         //add the product to the product list
         store.addProduct(NewProduct);
 
