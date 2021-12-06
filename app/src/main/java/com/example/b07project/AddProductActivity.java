@@ -26,9 +26,8 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
     private StoreOwner store;
     private String thisUserID;
 
-    Pattern patternPrice = Pattern.compile("[+]\\d+\\.?\\d+");
-    //Pattern patternPrice = Pattern.compile("[+][0-9]*\\.?[0-9]+");
-
+    Pattern patternPrice = Pattern.compile("[0-9]*\\.?[0-9]+");
+    //Pattern patternPrice = Pattern.compile("");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
