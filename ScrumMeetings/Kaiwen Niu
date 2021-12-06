@@ -1,31 +1,98 @@
-November 19 - November 23
+===============================================
 
-  1.What did I finish since the last standup
-   I complete a UML diagram for store_owner prodcts and customer product with Kaiwen.
-  2.What am I going to finish by the next standup
-   Setting up all the class and activity I need for the program.
-  3.What is stopping me  what impediments am I facing
-   How to display the product on the interface
+November 16 - November 19
+
+  Things done:
+    Read through the user story carefully
+
+===============================================
+
+November 19 Meeting
+  Things done:
+    Discussed the interface design with group members
+    Assigned tasks by the master
     
-==============================================================
+  Things to do:
+    using UML diagram to match the interface design
+    Create class and construct with Yunlong that we need for assigned tasks
+      -> Store owners' product list and Customers' store and product list
 
-November 23 - November 24
+===============================================
 
-  1.What did I finish since the last standup
-    Start writting the code for product.
-  2.What am I going to finish by the next standup
-    construct the interface for page 5
-  3.What is stopping me  what impediments am I facing
-    How to transfer the data from one class to another calss.
-
-==============================================================
-
-Novermber 24 - November 26
-
-  1.What did I finish since the last standup
+November 23 Meeting
+  Things done:
+    Discussed the UML diagram with group members
+    Assigned tasks by the master
     
-  2.What am I going to finish by the next standup
+  Things to do:
+    Have the correct fileds and constructors for each class with Yunlong
+
+==============================================
+
+November 24 Meeting
+  Things done:
+    Finalize interface design
+    Discussed the fileds and constructors under each class and activity
+    Based on the final interface design, reassigned work
     
-  3.What is stopping me  what impediments am I facing
-   
-==============================================================
+  Things to do:
+    Figure out the logic behind activities and xml design
+
+==============================================
+
+November 26 Meeting
+  Things done:
+    Finished the layout for AddProductActivity and storeOwnerMainPage
+    Solved commit & push issues with GitHub, thanks to Ziyao
+    
+  Things to do:
+    Keep working on assigned works
+
+==============================================
+
+November 28 - 29Meeting
+  Things done:
+    Stared coding the storeOwnerMainPage
+    Finished coding AddProductActivity Page using couple textview 
+
+  Things to do:
+    Find a way to display the added product to the store as a listview
+
+==============================================
+
+November 30 Meeting
+  Things done:
+    Used an ArraylistAdapter to display the listview on the screen
+    updated the AddProductActivity
+    
+  Things to do:
+    Finish the store main page code
+
+==============================================
+
+December 1 Meeting
+  Things done:
+    Finished the store main page and add product activity
+    Debugged the code during the meeting
+    Solved display problem
+    Discussed with Xinyi about the Database design issue for her part and gave suggestions
+    
+  Things to do:
+    Clear interface design 
+
+==============================================
+
+December 2-4 Meeting
+  Things done:
+    Finished the Interface design for user-friendly purposes
+    
+  Things to do:
+    Help with other group members for their tasks 
+
+==============================================
+
+December 5
+  Things done:
+    Added constriants to limite the text put in the AddProductActivity, such as no empty allowed
+
+==============================================
