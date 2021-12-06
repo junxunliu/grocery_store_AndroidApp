@@ -82,11 +82,17 @@ December 1 Meeting
 
 ==============================================
 
-December 2-5 Meeting
+December 2-4 Meeting
   Things done:
     Finished the Interface design for user-friendly purposes
     
   Things to do:
     Help with other group members for their tasks 
+
+==============================================
+
+December 5
+  Things done:
+    Added constriants to limite the text put in the AddProductActivity, such as no empty allowed
 
 ==============================================
