@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +26,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
     private StoreOwner store;
     private String thisUserID;
 
-    //Pattern patternPrice = new Pattern(
+    Pattern patternPrice = Pattern.compile("\\d+");
 
 
     @Override
@@ -67,6 +68,12 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
 
         if (price.isEmpty()) {
             edTxtPrice.setError("Price is required!");
+            edTxtPrice.requestFocus();
+            return;
+        }
+
+        if (!patternPrice.matcher(price).matches()) {
+            edTxtPrice.setError("Invalid price!");
             edTxtPrice.requestFocus();
             return;
         }
