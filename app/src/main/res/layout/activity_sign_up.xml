@@ -135,10 +135,10 @@
         android:layout_width="360dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
-        android:text="Sign Up"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/sign_up"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkboxStoreOwner"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkboxStoreOwner" />
 
     <ProgressBar
         android:id="@+id/progressBar"

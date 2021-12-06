@@ -36,6 +36,12 @@
     <string name="name">Name</string>
     <string name="brand_name">Brand Name</string>
     <string name="product_name">Product Name</string>
+    <string name="view_order">View Orders</string>
+    <string name="store">Store</string>
+    <string name="product_list">Product List</string>
+    <string name="place_order">Place Order</string>
+    <string name="login">LOG IN</string>
+    <string name="signUp">Sign Up</string>
 
 
 </resources>
